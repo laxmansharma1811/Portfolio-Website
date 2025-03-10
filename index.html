@@ -532,7 +532,7 @@
           <!-- Skill 6: Flutter -->
           <div class="skill-item p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md">
             <div class="flex items-center space-x-3">
-              <i class="fab fa-flutter text-3xl text-indigo-600 dark:text-indigo-400"></i>
+              <i class="fa-brands fa-flutter text-3xl text-indigo-600 dark:text-indigo-400"></i>
               <div class="flex-1">
                 <h4 class="font-medium">Flutter</h4>
               </div>
@@ -733,7 +733,7 @@
     </div>
   </section>
 
-  <!-- Footer -->
+ <!-- Footer -->
 <footer class="py-12 bg-gray-50 dark:bg-gray-800">
   <div class="container mx-auto px-4">
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -749,11 +749,41 @@
       <div class="text-center">
         <h3 class="text-xl font-bold text-indigo-600 dark:text-indigo-400 mb-4">Quick Links</h3>
         <ul class="space-y-2">
-          <li><a href="#home" class="text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Home</a></li>
-          <li><a href="#about" class="text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">About</a></li>
-          <li><a href="#projects" class="text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Projects</a></li>
-          <li><a href="#skills" class="text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Skills</a></li>
-          <li><a href="#contact" class="text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Contact</a></li>
+          <li>
+            <a href="#home" 
+               @click.prevent="smoothScroll('#home')" 
+               class="text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+              Home
+            </a>
+          </li>
+          <li>
+            <a href="#about" 
+               @click.prevent="smoothScroll('#about')" 
+               class="text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+              About
+            </a>
+          </li>
+          <li>
+            <a href="#projects" 
+               @click.prevent="smoothScroll('#projects')" 
+               class="text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+              Projects
+            </a>
+          </li>
+          <li>
+            <a href="#skills" 
+               @click.prevent="smoothScroll('#skills')" 
+               class="text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+              Skills
+            </a>
+          </li>
+          <li>
+            <a href="#contact" 
+               @click.prevent="smoothScroll('#contact')" 
+               class="text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+              Contact
+            </a>
+          </li>
         </ul>
       </div>
 
@@ -809,6 +839,9 @@
       });
     }
   };
+
+  // Make smoothScroll globally accessible
+  window.smoothScroll = smoothScroll;
 </script>
 </body>
 </html>
