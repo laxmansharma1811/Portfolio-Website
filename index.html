@@ -81,6 +81,11 @@
     .toggle-checkbox:checked + .toggle-label .toggle-ball {
       transform: translateX(24px);
     }
+
+    .skill-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
   </style>
 </head>
 <body class="bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200" x-data="{darkMode: false, navOpen: false, activeSection: 'home', skills: [
@@ -449,51 +454,99 @@
   </div>
 </section>
 
- <!-- Skills Section -->
+<!-- Skills Section -->
 <section id="skills" class="py-16 bg-gray-50 dark:bg-gray-800 section">
   <div class="container mx-auto px-4">
     <h2 class="text-3xl font-bold mb-2 text-center">My Skills</h2>
     <div class="w-16 h-1 bg-indigo-600 mx-auto mb-10"></div>
     
     <div class="flex flex-col md:flex-row">
+      <!-- Skills List -->
       <div class="md:w-1/2 md:pr-10 mb-10 md:mb-0">
-        <!-- Skills List -->
-        <div class="grid grid-cols-2 gap-6">
-          <div class="flex items-center space-x-3">
-            <span class="text-indigo-600 dark:text-indigo-400">✔️</span>
-            <span class="font-medium">HTML</span>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Skill 1: HTML -->
+          <div class="skill-item p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+            <div class="flex items-center space-x-3">
+              <i class="fab fa-html5 text-3xl text-indigo-600 dark:text-indigo-400"></i>
+              <div class="flex-1">
+                <h4 class="font-medium">HTML</h4>
+              </div>
+            </div>
           </div>
-          <div class="flex items-center space-x-3">
-            <span class="text-indigo-600 dark:text-indigo-400">✔️</span>
-            <span class="font-medium">CSS</span>
+
+          <!-- Skill 2: CSS -->
+          <div class="skill-item p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+            <div class="flex items-center space-x-3">
+              <i class="fab fa-css3-alt text-3xl text-indigo-600 dark:text-indigo-400"></i>
+              <div class="flex-1">
+                <h4 class="font-medium">CSS</h4>
+              </div>
+            </div>
           </div>
-          <div class="flex items-center space-x-3">
-            <span class="text-indigo-600 dark:text-indigo-400">✔️</span>
-            <span class="font-medium">JavaScript</span>
+
+          <!-- Skill 3: JavaScript -->
+          <div class="skill-item p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+            <div class="flex items-center space-x-3">
+              <i class="fab fa-js-square text-3xl text-indigo-600 dark:text-indigo-400"></i>
+              <div class="flex-1">
+                <h4 class="font-medium">JavaScript</h4>
+              </div>
+            </div>
           </div>
-          <div class="flex items-center space-x-3">
-            <span class="text-indigo-600 dark:text-indigo-400">✔️</span>
-            <span class="font-medium">Python</span>
+
+          <!-- Skill 4: Python -->
+          <div class="skill-item p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+            <div class="flex items-center space-x-3">
+              <i class="fab fa-python text-3xl text-indigo-600 dark:text-indigo-400"></i>
+              <div class="flex-1">
+                <h4 class="font-medium">Python</h4>
+              </div>
+            </div>
           </div>
-          <div class="flex items-center space-x-3">
-            <span class="text-indigo-600 dark:text-indigo-400">✔️</span>
-            <span class="font-medium">Selenium</span>
+
+          <!-- Skill 5: Selenium -->
+          <div class="skill-item p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+            <div class="flex items-center space-x-3">
+              <i class="fas fa-robot text-3xl text-indigo-600 dark:text-indigo-400"></i>
+              <div class="flex-1">
+                <h4 class="font-medium">Selenium</h4>
+              </div>
+            </div>
           </div>
-          <div class="flex items-center space-x-3">
-            <span class="text-indigo-600 dark:text-indigo-400">✔️</span>
-            <span class="font-medium">Flutter</span>
+
+          <!-- Skill 6: Flutter -->
+          <div class="skill-item p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+            <div class="flex items-center space-x-3">
+              <i class="fab fa-flutter text-3xl text-indigo-600 dark:text-indigo-400"></i>
+              <div class="flex-1">
+                <h4 class="font-medium">Flutter</h4>
+              </div>
+            </div>
           </div>
-          <div class="flex items-center space-x-3">
-            <span class="text-indigo-600 dark:text-indigo-400">✔️</span>
-            <span class="font-medium">Firebase</span>
+
+          <!-- Skill 7: Firebase -->
+          <div class="skill-item p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+            <div class="flex items-center space-x-3">
+              <i class="fas fa-fire text-3xl text-indigo-600 dark:text-indigo-400"></i>
+              <div class="flex-1">
+                <h4 class="font-medium">Firebase</h4>
+              </div>
+            </div>
           </div>
-          <div class="flex items-center space-x-3">
-            <span class="text-indigo-600 dark:text-indigo-400">✔️</span>
-            <span class="font-medium">Git</span>
+
+          <!-- Skill 8: Git -->
+          <div class="skill-item p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+            <div class="flex items-center space-x-3">
+              <i class="fab fa-git-alt text-3xl text-indigo-600 dark:text-indigo-400"></i>
+              <div class="flex-1">
+                <h4 class="font-medium">Git</h4>
+              </div>
+            </div>
           </div>
         </div>
       </div>
       
+      <!-- Learning Journey -->
       <div class="md:w-1/2">
         <h3 class="text-2xl font-semibold mb-6">My Learning Journey</h3>
         
