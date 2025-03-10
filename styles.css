@@ -1,20 +1,70 @@
-/* styles.css */
-.animate-fade-in {
-    animation: fadeIn 1s ease-in;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      scroll-behavior: smooth;
     }
-    to {
-        opacity: 1;
-        transform: translateY(0);
+    
+    .text-gradient {
+      background: linear-gradient(90deg, #4F46E5, #EC4899);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
-}
-
-/* Smooth scrolling */
-html {
-    scroll-behavior: smooth;
-}
+    
+    .hero-bg {
+      background: radial-gradient(circle at center, rgba(79, 70, 229, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
+    }
+    
+    .project-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    }
+    
+    .animate-fade-in {
+      opacity: 0;
+      animation: fadeIn 0.8s ease forwards;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .skill-bar {
+      height: 10px;
+      border-radius: 5px;
+      background: #e2e8f0;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .skill-progress {
+      height: 100%;
+      border-radius: 5px;
+      background: linear-gradient(90deg, #4F46E5, #EC4899);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      transition: width 1s ease;
+    }
+    
+    .nav-link.active {
+      color: #4F46E5;
+      border-bottom: 2px solid #4F46E5;
+    }
+    
+    /* Dark mode toggle styling */
+    .toggle-checkbox:checked + .toggle-label {
+      background-color: #4F46E5;
+    }
+    
+    .toggle-checkbox:checked + .toggle-label .toggle-ball {
+      transform: translateX(24px);
+    }
+ 
