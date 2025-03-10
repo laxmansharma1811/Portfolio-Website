@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,8 +9,16 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollToPlugin.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
-  <link rel="stylesheet" href="style.css">
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Configure Tailwind for dark mode
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {}
+      }
+    }
+  </script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
     
@@ -83,14 +91,17 @@
     }
 
     .skill-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-}
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
 
-a:hover {
-  transform: translateY(-2px);
-  transition: transform 0.2s ease;
-}
+    a:hover {
+      transform: translateY(-2px);
+      transition: transform 0.2s ease;
+    }
+    
+    /* Fix for Alpine.js x-cloak */
+    [x-cloak] { display: none !important; }
   </style>
 </head>
 <body class="bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200" x-data="{darkMode: false, navOpen: false, activeSection: 'home', skills: [
@@ -104,7 +115,6 @@ a:hover {
   if (localStorage.getItem('darkMode') === 'true' || 
       (!localStorage.getItem('darkMode') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
     darkMode = true;
-    document.documentElement.classList.add('dark');
   }
   
   // Initialize GSAP animations
@@ -208,18 +218,18 @@ a:hover {
     <div class="md:hidden absolute w-full bg-white dark:bg-gray-900 shadow-md transition-all duration-300 overflow-hidden" 
      :class="navOpen ? 'max-h-60' : 'max-h-0'" 
      style="top: 100%">
-  <div class="container mx-auto px-4 py-2">
-    <template x-for="(item, index) in ['home', 'about', 'projects', 'skills', 'contact']">
-      <a 
-        :href="`#${item}`" 
-        @click.prevent="smoothScroll(`#${item}`); activeSection = item; navOpen = false;" 
-        class="block py-3 border-b border-gray-100 dark:border-gray-800 capitalize hover:text-indigo-600 dark:hover:text-indigo-400"
-        :class="activeSection === item ? 'text-indigo-600 dark:text-indigo-400' : ''"
-        x-text="item"
-      ></a>
-    </template>
-  </div>
-</div>
+      <div class="container mx-auto px-4 py-2">
+        <template x-for="(item, index) in ['home', 'about', 'projects', 'skills', 'contact']">
+          <a 
+            :href="`#${item}`" 
+            @click.prevent="smoothScroll(`#${item}`); activeSection = item; navOpen = false;" 
+            class="block py-3 border-b border-gray-100 dark:border-gray-800 capitalize hover:text-indigo-600 dark:hover:text-indigo-400"
+            :class="activeSection === item ? 'text-indigo-600 dark:text-indigo-400' : ''"
+            x-text="item"
+          ></a>
+        </template>
+      </div>
+    </div>
   </header>
 
   <!-- Hero Section -->
