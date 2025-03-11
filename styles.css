@@ -1,70 +1,430 @@
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-    
-    body {
-      font-family: 'Poppins', sans-serif;
-      scroll-behavior: smooth;
-    }
-    
-    .text-gradient {
-      background: linear-gradient(90deg, #4F46E5, #EC4899);
-      background-clip: text;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    
-    .hero-bg {
-      background: radial-gradient(circle at center, rgba(79, 70, 229, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
-    }
-    
-    .project-card {
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    
-    .project-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-    }
-    
-    .animate-fade-in {
-      opacity: 0;
-      animation: fadeIn 0.8s ease forwards;
-    }
-    
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    
-    .skill-bar {
-      height: 10px;
-      border-radius: 5px;
-      background: #e2e8f0;
-      overflow: hidden;
-      position: relative;
-    }
-    
-    .skill-progress {
-      height: 100%;
-      border-radius: 5px;
-      background: linear-gradient(90deg, #4F46E5, #EC4899);
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 0;
-      transition: width 1s ease;
-    }
-    
-    .nav-link.active {
-      color: #4F46E5;
-      border-bottom: 2px solid #4F46E5;
-    }
-    
-    /* Dark mode toggle styling */
-    .toggle-checkbox:checked + .toggle-label {
-      background-color: #4F46E5;
-    }
-    
-    .toggle-checkbox:checked + .toggle-label .toggle-ball {
-      transform: translateX(24px);
-    }
- 
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+body {
+  font-family: 'Poppins', sans-serif;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, #4F46E5, #EC4899);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-bg {
+  background: radial-gradient(circle at center, rgba(79, 70, 229, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
+  position: relative;
+  overflow: hidden;
+}
+
+.project-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.animate-fade-in {
+  opacity: 0;
+  animation: fadeIn 0.8s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.skill-bar {
+  height: 10px;
+  border-radius: 5px;
+  background: #e2e8f0;
+  overflow: hidden;
+  position: relative;
+}
+
+.skill-progress {
+  height: 100%;
+  border-radius: 5px;
+  background: linear-gradient(90deg, #4F46E5, #EC4899);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  transition: width 1s ease;
+}
+
+.nav-link.active {
+  color: #4F46E5;
+  border-bottom: 2px solid #4F46E5;
+}
+
+/* Dark mode toggle styling */
+.toggle-checkbox:checked + .toggle-label {
+  background-color: #4F46E5;
+}
+
+.toggle-checkbox:checked + .toggle-label .toggle-ball {
+  transform: translateX(24px);
+}
+
+.skill-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+a:hover {
+  transform: translateY(-2px);
+  transition: transform 0.2s ease;
+}
+
+/* Fix for Alpine.js x-cloak */
+[x-cloak] { display: none !important; }
+
+/* Animation Styles for Portfolio Website */
+
+/* Container styles */
+.vanta-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.particles-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.gradient-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  background: linear-gradient(45deg, #4f46e5, #ec4899);
+  opacity: 0.05;
+}
+
+.animated-shape {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(50px);
+  opacity: 0.15;
+  z-index: -1;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(5deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+.floating-shape {
+  animation: float 15s ease-in-out infinite;
+}
+
+/* Dark mode adjustments */
+.dark .gradient-bg {
+  opacity: 0.1;
+}
+
+.dark .animated-shape {
+  opacity: 0.2;
+}
+
+/* Section-specific animations */
+.hero-animation {
+  position: relative;
+  overflow: hidden;
+}
+
+.skills-animation {
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-animation {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Additional responsive styles */
+@media (max-width: 640px) {
+  .project-card {
+    margin-bottom: 1.5rem;
+  }
+  
+  .skill-item {
+    margin-bottom: 1rem;
+  }
+  
+  .hero-section h1 {
+    font-size: 2.5rem;
+  }
+  
+  .hero-section h2 {
+    font-size: 1.5rem;
+  }
+}
+
+/* Ensure images are responsive */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Improve form responsiveness on small screens */
+@media (max-width: 480px) {
+  input, textarea, button {
+    width: 100%;
+  }
+  
+  .contact-info {
+    text-align: center;
+  }
+}
+
+/* Fix for filter buttons on small screens */
+.filter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+/* Improve spacing on mobile */
+@media (max-width: 768px) {
+  section {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+  
+  .section-title {
+    margin-bottom: 2rem;
+  }
+}
+
+/* NEW BACKGROUND ANIMATIONS */
+
+/* Animated Background */
+.animated-bg {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Animated Gradient Background */
+.animated-gradient {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, 
+    rgba(79, 70, 229, 0.1) 0%, 
+    rgba(236, 72, 153, 0.1) 25%, 
+    rgba(79, 70, 229, 0.1) 50%, 
+    rgba(236, 72, 153, 0.1) 75%, 
+    rgba(79, 70, 229, 0.1) 100%);
+  animation: gradientAnimation 15s ease infinite;
+  z-index: -2;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Floating Bubbles */
+.bubble {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(79, 70, 229, 0.1);
+  animation: float-bubble var(--duration) ease-in-out infinite;
+  z-index: -1;
+}
+
+@keyframes float-bubble {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+  }
+  50% {
+    transform: translateY(var(--distance)) translateX(var(--distance-x));
+  }
+}
+
+/* Animated Shapes */
+.shape {
+  position: absolute;
+  filter: blur(30px);
+  z-index: -1;
+  opacity: 0.2;
+  animation: shape-float 20s ease-in-out infinite;
+}
+
+.shape-1 {
+  top: 20%;
+  left: 10%;
+  width: 300px;
+  height: 300px;
+  background: rgba(79, 70, 229, 0.3);
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  animation-delay: 0s;
+}
+
+.shape-2 {
+  bottom: 10%;
+  right: 10%;
+  width: 200px;
+  height: 200px;
+  background: rgba(236, 72, 153, 0.3);
+  border-radius: 58% 42% 33% 67% / 36% 67% 33% 64%;
+  animation-delay: -5s;
+}
+
+.shape-3 {
+  top: 50%;
+  right: 20%;
+  width: 150px;
+  height: 150px;
+  background: rgba(79, 70, 229, 0.2);
+  border-radius: 41% 59% 41% 59% / 41% 59% 41% 59%;
+  animation-delay: -10s;
+}
+
+.shape-4 {
+  bottom: 30%;
+  left: 20%;
+  width: 180px;
+  height: 180px;
+  background: rgba(236, 72, 153, 0.2);
+  border-radius: 67% 33% 47% 53% / 37% 20% 80% 63%;
+  animation-delay: -15s;
+}
+
+@keyframes shape-float {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  33% {
+    transform: translate(2%, 2%) rotate(5deg);
+  }
+  66% {
+    transform: translate(-2%, -1%) rotate(-5deg);
+  }
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+}
+
+/* Shooting Stars */
+.shooting-star {
+  position: absolute;
+  width: 100px;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.8), transparent);
+  animation: shooting 5s linear infinite;
+  opacity: 0;
+}
+
+@keyframes shooting {
+  0% {
+    transform: translateX(0) translateY(0) rotate(45deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  20% {
+    transform: translateX(calc(100vw / 5)) translateY(calc(100vh / 5)) rotate(45deg);
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Glowing Dots */
+.glowing-dot {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: rgba(79, 70, 229, 0.7);
+  box-shadow: 0 0 10px 2px rgba(79, 70, 229, 0.3);
+  animation: glow 4s ease-in-out infinite;
+}
+
+@keyframes glow {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.5);
+  }
+}
+
+/* Dark mode adjustments for animations */
+.dark .animated-gradient {
+  background: linear-gradient(45deg, 
+    rgba(79, 70, 229, 0.15) 0%, 
+    rgba(236, 72, 153, 0.15) 25%, 
+    rgba(79, 70, 229, 0.15) 50%, 
+    rgba(236, 72, 153, 0.15) 75%, 
+    rgba(79, 70, 229, 0.15) 100%);
+}
+
+.dark .bubble {
+  background: rgba(79, 70, 229, 0.15);
+}
+
+.dark .shape {
+  opacity: 0.25;
+}
+
+.dark .glowing-dot {
+  background-color: rgba(236, 72, 153, 0.7);
+  box-shadow: 0 0 10px 2px rgba(236, 72, 153, 0.3);
+}
+
+/* Responsive adjustments for animations */
+@media (max-width: 768px) {
+  .shape-1, .shape-2, .shape-3, .shape-4 {
+    transform: scale(0.7);
+  }
+  
+  .shooting-star {
+    width: 50px;
+  }
+}
