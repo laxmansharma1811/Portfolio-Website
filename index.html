@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="light">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,9 +8,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollToPlugin.min.js"></script>
-  <link rel="stylesheet" href="styles.css">
-  <script src="script.js"></script>
-  <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -18,13 +15,169 @@
     tailwind.config = {
       darkMode: 'class',
       theme: {
-        extend: {}
+        extend: {
+          colors: {
+            primary: {
+              50: '#f0f9ff',
+              100: '#e0f2fe',
+              200: '#bae6fd',
+              300: '#7dd3fc',
+              400: '#38bdf8',
+              500: '#0ea5e9',
+              600: '#0284c7',
+              700: '#0369a1',
+              800: '#075985',
+              900: '#0c4a6e',
+              950: '#082f49',
+            },
+            secondary: {
+              50: '#f5f3ff',
+              100: '#ede9fe',
+              200: '#ddd6fe',
+              300: '#c4b5fd',
+              400: '#a78bfa',
+              500: '#8b5cf6',
+              600: '#7c3aed',
+              700: '#6d28d9',
+              800: '#5b21b6',
+              900: '#4c1d95',
+              950: '#2e1065',
+            }
+          },
+          animation: {
+            'float': 'float 6s ease-in-out infinite',
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'fade-in': 'fadeIn 1s ease-in-out forwards',
+            'slide-up': 'slideUp 0.8s ease-in-out forwards',
+            'slide-right': 'slideRight 0.8s ease-in-out forwards',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-20px)' },
+            },
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' },
+            },
+            slideUp: {
+              '0%': { transform: 'translateY(50px)', opacity: '0' },
+              '100%': { transform: 'translateY(0)', opacity: '1' },
+            },
+            slideRight: {
+              '0%': { transform: 'translateX(-50px)', opacity: '0' },
+              '100%': { transform: 'translateX(0)', opacity: '1' },
+            },
+          },
+          backgroundImage: {
+            'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+            'hero-pattern': 'url("data:image/svg+xml,%3Csvg width=\'100\' height=\'100\' viewBox=\'0 0 100 100\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath d=\'M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z\' fill=\'%239C92AC\' fill-opacity=\'0.05\' fill-rule=\'evenodd\'/%3E%3C/svg%3E")',
+          },
+        }
       }
     }
   </script>
+  <style>
+    /* Custom Styles */
+    .text-gradient {
+      @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-secondary-600;
+    }
+    
+    .bg-gradient {
+      @apply bg-gradient-to-r from-primary-600 to-secondary-600;
+    }
+    
+    .toggle-checkbox:checked ~ .toggle-label .toggle-ball {
+      @apply translate-x-6;
+    }
+    
+    .toggle-checkbox:checked ~ .toggle-label {
+      @apply bg-primary-600;
+    }
+    
+    .nav-link.active {
+      @apply text-primary-600 dark:text-primary-400 font-medium;
+    }
+    
+    .nav-link.active::after {
+      content: '';
+      @apply block w-full h-0.5 mt-0.5 bg-primary-600 dark:bg-primary-400 rounded-full;
+    }
+    
+    .skill-progress {
+      @apply h-2 bg-primary-600 rounded-full;
+    }
+    
+    .animated-bg {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+      background: linear-gradient(45deg, rgba(59, 130, 246, 0.1), rgba(147, 51, 234, 0.1));
+      animation: float 15s infinite;
+      z-index: 0;
+    }
+    
+    .shape-1 {
+      width: 500px;
+      height: 500px;
+      top: -250px;
+      left: -250px;
+      animation-delay: 0s;
+    }
+    
+    .shape-2 {
+      width: 400px;
+      height: 400px;
+      bottom: -200px;
+      right: -200px;
+      animation-delay: 2s;
+    }
+    
+    .shape-3 {
+      width: 300px;
+      height: 300px;
+      bottom: 50%;
+      left: 50%;
+      animation-delay: 4s;
+    }
+    
+    .shape-4 {
+      width: 200px;
+      height: 200px;
+      top: 10%;
+      right: 10%;
+      animation-delay: 6s;
+    }
+    
+    .animate-fade-in {
+      opacity: 0;
+      animation: fadeIn 1s ease-in-out forwards;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* Hide scrollbar but allow scrolling */
+    .no-scrollbar {
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;  /* Firefox */
+    }
+    
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;  /* Chrome, Safari, Opera */
+    }
+    
+    [x-cloak] { display: none !important; }
+  </style>
 </head>
 
-<body class="bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200" x-data="{darkMode: false, navOpen: false, activeSection: 'home', skills: [
+<body class="bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 font-sans" x-data="{darkMode: false, navOpen: false, activeSection: 'home', skills: [
   {name: 'HTML & CSS', percent: 95},
   {name: 'JavaScript', percent: 90},
   {name: 'React', percent: 85},
@@ -67,14 +220,22 @@
         }
       });
     });
-    
-    // Initialize background animations
-    initBackgroundAnimations();
   });
+  
+  // Smooth scroll function
+  function smoothScroll(target) {
+    const element = document.querySelector(target);
+    if (element) {
+      window.scrollTo({
+        top: element.offsetTop - 80,
+        behavior: 'smooth'
+      });
+    }
+  }
   
   // Update active section on scroll
   window.addEventListener('scroll', () => {
-    const sections = document.querySelectorAll('section');
+    const sections = document.querySelectorAll('section[id]');
     const scrollPosition = window.scrollY + 300;
     
     sections.forEach(section => {
@@ -101,8 +262,8 @@
   "></div>
 
   <!-- Navigation -->
-  <header class="fixed w-full top-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-sm">
-    <nav class="container mx-auto px-4 py-5 flex justify-between items-center">
+  <header class="fixed w-full top-0 z-50 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-sm transition-all duration-300">
+    <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
       <!-- Logo -->
       <div class="flex items-center">
         <span class="text-2xl font-bold text-gradient">LS</span>
@@ -114,25 +275,22 @@
           <a 
             :href="`#${item}`" 
             @click.prevent="smoothScroll(`#${item}`); activeSection = item;" 
-            class="nav-link capitalize py-2 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+            class="nav-link capitalize py-2 hover:text-primary-600 dark:hover:text-primary-400 transition-colors relative"
             :class="activeSection === item ? 'active' : ''"
             x-text="item"
           ></a>
         </template>
       </div>
       
-      <!-- Dark Mode Toggle -->
-      <div class="flex items-center">
-        <div class="mr-4">
-          <input type="checkbox" id="toggle" class="toggle-checkbox hidden" x-model="darkMode">
-          <label for="toggle" class="toggle-label flex items-center cursor-pointer w-12 h-6 rounded-full p-1 bg-gray-300 dark:bg-gray-700 transition-colors duration-300">
-            <div class="toggle-ball bg-white w-4 h-4 rounded-full shadow-md transform duration-300"></div>
-          </label>
-        </div>
+      <!-- Dark Mode Toggle & Mobile Menu Button -->
+      <div class="flex items-center gap-4">
+        <button @click="darkMode = !darkMode" class="w-10 h-10 rounded-full flex items-center justify-center bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+          <i class="fas" :class="darkMode ? 'fa-sun text-amber-400' : 'fa-moon text-gray-700'"></i>
+        </button>
         
         <!-- Mobile Menu Button -->
-        <button class="md:hidden text-gray-800 dark:text-gray-200" @click="navOpen = !navOpen">
-          <i class="fa-solid" :class="navOpen ? 'fa-xmark text-xl' : 'fa-bars text-xl'"></i>
+        <button class="md:hidden w-10 h-10 rounded-full flex items-center justify-center bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors" @click="navOpen = !navOpen">
+          <i class="fa-solid" :class="navOpen ? 'fa-xmark' : 'fa-bars'"></i>
         </button>
       </div>
     </nav>
@@ -146,8 +304,8 @@
           <a 
             :href="`#${item}`" 
             @click.prevent="smoothScroll(`#${item}`); activeSection = item; navOpen = false;" 
-            class="block py-3 border-b border-gray-100 dark:border-gray-800 capitalize hover:text-indigo-600 dark:hover:text-indigo-400"
-            :class="activeSection === item ? 'text-indigo-600 dark:text-indigo-400' : ''"
+            class="block py-3 border-b border-gray-100 dark:border-gray-800 capitalize hover:text-primary-600 dark:hover:text-primary-400"
+            :class="activeSection === item ? 'text-primary-600 dark:text-primary-400' : ''"
             x-text="item"
           ></a>
         </template>
@@ -155,154 +313,230 @@
     </div>
   </header>
 
-  <!-- Hero Section with Background Animation -->
-  <section id="home" class="min-h-screen flex items-center pt-20 hero-bg section hero-section animated-bg">
-    <!-- Background Animation Elements -->
-    <div class="animated-gradient"></div>
-    <div class="shape shape-1"></div>
-    <div class="shape shape-2"></div>
+  <!-- Hero Section -->
+  <section id="home" class="min-h-screen flex items-center pt-20 relative bg-hero-pattern dark:bg-none section">
+    <!-- Background Elements -->
+    <div class="absolute inset-0 bg-gradient-to-b from-primary-50/30 to-white/0 dark:from-primary-950/30 dark:to-gray-900/0 pointer-events-none"></div>
+    <div class="absolute top-1/4 right-1/4 w-64 h-64 bg-primary-400/10 dark:bg-primary-400/5 rounded-full filter blur-3xl animate-pulse-slow"></div>
+    <div class="absolute bottom-1/4 left-1/4 w-64 h-64 bg-secondary-400/10 dark:bg-secondary-400/5 rounded-full filter blur-3xl animate-pulse-slow" style="animation-delay: 2s;"></div>
     
     <div class="container mx-auto px-4 py-16 md:py-32 relative z-10">
       <div class="flex flex-col md:flex-row items-center">
         <div class="md:w-1/2 mb-10 md:mb-0">
-          <p class="text-indigo-600 dark:text-indigo-400 font-medium animate-fade-in mb-3">Hello, I'm</p>
-          <h1 class="text-4xl md:text-6xl font-bold mb-4 animate-fade-in" style="animation-delay: 0.2s">
-            Laxman Sharma<span class="text-indigo-600 dark:text-indigo-400">.</span>
-          </h1>
-          <h2 class="text-2xl md:text-3xl text-gray-600 dark:text-gray-400 mb-6 animate-fade-in" style="animation-delay: 0.4s">
-            Aspiring Backend Developer
-          </h2>
-          <p class="text-gray-600 dark:text-gray-400 mb-8 max-w-xl animate-fade-in" style="animation-delay: 0.6s">
-            I'm a passionate and driven fresher with a strong foundation in backend development. I enjoy building scalable and efficient systems using technologies like Python, Django, and databases. Currently, I'm focused on learning new skills, contributing to open-source projects, and creating meaningful solutions.
-          </p>
-          <div class="flex flex-wrap gap-4 animate-fade-in" style="animation-delay: 0.8s">
-            <a href="#contact" class="px-6 py-3 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white font-medium transition-colors">
-              Get in Touch
-            </a>
-            <a href="#projects" 
-            @click.prevent="smoothScroll('#projects')" 
-            class="px-6 py-3 rounded-lg border border-indigo-600 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-600/10 font-medium transition-colors">
-           View Projects
-         </a>
-          </div>
-          
-          <div class="mt-10 flex space-x-5 animate-fade-in" style="animation-delay: 1s">
-            <a href="https://github.com/laxmansharma1811" class="text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
-              <i class="fab fa-github text-xl"></i>
-            </a>
-            <a href="https://www.linkedin.com/in/laxmansharma1/" class="text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
-              <i class="fab fa-linkedin text-xl"></i>
-            </a>
-            <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
-              <i class="fab fa-twitter text-xl"></i>
-            </a>
-            <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
-              <i class="fab fa-dribbble text-xl"></i>
-            </a>
+          <div class="space-y-6 max-w-xl">
+            <div class="inline-flex items-center px-3 py-1 rounded-full bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 text-sm font-medium animate-fade-in">
+              <span class="relative flex h-2 w-2 mr-2">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-primary-500"></span>
+              </span>
+              Available for freelance work
+            </div>
+            
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight animate-fade-in" style="animation-delay: 0.2s">
+              Hi, I'm <span class="text-gradient">Laxman Sharma</span>
+            </h1>
+            
+            <h2 class="text-2xl md:text-3xl text-gray-600 dark:text-gray-400 animate-fade-in" style="animation-delay: 0.4s">
+              Aspiring Backend Developer
+            </h2>
+            
+            <p class="text-gray-600 dark:text-gray-400 text-lg animate-fade-in" style="animation-delay: 0.6s">
+              I'm a passionate and driven fresher with a strong foundation in backend development. I enjoy building scalable and efficient systems using technologies like Python, Django, and databases.
+            </p>
+            
+            <div class="flex flex-wrap gap-4 animate-fade-in" style="animation-delay: 0.8s">
+              <a href="#contact" @click.prevent="smoothScroll('#contact')" class="px-6 py-3 rounded-full bg-gradient hover:opacity-90 text-white font-medium transition-all shadow-lg shadow-primary-500/20 hover:shadow-primary-500/30 hover:-translate-y-0.5">
+                Get in Touch
+              </a>
+              <a href="#projects" @click.prevent="smoothScroll('#projects')" class="px-6 py-3 rounded-full border-2 border-primary-600 dark:border-primary-400 text-primary-600 dark:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/30 font-medium transition-all hover:-translate-y-0.5">
+                View Projects
+              </a>
+            </div>
+            
+            <div class="pt-6 flex space-x-5 animate-fade-in" style="animation-delay: 1s">
+              <a href="https://github.com/laxmansharma1811" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-primary-100 dark:hover:bg-primary-900/30 hover:text-primary-600 dark:hover:text-primary-400 transition-all">
+                <i class="fab fa-github"></i>
+              </a>
+              <a href="https://www.linkedin.com/in/laxmansharma1/" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-primary-100 dark:hover:bg-primary-900/30 hover:text-primary-600 dark:hover:text-primary-400 transition-all">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+              <a href="#" class="w-10 h-10 rounded-full flex items-center justify-center bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-primary-100 dark:hover:bg-primary-900/30 hover:text-primary-600 dark:hover:text-primary-400 transition-all">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="#" class="w-10 h-10 rounded-full flex items-center justify-center bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-primary-100 dark:hover:bg-primary-900/30 hover:text-primary-600 dark:hover:text-primary-400 transition-all">
+                <i class="fab fa-dribbble"></i>
+              </a>
+            </div>
           </div>
         </div>
+        
         <div class="md:w-1/2 flex justify-center">
-          <div class="relative w-64 h-64 md:w-80 md:h-80 animate-fade-in" style="animation-delay: 0.8s">
-            <div class="absolute w-full h-full rounded-full bg-indigo-600/20 animate-pulse"></div>
-            <div class="absolute inset-2 rounded-full overflow-hidden bg-gray-200 dark:bg-gray-800">
+          <div class="relative w-64 h-64 md:w-80 md:h-80 animate-float">
+            <div class="absolute inset-0 rounded-full bg-gradient-to-br from-primary-400 to-secondary-400 opacity-20 blur-xl animate-pulse-slow"></div>
+            <div class="absolute inset-0 rounded-full overflow-hidden border-4 border-white dark:border-gray-800 shadow-2xl">
               <img src="assets/laxman.jpg" alt="Laxman Sharma" class="w-full h-full object-cover" />
+            </div>
+            
+            <!-- Floating badges -->
+            <div class="absolute -top-4 -right-4 bg-white dark:bg-gray-800 rounded-full p-3 shadow-lg animate-float" style="animation-delay: 1s;">
+              <i class="fab fa-python text-2xl text-blue-500"></i>
+            </div>
+            <div class="absolute -bottom-4 -left-4 bg-white dark:bg-gray-800 rounded-full p-3 shadow-lg animate-float" style="animation-delay: 2s;">
+              <i class="fab fa-js text-2xl text-yellow-500"></i>
+            </div>
+            <div class="absolute top-1/2 -right-8 bg-white dark:bg-gray-800 rounded-full p-3 shadow-lg animate-float" style="animation-delay: 1.5s;">
+              <i class="fab fa-react text-2xl text-cyan-500"></i>
             </div>
           </div>
         </div>
       </div>
     </div>
-    
-    <!-- Additional Animation Elements -->
-    <div id="shooting-stars-container"></div>
-    <div id="glowing-dots-container"></div>
   </section>
 
   <!-- About Section -->
-  <section id="about" class="py-16 bg-gray-50 dark:bg-gray-800 section animated-bg">
-    <!-- Background Animation Elements -->
-    <div class="shape shape-3"></div>
-    <div class="shape shape-4"></div>
+  <section id="about" class="py-20 bg-gray-50 dark:bg-gray-800/50 section relative overflow-hidden">
+    <!-- Background Elements -->
+    <div class="absolute top-0 left-0 w-full h-20 bg-gradient-to-b from-white dark:from-gray-900 to-transparent pointer-events-none"></div>
+    <div class="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-t from-white dark:from-gray-900 to-transparent pointer-events-none"></div>
+    <div class="absolute -top-40 -right-40 w-80 h-80 bg-primary-400/10 dark:bg-primary-400/5 rounded-full filter blur-3xl"></div>
+    <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-secondary-400/10 dark:bg-secondary-400/5 rounded-full filter blur-3xl"></div>
     
     <div class="container mx-auto px-4 relative z-10">
-      <h2 class="text-3xl font-bold mb-2 text-center section-title">About Me</h2>
-      <div class="w-16 h-1 bg-indigo-600 mx-auto mb-10"></div>
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4 inline-block text-gradient">About Me</h2>
+        <div class="w-16 h-1 bg-gradient mx-auto"></div>
+      </div>
       
       <div class="flex flex-col md:flex-row items-center md:space-x-10">
         <div class="md:w-1/2 mb-10 md:mb-0">
-          <img src="#" alt="About me" class="rounded-lg shadow-lg w-full h-auto" />
+          <div class="relative">
+            <div class="absolute inset-0 translate-x-5 translate-y-5 rounded-2xl bg-primary-200 dark:bg-primary-900/30"></div>
+            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2072&q=80" alt="About me" class="relative z-10 rounded-2xl shadow-lg w-full h-auto object-cover" />
+            
+            <!-- Experience badge -->
+            <div class="absolute -bottom-6 -right-6 bg-white dark:bg-gray-800 rounded-xl p-4 shadow-xl z-20">
+              <div class="text-center">
+                <div class="text-4xl font-bold text-primary-600 dark:text-primary-400">1+</div>
+                <div class="text-sm text-gray-600 dark:text-gray-400">Years of<br/>Experience</div>
+              </div>
+            </div>
+          </div>
         </div>
+        
         <div class="md:w-1/2">
-          <h3 class="text-2xl font-semibold mb-4">
-            Aspiring Developer with a Passion for Learning and Building
+          <h3 class="text-2xl md:text-3xl font-bold mb-6 text-gradient">
+            Aspiring Developer with a Passion for Learning
           </h3>
-          <p class="text-gray-600 dark:text-gray-400 mb-4">
-            Hi, I'm Laxman Sharma, a recent graduate with a strong passion for technology and problem-solving. During my academic journey, I discovered my love for coding and have since been exploring various domains like web development, mobile app development, and automation.
-          </p>
-          <p class="text-gray-600 dark:text-gray-400 mb-6">
-            I enjoy turning ideas into reality through clean and efficient code. Whether it's building a responsive website, creating a mobile app, or automating repetitive tasks, I'm always eager to learn and apply new technologies. My goal is to grow as a developer and contribute to meaningful projects that make a difference.
-          </p>
           
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
-            <div>
-              <p class="font-medium">Name:</p>
-              <p class="text-gray-600 dark:text-gray-400">Laxman Sharma</p>
+          <div class="space-y-4 text-gray-600 dark:text-gray-400">
+            <p>
+              Hi, I'm Laxman Sharma, a recent graduate with a strong passion for technology and problem-solving. During my academic journey, I discovered my love for coding and have since been exploring various domains like web development, mobile app development, and automation.
+            </p>
+            <p>
+              I enjoy turning ideas into reality through clean and efficient code. Whether it's building a responsive website, creating a mobile app, or automating repetitive tasks, I'm always eager to learn and apply new technologies. My goal is to grow as a developer and contribute to meaningful projects that make a difference.
+            </p>
+          </div>
+          
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8">
+            <div class="bg-white dark:bg-gray-900/50 p-4 rounded-lg shadow-sm">
+              <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-full bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center text-primary-600 dark:text-primary-400">
+                  <i class="fas fa-user"></i>
+                </div>
+                <div>
+                  <div class="text-sm text-gray-500 dark:text-gray-400">Name</div>
+                  <div class="font-medium">Laxman Sharma</div>
+                </div>
+              </div>
             </div>
-            <div>
-              <p class="font-medium">Email:</p>
-              <p class="text-gray-600 dark:text-gray-400">laxman.sharma1811@gmail.com</p>
+            
+            <div class="bg-white dark:bg-gray-900/50 p-4 rounded-lg shadow-sm">
+              <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-full bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center text-primary-600 dark:text-primary-400">
+                  <i class="fas fa-envelope"></i>
+                </div>
+                <div>
+                  <div class="text-sm text-gray-500 dark:text-gray-400">Email</div>
+                  <div class="font-medium">laxman.sharma1811@gmail.com</div>
+                </div>
+              </div>
             </div>
-            <div>
-              <p class="font-medium">From:</p>
-              <p class="text-gray-600 dark:text-gray-400">Kathmandu, Nepal</p>
+            
+            <div class="bg-white dark:bg-gray-900/50 p-4 rounded-lg shadow-sm">
+              <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-full bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center text-primary-600 dark:text-primary-400">
+                  <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div>
+                  <div class="text-sm text-gray-500 dark:text-gray-400">Location</div>
+                  <div class="font-medium">Kathmandu, Nepal</div>
+                </div>
+              </div>
             </div>
-            <div>
-              <p class="font-medium">Freelance:</p>
-              <p class="text-indigo-600 dark:text-indigo-400">Available</p>
+            
+            <div class="bg-white dark:bg-gray-900/50 p-4 rounded-lg shadow-sm">
+              <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-full bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center text-primary-600 dark:text-primary-400">
+                  <i class="fas fa-briefcase"></i>
+                </div>
+                <div>
+                  <div class="text-sm text-gray-500 dark:text-gray-400">Freelance</div>
+                  <div class="font-medium text-green-600 dark:text-green-400">Available</div>
+                </div>
+              </div>
             </div>
           </div>
           
-          <a href="#" class="inline-block px-6 py-3 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white font-medium transition-colors">
-            Download CV <i class="fas fa-download ml-2"></i>
-          </a>
+          <div class="mt-8">
+            <a href="#" class="inline-flex items-center px-6 py-3 rounded-full bg-gradient hover:opacity-90 text-white font-medium transition-all shadow-lg shadow-primary-500/20 hover:shadow-primary-500/30 hover:-translate-y-0.5">
+              <i class="fas fa-download mr-2"></i> Download CV
+            </a>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
- <!-- Projects Section -->
-<section id="projects" class="py-16 section animated-bg" x-data="{ activeFilter: 'all' }">
-    <!-- Background Animation Elements -->
-    <div class="animated-gradient"></div>
-    <div id="bubbles-container-projects"></div>
+  <!-- Projects Section -->
+  <section id="projects" class="py-20 section relative overflow-hidden" x-data="{ activeFilter: 'all' }">
+    <!-- Background Elements -->
+    <div class="absolute top-0 left-0 w-full h-20 bg-gradient-to-b from-gray-50 dark:from-gray-800/50 to-transparent pointer-events-none"></div>
+    <div class="absolute -top-40 -left-40 w-80 h-80 bg-primary-400/10 dark:bg-primary-400/5 rounded-full filter blur-3xl"></div>
+    <div class="absolute -bottom-40 -right-40 w-80 h-80 bg-secondary-400/10 dark:bg-secondary-400/5 rounded-full filter blur-3xl"></div>
     
     <div class="container mx-auto px-4 relative z-10">
-      <h2 class="text-3xl font-bold mb-2 text-center section-title">My Projects</h2>
-      <div class="w-16 h-1 bg-indigo-600 mx-auto mb-10"></div>
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4 inline-block text-gradient">My Projects</h2>
+        <div class="w-16 h-1 bg-gradient mx-auto mb-6"></div>
+        <p class="max-w-2xl mx-auto text-gray-600 dark:text-gray-400">
+          Here are some of my recent projects that showcase my skills and experience. Each project reflects my passion for creating efficient and user-friendly solutions.
+        </p>
+      </div>
       
       <!-- Filter Buttons -->
-      <div class="flex mb-8 overflow-x-auto pb-4 space-x-4 no-scrollbar filter-buttons">
+      <div class="flex justify-center mb-10 overflow-x-auto pb-4 space-x-4 no-scrollbar">
         <button 
           @click="activeFilter = 'all'" 
-          :class="{ 'bg-indigo-600 text-white': activeFilter === 'all', 'bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300': activeFilter !== 'all' }" 
-          class="px-4 py-2 rounded-lg font-medium whitespace-nowrap transition-colors">
-          All
+          :class="{ 'bg-gradient text-white': activeFilter === 'all', 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700': activeFilter !== 'all' }" 
+          class="px-5 py-2 rounded-full font-medium whitespace-nowrap transition-colors shadow-sm">
+          All Projects
         </button>
         <button 
           @click="activeFilter = 'web-design'" 
-          :class="{ 'bg-indigo-600 text-white': activeFilter === 'web-design', 'bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300': activeFilter !== 'web-design' }" 
-          class="px-4 py-2 rounded-lg font-medium whitespace-nowrap transition-colors">
+          :class="{ 'bg-gradient text-white': activeFilter === 'web-design', 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700': activeFilter !== 'web-design' }" 
+          class="px-5 py-2 rounded-full font-medium whitespace-nowrap transition-colors shadow-sm">
           Web Design
         </button>
         <button 
           @click="activeFilter = 'mobile-apps'" 
-          :class="{ 'bg-indigo-600 text-white': activeFilter === 'mobile-apps', 'bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300': activeFilter !== 'mobile-apps' }" 
-          class="px-4 py-2 rounded-lg font-medium whitespace-nowrap transition-colors">
+          :class="{ 'bg-gradient text-white': activeFilter === 'mobile-apps', 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700': activeFilter !== 'mobile-apps' }" 
+          class="px-5 py-2 rounded-full font-medium whitespace-nowrap transition-colors shadow-sm">
           Mobile Apps
         </button>
         <button 
           @click="activeFilter = 'web-scraping'" 
-          :class="{ 'bg-indigo-600 text-white': activeFilter === 'web-scraping', 'bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300': activeFilter !== 'web-scraping' }" 
-          class="px-4 py-2 rounded-lg font-medium whitespace-nowrap transition-colors">
+          :class="{ 'bg-gradient text-white': activeFilter === 'web-scraping', 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700': activeFilter !== 'web-scraping' }" 
+          class="px-5 py-2 rounded-full font-medium whitespace-nowrap transition-colors shadow-sm">
           Web Scraping
         </button>
       </div>
@@ -311,7 +545,7 @@
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         <!-- Project Card 1 -->
         <div 
-          class="project-card rounded-lg overflow-hidden shadow-md bg-white dark:bg-gray-800" 
+          class="group" 
           x-show="activeFilter === 'all' || activeFilter === 'web-design'" 
           x-transition:enter="transition ease-out duration-300" 
           x-transition:enter-start="opacity-0 transform scale-95" 
@@ -319,29 +553,35 @@
           x-transition:leave="transition ease-in duration-200" 
           x-transition:leave-start="opacity-100 transform scale-100" 
           x-transition:leave-end="opacity-0 transform scale-95">
-          <div class="relative overflow-hidden">
-            <img src="assets/analysis.png" alt="Project 1" class="w-full h-64 object-cover object-center transition-transform duration-500 hover:scale-110" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-4">
-              <span class="text-white px-3 py-1 rounded-full bg-indigo-600/70 text-sm font-medium">Web Design</span>
-            </div>
-          </div>
-          <div class="p-6">
-            <h3 class="text-xl font-bold mb-3">E-commerce Product Aggregator</h3>
-            <p class="text-gray-600 dark:text-gray-400 mb-5">A fully responsive e-commerce product aggregator that simplifies online shopping by allowing users to compare prices and product details from multiple platforms in one place.</p>
-            <div class="flex flex-wrap justify-between items-center">
-              <div class="flex flex-wrap gap-2 mb-2 sm:mb-0">
-                <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-xs rounded">Django</span>
-                <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-xs rounded">Selenium</span>
-                <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-xs rounded">Tailwind</span>
+          <div class="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 h-full flex flex-col transform group-hover:-translate-y-2">
+            <div class="relative overflow-hidden">
+              <img src="assets/analysis.png" alt="Project 1" class="w-full h-64 object-cover object-center transition-transform duration-500 group-hover:scale-110" />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
+                <div class="w-full">
+                  <span class="px-3 py-1 rounded-full bg-primary-600/70 text-white text-sm font-medium">Web Design</span>
+                  <h3 class="text-xl font-bold text-white mt-2">E-commerce Product Aggregator</h3>
+                </div>
               </div>
-              <a href="https://github.com/laxmansharma1811/Product_aggregator" class="text-indigo-600 dark:text-indigo-400 hover:underline">View Project →</a>
+            </div>
+            <div class="p-6 flex-1 flex flex-col">
+              <p class="text-gray-600 dark:text-gray-400 mb-5 flex-1">
+                A fully responsive e-commerce product aggregator that simplifies online shopping by allowing users to compare prices and product details from multiple platforms in one place.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="px-3 py-1 bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 text-xs rounded-full">Django</span>
+                <span class="px-3 py-1 bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 text-xs rounded-full">Selenium</span>
+                <span class="px-3 py-1 bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 text-xs rounded-full">Tailwind</span>
+              </div>
+              <a href="https://github.com/laxmansharma1811/Product_aggregator" target="_blank" class="inline-flex items-center text-primary-600 dark:text-primary-400 font-medium hover:underline mt-auto">
+                View Project <i class="fas fa-arrow-right ml-2 text-sm transition-transform group-hover:translate-x-1"></i>
+              </a>
             </div>
           </div>
         </div>
         
         <!-- Project Card 2 -->
         <div 
-          class="project-card rounded-lg overflow-hidden shadow-md bg-white dark:bg-gray-800" 
+          class="group" 
           x-show="activeFilter === 'all' || activeFilter === 'mobile-apps'" 
           x-transition:enter="transition ease-out duration-300" 
           x-transition:enter-start="opacity-0 transform scale-95" 
@@ -349,29 +589,35 @@
           x-transition:leave="transition ease-in duration-200" 
           x-transition:leave-start="opacity-100 transform scale-100" 
           x-transition:leave-end="opacity-0 transform scale-95">
-          <div class="relative overflow-hidden">
-            <img src="assets/project3.png" alt="Project 2" class="w-full h-64 object-cover object-center transition-transform duration-500 hover:scale-110" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-4">
-              <span class="text-white px-3 py-1 rounded-full bg-indigo-600/70 text-sm font-medium">Mobile App</span>
-            </div>
-          </div>
-          <div class="p-6">
-            <h3 class="text-xl font-bold mb-3">Blog App</h3>
-            <p class="text-gray-600 dark:text-gray-400 mb-5">A fully functional mobile blog app built with Flutter and Firebase. Features include user authentication, real-time CRUD operations, and a responsive UI.</p>
-            <div class="flex flex-wrap justify-between items-center">
-              <div class="flex flex-wrap gap-2 mb-2 sm:mb-0">
-                <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-xs rounded">Flutter</span>
-                <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-xs rounded">Firebase</span>
-                <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-xs rounded">Firestore</span>
+          <div class="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 h-full flex flex-col transform group-hover:-translate-y-2">
+            <div class="relative overflow-hidden">
+              <img src="assets/project3.png" alt="Project 2" class="w-full h-64 object-cover object-center transition-transform duration-500 group-hover:scale-110" />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
+                <div class="w-full">
+                  <span class="px-3 py-1 rounded-full bg-secondary-600/70 text-white text-sm font-medium">Mobile App</span>
+                  <h3 class="text-xl font-bold text-white mt-2">Blog App</h3>
+                </div>
               </div>
-              <a href="https://github.com/laxmansharma1811/Flutter-Firebase" class="text-indigo-600 dark:text-indigo-400 hover:underline">View Project →</a>
+            </div>
+            <div class="p-6 flex-1 flex flex-col">
+              <p class="text-gray-600 dark:text-gray-400 mb-5 flex-1">
+                A fully functional mobile blog app built with Flutter and Firebase. Features include user authentication, real-time CRUD operations, and a responsive UI.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="px-3 py-1 bg-secondary-100 dark:bg-secondary-900/30 text-secondary-600 dark:text-secondary-400 text-xs rounded-full">Flutter</span>
+                <span class="px-3 py-1 bg-secondary-100 dark:bg-secondary-900/30 text-secondary-600 dark:text-secondary-400 text-xs rounded-full">Firebase</span>
+                <span class="px-3 py-1 bg-secondary-100 dark:bg-secondary-900/30 text-secondary-600 dark:text-secondary-400 text-xs rounded-full">Firestore</span>
+              </div>
+              <a href="https://github.com/laxmansharma1811/Flutter-Firebase" target="_blank" class="inline-flex items-center text-secondary-600 dark:text-secondary-400 font-medium hover:underline mt-auto">
+                View Project <i class="fas fa-arrow-right ml-2 text-sm transition-transform group-hover:translate-x-1"></i>
+              </a>
             </div>
           </div>
         </div>
         
         <!-- Project Card 3 -->
         <div 
-          class="project-card rounded-lg overflow-hidden shadow-md bg-white dark:bg-gray-800" 
+          class="group" 
           x-show="activeFilter === 'all' || activeFilter === 'web-scraping'" 
           x-transition:enter="transition ease-out duration-300" 
           x-transition:enter-start="opacity-0 transform scale-95" 
@@ -379,403 +625,483 @@
           x-transition:leave="transition ease-in duration-200" 
           x-transition:leave-start="opacity-100 transform scale-100" 
           x-transition:leave-end="opacity-0 transform scale-95">
-          <div class="relative overflow-hidden">
-            <img src="assets/R.png" alt="Project 3" class="w-full h-64 object-cover object-center transition-transform duration-500 hover:scale-110" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-4">
-              <span class="text-white px-3 py-1 rounded-full bg-indigo-600/70 text-sm font-medium">Web Scraping</span>
-            </div>
-          </div>
-          <div class="p-6">
-            <h3 class="text-xl font-bold mb-3">Daraz Product Scraper</h3>
-            <p class="text-gray-600 dark:text-gray-400 mb-5">A web scraping tool built to extract product details (e.g., name, price, ratings) from Daraz, a popular e-commerce platform.</p>
-            <div class="flex flex-wrap justify-between items-center">
-              <div class="flex flex-wrap gap-2 mb-2 sm:mb-0">
-                <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-xs rounded">Selenium</span>
-                <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-xs rounded">Python</span>
-                <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-xs rounded">Pandas</span>
+          <div class="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 h-full flex flex-col transform group-hover:-translate-y-2">
+            <div class="relative overflow-hidden">
+              <img src="assets/R.png" alt="Project 3" class="w-full h-64 object-cover object-center transition-transform duration-500 group-hover:scale-110" />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
+                <div class="w-full">
+                  <span class="px-3 py-1 rounded-full bg-primary-600/70 text-white text-sm font-medium">Web Scraping</span>
+                  <h3 class="text-xl font-bold text-white mt-2">Daraz Product Scraper</h3>
+                </div>
               </div>
-              <a href="https://github.com/laxmansharma1811/Daraz-Ecommerce-Scraper" class="text-indigo-600 dark:text-indigo-400 hover:underline">View Project →</a>
+            </div>
+            <div class="p-6 flex-1 flex flex-col">
+              <p class="text-gray-600 dark:text-gray-400 mb-5 flex-1">
+                A web scraping tool built to extract product details (e.g., name, price, ratings) from Daraz, a popular e-commerce platform.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="px-3 py-1 bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 text-xs rounded-full">Selenium</span>
+                <span class="px-3 py-1 bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 text-xs rounded-full">Python</span>
+                <span class="px-3 py-1 bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 text-xs rounded-full">Pandas</span>
+              </div>
+              <a href="https://github.com/laxmansharma1811/Daraz-Ecommerce-Scraper" target="_blank" class="inline-flex items-center text-primary-600 dark:text-primary-400 font-medium hover:underline mt-auto">
+                View Project <i class="fas fa-arrow-right ml-2 text-sm transition-transform group-hover:translate-x-1"></i>
+              </a>
             </div>
           </div>
         </div>
       </div>
       
       <!-- View All Projects Button -->
-      <div class="text-center mt-12">
-        <a href="https://github.com/laxmansharma1811?tab=repositories" class="inline-block px-6 py-3 rounded-lg border border-indigo-600 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-600/10 font-medium transition-colors">
-          View All Projects
+      <div class="text-center mt-16">
+        <a href="https://github.com/laxmansharma1811?tab=repositories" target="_blank" class="inline-flex items-center px-8 py-4 rounded-full border-2 border-primary-600 dark:border-primary-400 text-primary-600 dark:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/30 font-medium transition-all hover:-translate-y-0.5">
+          View All Projects <i class="fas fa-external-link-alt ml-2"></i>
         </a>
       </div>
     </div>
   </section>
 
-<!-- Skills Section -->
-<section id="skills" class="py-16 bg-gray-50 dark:bg-gray-800 section animated-bg">
-  <!-- Background Animation Elements -->
-  <div class="shape shape-1"></div>
-  <div class="shape shape-3"></div>
-  <div id="glowing-dots-container-skills"></div>
-  
-  <div class="container mx-auto px-4 relative z-10">
-    <h2 class="text-3xl font-bold mb-2 text-center section-title">My Skills</h2>
-    <div class="w-16 h-1 bg-indigo-600 mx-auto mb-10"></div>
+  <!-- Skills Section -->
+  <section id="skills" class="py-20 bg-gray-50 dark:bg-gray-800/50 section relative overflow-hidden">
+    <!-- Background Elements -->
+    <div class="absolute top-0 left-0 w-full h-20 bg-gradient-to-b from-white dark:from-gray-900 to-transparent pointer-events-none"></div>
+    <div class="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-t from-white dark:from-gray-900 to-transparent pointer-events-none"></div>
+    <div class="absolute -top-40 -right-40 w-80 h-80 bg-primary-400/10 dark:bg-primary-400/5 rounded-full filter blur-3xl"></div>
+    <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-secondary-400/10 dark:bg-secondary-400/5 rounded-full filter blur-3xl"></div>
     
-    <div class="flex flex-col md:flex-row">
-      <!-- Skills List -->
-      <div class="md:w-1/2 md:pr-10 mb-10 md:mb-0">
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          <!-- Skill 1: HTML -->
-          <div class="skill-item p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md transition-all duration-300">
-            <div class="flex items-center space-x-3">
-              <i class="fab fa-html5 text-3xl text-indigo-600 dark:text-indigo-400"></i>
-              <div class="flex-1">
-                <h4 class="font-medium">HTML</h4>
-              </div>
-            </div>
-          </div>
-
-          <!-- Skill 2: CSS -->
-          <div class="skill-item p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md transition-all duration-300">
-            <div class="flex items-center space-x-3">
-              <i class="fab fa-css3-alt text-3xl text-indigo-600 dark:text-indigo-400"></i>
-              <div class="flex-1">
-                <h4 class="font-medium">CSS</h4>
-              </div>
-            </div>
-          </div>
-
-          <!-- Skill 3: JavaScript -->
-          <div class="skill-item p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md transition-all duration-300">
-            <div class="flex items-center space-x-3">
-              <i class="fab fa-js-square text-3xl text-indigo-600 dark:text-indigo-400"></i>
-              <div class="flex-1">
-                <h4 class="font-medium">JavaScript</h4>
-              </div>
-            </div>
-          </div>
-
-          <!-- Skill 4: Python -->
-          <div class="skill-item p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md transition-all duration-300">
-            <div class="flex items-center space-x-3">
-              <i class="fab fa-python text-3xl text-indigo-600 dark:text-indigo-400"></i>
-              <div class="flex-1">
-                <h4 class="font-medium">Python</h4>
-              </div>
-            </div>
-          </div>
-
-          <!-- Skill 5: Selenium -->
-          <div class="skill-item p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md transition-all duration-300">
-            <div class="flex items-center space-x-3">
-              <i class="fas fa-robot text-3xl text-indigo-600 dark:text-indigo-400"></i>
-              <div class="flex-1">
-                <h4 class="font-medium">Selenium</h4>
-              </div>
-            </div>
-          </div>
-
-          <!-- Skill 6: Flutter -->
-          <div class="skill-item p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md transition-all duration-300">
-            <div class="flex items-center space-x-3">
-              <i class="fa-brands fa-flutter text-3xl text-indigo-600 dark:text-indigo-400"></i>
-              <div class="flex-1">
-                <h4 class="font-medium">Flutter</h4>
-              </div>
-            </div>
-          </div>
-
-          <!-- Skill 7: Firebase -->
-          <div class="skill-item p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md transition-all duration-300">
-            <div class="flex items-center space-x-3">
-              <i class="fas fa-fire text-3xl text-indigo-600 dark:text-indigo-400"></i>
-              <div class="flex-1">
-                <h4 class="font-medium">Firebase</h4>
-              </div>
-            </div>
-          </div>
-
-          <!-- Skill 8: Git -->
-          <div class="skill-item p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md transition-all duration-300">
-            <div class="flex items-center space-x-3">
-              <i class="fab fa-git-alt text-3xl text-indigo-600 dark:text-indigo-400"></i>
-              <div class="flex-1">
-                <h4 class="font-medium">Git</h4>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Learning Journey -->
-      <div class="md:w-1/2">
-        <h3 class="text-2xl font-semibold mb-6">My Learning Journey</h3>
-        
-        <div class="relative pl-8 md:pl-10 pb-10 border-l-2 border-indigo-600/30">
-          <!-- Step 1 -->
-          <div class="mb-8 relative">
-            <div class="absolute w-5 h-5 bg-indigo-600 rounded-full -left-11 border-4 border-white dark:border-gray-800"></div>
-            <h4 class="text-xl font-medium mb-2">Foundational Learning</h4>
-            <p class="text-gray-600 dark:text-gray-400">
-              Built a strong foundation in programming languages like Python, JavaScript, and web technologies like HTML and CSS.
-            </p>
-          </div>
-          
-          <!-- Step 2 -->
-          <div class="mb-8 relative">
-            <div class="absolute w-5 h-5 bg-indigo-600 rounded-full -left-11 border-4 border-white dark:border-gray-800"></div>
-            <h4 class="text-xl font-medium mb-2">Hands-On Projects</h4>
-            <p class="text-gray-600 dark:text-gray-400">
-              Developed practical skills by working on projects like web scraping with Selenium and mobile app development with Flutter.
-            </p>
-          </div>
-          
-          <!-- Step 3 -->
-          <div class="mb-8 relative">
-            <div class="absolute w-5 h-5 bg-indigo-600 rounded-full -left-11 border-4 border-white dark:border-gray-800"></div>
-            <h4 class="text-xl font-medium mb-2">Collaboration & Version Control</h4>
-            <p class="text-gray-600 dark:text-gray-400">
-              Gained experience in using Git for version control and collaborating on team projects.
-            </p>
-          </div>
-          
-          <!-- Step 4 -->
-          <div class="relative">
-            <div class="absolute w-5 h-5 bg-indigo-600 rounded-full -left-11 border-4 border-white dark:border-gray-800"></div>
-            <h4 class="text-xl font-medium mb-2">Continuous Improvement</h4>
-            <p class="text-gray-600 dark:text-gray-400">
-              Actively learning new technologies and frameworks to stay updated in the ever-evolving tech landscape.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Achievements Section -->
-<section class="py-16 bg-white dark:bg-gray-900 section animated-bg">
-  <!-- Background Animation Elements -->
-  <div class="animated-gradient"></div>
-  <div class="shape shape-2"></div>
-  <div class="shape shape-4"></div>
-  
-  <div class="container mx-auto px-4 relative z-10">
-    <h2 class="text-3xl font-bold mb-2 text-center section-title">My Achievements</h2>
-    <div class="w-16 h-1 bg-indigo-600 mx-auto mb-10"></div>
-    
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <!-- Achievement 1 -->
-      <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-md text-center">
-        <div class="text-indigo-600 dark:text-indigo-400 text-4xl mb-4">
-          <i class="fas fa-graduation-cap"></i>
-        </div>
-        <h3 class="text-xl font-bold mb-2">Computer Science Graduate</h3>
-        <p class="text-gray-600 dark:text-gray-400">
-          Successfully completed my degree with a focus on programming and software development fundamentals.
+    <div class="container mx-auto px-4 relative z-10">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4 inline-block text-gradient">My Skills</h2>
+        <div class="w-16 h-1 bg-gradient mx-auto mb-6"></div>
+        <p class="max-w-2xl mx-auto text-gray-600 dark:text-gray-400">
+          I've developed a diverse set of skills throughout my learning journey. Here's a glimpse of my technical expertise and the technologies I work with.
         </p>
       </div>
       
-      <!-- Achievement 2 -->
-      <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-md text-center">
-        <div class="text-indigo-600 text-4xl mb-4">
-          <i class="fas fa-certificate"></i>
-        </div>
-        <h3 class="text-xl font-bold mb-2">Certified Python Developer</h3>
-        <p class="text-gray-600 dark:text-gray-400">
-          Earned a certification in Python Programming from Sunway College, demonstrating expertise in Python and its applications.
-        </p>
-      </div>
-      
-      <!-- Achievement 3 -->
-      <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-md text-center">
-        <div class="text-indigo-600 text-4xl mb-4">
-          <i class="fas fa-project-diagram"></i>
-        </div>
-        <h3 class="text-xl font-bold mb-2">10+ Projects Completed</h3>
-        <p class="text-gray-600 dark:text-gray-400">
-          Built and deployed 10+ projects, including web apps, mobile apps, and automation tools, to enhance my technical skills.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
+      <div class="flex flex-col lg:flex-row gap-16">
+        <!-- Skills Grid -->
+        <div class="lg:w-1/2">
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-6">
+            <!-- Skill 1: HTML -->
+            <div class="bg-white dark:bg-gray-900/50 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group">
+              <div class="flex flex-col items-center text-center">
+                <div class="w-16 h-16 rounded-full bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center text-primary-600 dark:text-primary-400 mb-4 group-hover:scale-110 transition-transform">
+                  <i class="fab fa-html5 text-3xl"></i>
+                </div>
+                <h4 class="font-bold">HTML</h4>
+                <div class="text-sm text-gray-500 dark:text-gray-400">Advanced</div>
+              </div>
+            </div>
 
-<!-- Contact Section -->
-<section id="contact" class="py-16 bg-gray-50 dark:bg-gray-800 section animated-bg">
-  <!-- Background Animation Elements -->
-  <div class="shape shape-1"></div>
-  <div class="shape shape-4"></div>
-  <div id="bubbles-container-contact"></div>
-  
-  <div class="container mx-auto px-4 relative z-10">
-    <h2 class="text-3xl font-bold mb-2 text-center section-title">Get in Touch</h2>
-    <div class="w-16 h-1 bg-indigo-600 mx-auto mb-10"></div>
-    
-    <div class="flex flex-col md:flex-row md:space-x-10">
-      <!-- Contact Form -->
-      <div class="md:w-1/2 mb-10 md:mb-0">
-        <form class="bg-white dark:bg-gray-900 p-8 rounded-lg shadow-md">
-          <div class="mb-6">
-            <label for="name" class="block text-gray-600 dark:text-gray-400 mb-2">Your Name</label>
-            <input type="text" id="name" class="w-full px-4 py-3 bg-white dark:bg-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600" placeholder="John Doe" required>
-          </div>
-          <div class="mb-6">
-            <label for="email" class="block text-gray-600 dark:text-gray-400 mb-2">Your Email</label>
-            <input type="email" id="email" class="w-full px-4 py-3 bg-white dark:bg-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600" placeholder="john@example.com" required>
-          </div>
-          <div class="mb-6">
-            <label for="message" class="block text-gray-600 dark:text-gray-400 mb-2">Your Message</label>
-            <textarea id="message" rows="5" class="w-full px-4 py-3 bg-white dark:bg-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600" placeholder="Hello Laxman, I would like to discuss..." required></textarea>
-          </div>
-          <button type="submit" class="w-full px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg transition-colors">
-            Send Message
-          </button>
-        </form>
-      </div>
-      
-      <!-- Contact Details -->
-      <div class="md:w-1/2 contact-info">
-        <h3 class="text-2xl font-semibold mb-6">Contact Information</h3>
-        <div class="space-y-6">
-          <div class="flex items-center">
-            <div class="w-12 h-12 flex items-center justify-center bg-indigo-600 rounded-lg">
-              <i class="fas fa-map-marker-alt text-white text-xl"></i>
+            <!-- Skill 2: CSS -->
+            <div class="bg-white dark:bg-gray-900/50 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group">
+              <div class="flex flex-col items-center text-center">
+                <div class="w-16 h-16 rounded-full bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center text-primary-600 dark:text-primary-400 mb-4 group-hover:scale-110 transition-transform">
+                  <i class="fab fa-css3-alt text-3xl"></i>
+                </div>
+                <h4 class="font-bold">CSS</h4>
+                <div class="text-sm text-gray-500 dark:text-gray-400">Advanced</div>
+              </div>
             </div>
-            <div class="ml-4">
-              <h4 class="font-medium">Location</h4>
-              <p class="text-gray-600 dark:text-gray-400">Kathmandu, Nepal</p>
+
+            <!-- Skill 3: JavaScript -->
+            <div class="bg-white dark:bg-gray-900/50 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group">
+              <div class="flex flex-col items-center text-center">
+                <div class="w-16 h-16 rounded-full bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center text-primary-600 dark:text-primary-400 mb-4 group-hover:scale-110 transition-transform">
+                  <i class="fab fa-js-square text-3xl"></i>
+                </div>
+                <h4 class="font-bold">JavaScript</h4>
+                <div class="text-sm text-gray-500 dark:text-gray-400">Intermediate</div>
+              </div>
             </div>
-          </div>
-          <div class="flex items-center">
-            <div class="w-12 h-12 flex items-center justify-center bg-indigo-600 rounded-lg">
-              <i class="fas fa-envelope text-white text-xl"></i>
+
+            <!-- Skill 4: Python -->
+            <div class="bg-white dark:bg-gray-900/50 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group">
+              <div class="flex flex-col items-center text-center">
+                <div class="w-16 h-16 rounded-full bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center text-primary-600 dark:text-primary-400 mb-4 group-hover:scale-110 transition-transform">
+                  <i class="fab fa-python text-3xl"></i>
+                </div>
+                <h4 class="font-bold">Python</h4>
+                <div class="text-sm text-gray-500 dark:text-gray-400">Advanced</div>
+              </div>
             </div>
-            <div class="ml-4">
-              <h4 class="font-medium">Email</h4>
-              <p class="text-gray-600 dark:text-gray-400">laxman.sharma1811@gmail.com</p>
+
+            <!-- Skill 5: Selenium -->
+            <div class="bg-white dark:bg-gray-900/50 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group">
+              <div class="flex flex-col items-center text-center">
+                <div class="w-16 h-16 rounded-full bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center text-primary-600 dark:text-primary-400 mb-4 group-hover:scale-110 transition-transform">
+                  <i class="fas fa-robot text-3xl"></i>
+                </div>
+                <h4 class="font-bold">Selenium</h4>
+                <div class="text-sm text-gray-500 dark:text-gray-400">Intermediate</div>
+              </div>
             </div>
-          </div>
-          <div class="flex items-center">
-            <div class="w-12 h-12 flex items-center justify-center bg-indigo-600 rounded-lg">
-              <i class="fas fa-phone-alt text-white text-xl"></i>
-            </div>
-            <div class="ml-4">
-              <h4 class="font-medium">Phone</h4>
-              <p class="text-gray-600 dark:text-gray-400">+977 9848590208</p>
+
+            <!-- Skill 6: Flutter -->
+            <div class="bg-white dark:bg-gray-900/50 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group">
+              <div class="flex flex-col items-center text-center">
+                <div class="w-16 h-16 rounded-full bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center text-primary-600 dark:text-primary-400 mb-4 group-hover:scale-110 transition-transform">
+                  <i class="fab fa-flutter text-3xl"></i>
+                </div>
+                <h4 class="font-bold">Flutter</h4>
+                <div class="text-sm text-gray-500 dark:text-gray-400">Intermediate</div>
+              </div>
             </div>
           </div>
         </div>
         
-        <div class="mt-10">
-          <h3 class="text-2xl font-semibold mb-6">Follow Me</h3>
-          <div class="flex space-x-4">
-            <a href="https://github.com/laxmansharma1811" class="text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
-              <i class="fab fa-github text-2xl"></i>
-            </a>
-            <a href="https://www.linkedin.com/in/laxmansharma1/" class="text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
-              <i class="fab fa-linkedin text-2xl"></i>
-            </a>
-            <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
-              <i class="fab fa-twitter text-2xl"></i>
-            </a>
-            <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
-              <i class="fab fa-dribbble text-2xl"></i>
-            </a>
+        <!-- Learning Journey -->
+        <div class="lg:w-1/2">
+          <h3 class="text-2xl font-bold mb-8 text-gradient">My Learning Journey</h3>
+          
+          <div class="relative pl-8 md:pl-10 border-l-2 border-primary-600/30 space-y-12">
+            <!-- Step 1 -->
+            <div class="relative">
+              <div class="absolute w-6 h-6 bg-gradient rounded-full -left-[17px] flex items-center justify-center">
+                <div class="w-2 h-2 bg-white rounded-full"></div>
+              </div>
+              <div class="bg-white dark:bg-gray-900/50 p-6 rounded-xl shadow-lg ml-4">
+                <h4 class="text-xl font-bold mb-2 text-gradient">Foundational Learning</h4>
+                <p class="text-gray-600 dark:text-gray-400">
+                  Built a strong foundation in programming languages like Python, JavaScript, and web technologies like HTML and CSS.
+                </p>
+              </div>
+            </div>
+            
+            <!-- Step 2 -->
+            <div class="relative">
+              <div class="absolute w-6 h-6 bg-gradient rounded-full -left-[17px] flex items-center justify-center">
+                <div class="w-2 h-2 bg-white rounded-full"></div>
+              </div>
+              <div class="bg-white dark:bg-gray-900/50 p-6 rounded-xl shadow-lg ml-4">
+                <h4 class="text-xl font-bold mb-2 text-gradient">Hands-On Projects</h4>
+                <p class="text-gray-600 dark:text-gray-400">
+                  Developed practical skills by working on projects like web scraping with Selenium and mobile app development with Flutter.
+                </p>
+              </div>
+            </div>
+            
+            <!-- Step 3 -->
+            <div class="relative">
+              <div class="absolute w-6 h-6 bg-gradient rounded-full -left-[17px] flex items-center justify-center">
+                <div class="w-2 h-2 bg-white rounded-full"></div>
+              </div>
+              <div class="bg-white dark:bg-gray-900/50 p-6 rounded-xl shadow-lg ml-4">
+                <h4 class="text-xl font-bold mb-2 text-gradient">Collaboration & Version Control</h4>
+                <p class="text-gray-600 dark:text-gray-400">
+                  Gained experience in using Git for version control and collaborating on team projects.
+                </p>
+              </div>
+            </div>
+            
+            <!-- Step 4 -->
+            <div class="relative">
+              <div class="absolute w-6 h-6 bg-gradient rounded-full -left-[17px] flex items-center justify-center">
+                <div class="w-2 h-2 bg-white rounded-full"></div>
+              </div>
+              <div class="bg-white dark:bg-gray-900/50 p-6 rounded-xl shadow-lg ml-4">
+                <h4 class="text-xl font-bold mb-2 text-gradient">Continuous Improvement</h4>
+                <p class="text-gray-600 dark:text-gray-400">
+                  Actively learning new technologies and frameworks to stay updated in the ever-evolving tech landscape.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Footer -->
-<footer class="py-12 bg-white dark:bg-gray-900 text-gray-800 dark:text-white">
-  <div class="container mx-auto px-4">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <!-- About Section -->
-      <div class="text-center md:text-left">
-        <h3 class="text-xl font-bold text-indigo-600 dark:text-indigo-400 mb-4">About Me</h3>
-        <p class="text-gray-600 dark:text-gray-400">
-          I'm a passionate developer with a strong foundation in backend development, web technologies, and automation. I enjoy building scalable and efficient systems.
+  <!-- Achievements Section -->
+  <section class="py-20 section relative overflow-hidden">
+    <!-- Background Elements -->
+    <div class="absolute top-0 left-0 w-full h-20 bg-gradient-to-b from-gray-50 dark:from-gray-800/50 to-transparent pointer-events-none"></div>
+    <div class="absolute -top-40 -left-40 w-80 h-80 bg-primary-400/10 dark:bg-primary-400/5 rounded-full filter blur-3xl"></div>
+    <div class="absolute -bottom-40 -right-40 w-80 h-80 bg-secondary-400/10 dark:bg-secondary-400/5 rounded-full filter blur-3xl"></div>
+    
+    <div class="container mx-auto px-4 relative z-10">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4 inline-block text-gradient">My Achievements</h2>
+        <div class="w-16 h-1 bg-gradient mx-auto mb-6"></div>
+        <p class="max-w-2xl mx-auto text-gray-600 dark:text-gray-400">
+          Here are some of my notable achievements and milestones that I've reached in my journey as a developer.
         </p>
       </div>
-
-      <!-- Quick Links -->
-      <div class="text-center">
-        <h3 class="text-xl font-bold text-indigo-600 dark:text-indigo-400 mb-4">Quick Links</h3>
-        <ul class="space-y-2">
-          <li>
-            <a href="#home" 
-               @click.prevent="smoothScroll('#home')" 
-               class="text-gray-600 hover:text-indigo-600 dark:text-gray-400 dark:hover:text-indigo-400 transition-colors">
-              Home
-            </a>
-          </li>
-          <li>
-            <a href="#about" 
-               @click.prevent="smoothScroll('#about')" 
-               class="text-gray-600 hover:text-indigo-600 dark:text-gray-400 dark:hover:text-indigo-400 transition-colors">
-              About
-            </a>
-          </li>
-          <li>
-            <a href="#projects" 
-               @click.prevent="smoothScroll('#projects')" 
-               class="text-gray-600 hover:text-indigo-600 dark:text-gray-400 dark:hover:text-indigo-400 transition-colors">
-              Projects
-            </a>
-          </li>
-          <li>
-            <a href="#skills" 
-               @click.prevent="smoothScroll('#skills')" 
-               class="text-gray-600 hover:text-indigo-600 dark:text-gray-400 dark:hover:text-indigo-400 transition-colors">
-              Skills
-            </a>
-          </li>
-          <li>
-            <a href="#contact" 
-               @click.prevent="smoothScroll('#contact')" 
-               class="text-gray-600 hover:text-indigo-600 dark:text-gray-400 dark:hover:text-indigo-400 transition-colors">
-              Contact
-            </a>
-          </li>
-        </ul>
-      </div>
-
-      <!-- Social Media & Contact -->
-      <div class="text-center md:text-right">
-        <h3 class="text-xl font-bold text-indigo-600 dark:text-indigo-400 mb-4">Connect With Me</h3>
-        <div class="flex justify-center md:justify-end space-x-4">
-          <a href="https://github.com/laxmansharma1811" class="text-gray-600 hover:text-indigo-600 dark:text-gray-400 dark:hover:text-indigo-400 transition-colors">
-            <i class="fab fa-github text-2xl"></i>
-          </a>
-          <a href="https://www.linkedin.com/in/laxmansharma1/" class="text-gray-600 hover:text-indigo-600 dark:text-gray-400 dark:hover:text-indigo-400 transition-colors">
-            <i class="fab fa-linkedin text-2xl"></i>
-          </a>
-          <a href="#" class="text-gray-600 hover:text-indigo-600 dark:text-gray-400 dark:hover:text-indigo-400 transition-colors">
-            <i class="fab fa-twitter text-2xl"></i>
-          </a>
-          <a href="#" class="text-gray-600 hover:text-indigo-600 dark:text-gray-400 dark:hover:text-indigo-400 transition-colors">
-            <i class="fab fa-dribbble text-2xl"></i>
-          </a>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Achievement 1 -->
+        <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 text-center group">
+          <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 text-4xl mb-6 group-hover:scale-110 transition-transform">
+            <i class="fas fa-graduation-cap"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-4">Computer Science Graduate</h3>
+          <p class="text-gray-600 dark:text-gray-400">
+            Successfully completed my degree with a focus on programming and software development fundamentals.
+          </p>
         </div>
-        <div class="mt-4 text-gray-600 dark:text-gray-400">
-          <p>Email: <a href="mailto:laxman.sharma1811@gmail.com" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">laxman.sharma1811@gmail.com</a></p>
-          <p>Phone: <a href="tel:+9779848590208" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">+977 9848590208</a></p>
+        
+        <!-- Achievement 2 -->
+        <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 text-center group">
+          <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-secondary-100 dark:bg-secondary-900/30 text-secondary-600 dark:text-secondary-400 text-4xl mb-6 group-hover:scale-110 transition-transform">
+            <i class="fas fa-certificate"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-4">Certified Python Developer</h3>
+          <p class="text-gray-600 dark:text-gray-400">
+            Earned a certification in Python Programming from Sunway College, demonstrating expertise in Python and its applications.
+          </p>
+        </div>
+        
+        <!-- Achievement 3 -->
+        <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 text-center group">
+          <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 text-4xl mb-6 group-hover:scale-110 transition-transform">
+            <i class="fas fa-project-diagram"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-4">10+ Projects Completed</h3>
+          <p class="text-gray-600 dark:text-gray-400">
+            Built and deployed 10+ projects, including web apps, mobile apps, and automation tools, to enhance my technical skills.
+          </p>
+        </div>
       </div>
     </div>
+  </section>
 
-    <!-- Copyright -->
-    <div class="text-center mt-8 pt-8 border-t border-gray-200 dark:border-gray-800">
-      <p class="text-gray-600 dark:text-gray-400">
-        &copy; 2023 Laxman Sharma. All rights reserved.
-      </p>
-      <p class="text-gray-600 dark:text-gray-400 mt-2">
-        Made with <i class="fas fa-heart text-indigo-600 dark:text-indigo-400"></i> by Laxman Sharma
-      </p>
+  <!-- Contact Section -->
+  <section id="contact" class="py-20 bg-gray-50 dark:bg-gray-800/50 section relative overflow-hidden">
+    <!-- Background Elements -->
+    <div class="absolute top-0 left-0 w-full h-20 bg-gradient-to-b from-white dark:from-gray-900 to-transparent pointer-events-none"></div>
+    <div class="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-t from-white dark:from-gray-900 to-transparent pointer-events-none"></div>
+    <div class="absolute -top-40 -right-40 w-80 h-80 bg-primary-400/10 dark:bg-primary-400/5 rounded-full filter blur-3xl"></div>
+    <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-secondary-400/10 dark:bg-secondary-400/5 rounded-full filter blur-3xl"></div>
+    
+    <div class="container mx-auto px-4 relative z-10">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4 inline-block text-gradient">Get in Touch</h2>
+        <div class="w-16 h-1 bg-gradient mx-auto mb-6"></div>
+        <p class="max-w-2xl mx-auto text-gray-600 dark:text-gray-400">
+          Feel free to reach out if you have any questions or want to work together. I'm always open to discussing new projects and opportunities.
+        </p>
+      </div>
+      
+      <div class="flex flex-col lg:flex-row gap-10">
+        <!-- Contact Form -->
+        <div class="lg:w-1/2">
+          <div class="bg-white dark:bg-gray-900/50 p-8 rounded-2xl shadow-lg">
+            <form class="space-y-6">
+              <div>
+                <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Your Name</label>
+                <input type="text" id="name" class="w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-600 focus:border-transparent transition-colors" placeholder="John Doe" required>
+              </div>
+              
+              <div>
+                <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Your Email</label>
+                <input type="email" id="email" class="w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-600 focus:border-transparent transition-colors" placeholder="john@example.com" required>
+              </div>
+              
+              <div>
+                <label for="message" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Your Message</label>
+                <textarea id="message" rows="5" class="w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-600 focus:border-transparent transition-colors" placeholder="Hello Laxman, I would like to discuss..." required></textarea>
+              </div>
+              
+              <button type="submit" class="w-full px-6 py-3 rounded-lg bg-gradient hover:opacity-90 text-white font-medium transition-all shadow-lg shadow-primary-500/20 hover:shadow-primary-500/30 hover:-translate-y-0.5">
+                Send Message <i class="fas fa-paper-plane ml-2"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+        
+        <!-- Contact Details -->
+        <div class="lg:w-1/2">
+          <div class="space-y-8">
+            <div class="bg-white dark:bg-gray-900/50 p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+              <div class="flex items-center">
+                <div class="w-14 h-14 rounded-full bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center text-primary-600 dark:text-primary-400 text-2xl mr-6">
+                  <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div>
+                  <h4 class="text-lg font-bold mb-1">Location</h4>
+                  <p class="text-gray-600 dark:text-gray-400">Kathmandu, Nepal</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="bg-white dark:bg-gray-900/50 p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+              <div class="flex items-center">
+                <div class="w-14 h-14 rounded-full bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center text-primary-600 dark:text-primary-400 text-2xl mr-6">
+                  <i class="fas fa-envelope"></i>
+                </div>
+                <div>
+                  <h4 class="text-lg font-bold mb-1">Email</h4>
+                  <a href="mailto:laxman.sharma1811@gmail.com" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">laxman.sharma1811@gmail.com</a>
+                </div>
+              </div>
+            </div>
+            
+            <div class="bg-white dark:bg-gray-900/50 p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+              <div class="flex items-center">
+                <div class="w-14 h-14 rounded-full bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center text-primary-600 dark:text-primary-400 text-2xl mr-6">
+                  <i class="fas fa-phone-alt"></i>
+                </div>
+                <div>
+                  <h4 class="text-lg font-bold mb-1">Phone</h4>
+                  <a href="tel:+9779848590208" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">+977 9848590208</a>
+                </div>
+              </div>
+            </div>
+            
+            <div class="bg-white dark:bg-gray-900/50 p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+              <h4 class="text-lg font-bold mb-4">Follow Me</h4>
+              <div class="flex space-x-4">
+                <a href="https://github.com/laxmansharma1811" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-primary-100 dark:hover:bg-primary-900/30 hover:text-primary-600 dark:hover:text-primary-400 transition-all">
+                  <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/laxmansharma1/" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-primary-100 dark:hover:bg-primary-900/30 hover:text-primary-600 dark:hover:text-primary-400 transition-all">
+                  <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="#" class="w-10 h-10 rounded-full flex items-center justify-center bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-primary-100 dark:hover:bg-primary-900/30 hover:text-primary-600 dark:hover:text-primary-400 transition-all">
+                  <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="w-10 h-10 rounded-full flex items-center justify-center bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-primary-100 dark:hover:bg-primary-900/30 hover:text-primary-600 dark:hover:text-primary-400 transition-all">
+                  <i class="fab fa-dribbble"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-</footer>
+  </section>
 
+  <!-- Footer -->
+  <footer class="py-12 bg-white dark:bg-gray-900 text-gray-800 dark:text-white relative">
+    <div class="absolute top-0 left-0 w-full h-20 bg-gradient-to-b from-gray-50 dark:from-gray-800/50 to-transparent pointer-events-none"></div>
+    
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+        <!-- About Section -->
+        <div class="text-center md:text-left">
+          <h3 class="text-xl font-bold text-gradient mb-4">About Me</h3>
+          <p class="text-gray-600 dark:text-gray-400">
+            I'm a passionate developer with a strong foundation in backend development, web technologies, and automation. I enjoy building scalable and efficient systems.
+          </p>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="text-center">
+          <h3 class="text-xl font-bold text-gradient mb-4">Quick Links</h3>
+          <ul class="space-y-3">
+            <li>
+              <a href="#home" 
+                 @click.prevent="smoothScroll('#home')" 
+                 class="text-gray-600 hover:text-primary-600 dark:text-gray-400 dark:hover:text-primary-400 transition-colors">
+                Home
+              </a>
+            </li>
+            <li>
+              <a href="#about" 
+                 @click.prevent="smoothScroll('#about')" 
+                 class="text-gray-600 hover:text-primary-600 dark:text-gray-400 dark:hover:text-primary-400 transition-colors">
+                About
+              </a>
+            </li>
+            <li>
+              <a href="#projects" 
+                 @click.prevent="smoothScroll('#projects')" 
+                 class="text-gray-600 hover:text-primary-600 dark:text-gray-400 dark:hover:text-primary-400 transition-colors">
+                Projects
+              </a>
+            </li>
+            <li>
+              <a href="#skills" 
+                 @click.prevent="smoothScroll('#skills')" 
+                 class="text-gray-600 hover:text-primary-600 dark:text-gray-400 dark:hover:text-primary-400 transition-colors">
+                Skills
+              </a>
+            </li>
+            <li>
+              <a href="#contact" 
+                 @click.prevent="smoothScroll('#contact')" 
+                 class="text-gray-600 hover:text-primary-600 dark:text-gray-400 dark:hover:text-primary-400 transition-colors">
+                Contact
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Social Media & Contact -->
+        <div class="text-center md:text-right">
+          <h3 class="text-xl font-bold text-gradient mb-4">Connect With Me</h3>
+          <div class="flex justify-center md:justify-end space-x-4 mb-4">
+            <a href="https://github.com/laxmansharma1811" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-primary-100 dark:hover:bg-primary-900/30 hover:text-primary-600 dark:hover:text-primary-400 transition-all">
+              <i class="fab fa-github"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/laxmansharma1/" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-primary-100 dark:hover:bg-primary-900/30 hover:text-primary-600 dark:hover:text-primary-400 transition-all">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full flex items-center justify-center bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-primary-100 dark:hover:bg-primary-900/30 hover:text-primary-600 dark:hover:text-primary-400 transition-all">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full flex items-center justify-center bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-primary-100 dark:hover:bg-primary-900/30 hover:text-primary-600 dark:hover:text-primary-400 transition-all">
+              <i class="fab fa-dribbble"></i>
+            </a>
+          </div>
+          <div class="text-gray-600 dark:text-gray-400 space-y-1">
+            <p>Email: <a href="mailto:laxman.sharma1811@gmail.com" class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">laxman.sharma1811@gmail.com</a></p>
+            <p>Phone: <a href="tel:+9779848590208" class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">+977 9848590208</a></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Copyright -->
+      <div class="text-center mt-12 pt-8 border-t border-gray-200 dark:border-gray-800">
+        <p class="text-gray-600 dark:text-gray-400">
+          &copy; 2023 Laxman Sharma. All rights reserved.
+        </p>
+        <p class="text-gray-600 dark:text-gray-400 mt-2">
+          Made with <i class="fas fa-heart text-primary-600 dark:text-primary-400"></i> by Laxman Sharma
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to top button -->
+  <button 
+    @click="smoothScroll('#home')"
+    class="fixed bottom-6 right-6 w-12 h-12 rounded-full bg-gradient text-white shadow-lg flex items-center justify-center opacity-0 transition-all duration-300 hover:-translate-y-1"
+    :class="{'opacity-100': window.scrollY > 500, 'opacity-0': window.scrollY <= 500}"
+    x-data
+    x-init="
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 500) {
+          $el.classList.add('opacity-100');
+          $el.classList.remove('opacity-0');
+        } else {
+          $el.classList.add('opacity-0');
+          $el.classList.remove('opacity-100');
+        }
+      })
+    "
+  >
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- Custom JavaScript for animations -->
+  <script>
+    // Function to initialize background animations
+    function initBackgroundAnimations() {
+      // This function would contain any additional animation logic
+      console.log('Background animations initialized');
+    }
+    
+    // Smooth scroll function
+    function smoothScroll(target) {
+      const element = document.querySelector(target);
+      if (element) {
+        window.scrollTo({
+          top: element.offsetTop - 80,
+          behavior: 'smooth'
+        });
+      }
+    }
+  </script>
 </body>
 </html>
