@@ -4,6 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portfolio | Laxman Sharma</title>
+  <meta name="description" content="Explore Laxman Sharma's portfolio to discover backend development projects, web scraping tools, and full-stack skills available for freelance work in Kathmandu, Nepal.">
+  <meta name="keywords" content="Laxman Sharma, Backend Developer, Python Developer, Portfolio, Freelance Developer, Kathmandu Nepal, Web Development, Django, API Development">
+  <meta name="author" content="Laxman Sharma">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://laxman-sharma.com.np/">
+  <meta name="theme-color" content="#020617">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:site_name" content="Laxman Sharma Portfolio">
+  <meta property="og:title" content="Laxman Sharma | Backend Developer Portfolio">
+  <meta property="og:description" content="Backend developer and automation enthusiast showcasing Python, Django, and full-stack projects. Available for freelance and remote work.">
+  <meta property="og:url" content="https://laxman-sharma.com.np/">
+  <meta property="og:image" content="https://laxman-sharma.com.np/assets/laxman.jpg">
+  <meta property="og:image:alt" content="Portrait of backend developer Laxman Sharma">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Laxman Sharma | Backend Developer Portfolio">
+  <meta name="twitter:description" content="Discover backend projects, automation tools, and full-stack experiments by Laxman Sharma from Kathmandu, Nepal.">
+  <meta name="twitter:image" content="https://laxman-sharma.com.np/assets/laxman.jpg">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.10.5/cdn.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
@@ -108,6 +126,29 @@
       @apply h-2 bg-primary-600 rounded-full;
     }
 
+    .skip-link {
+      position: fixed;
+      top: 1rem;
+      left: 50%;
+      transform: translate(-50%, -150%);
+      background: rgba(15, 23, 42, 0.95);
+      color: #f8fafc;
+      padding: 0.75rem 1.5rem;
+      border-radius: 999px;
+      font-weight: 600;
+      z-index: 60;
+      box-shadow: 0 10px 30px rgba(2, 6, 23, 0.35);
+      opacity: 0;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .skip-link:focus {
+      transform: translate(-50%, 0);
+      opacity: 1;
+      outline: 3px solid #38bdf8;
+      outline-offset: 6px;
+    }
+
     .starfield {
       position: fixed;
       inset: 0;
@@ -140,9 +181,93 @@
       z-index: 1;
     }
 
+    .chat-widget {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 60;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.75rem;
+    }
+
+    .chat-launcher {
+      width: 3.25rem;
+      height: 3.25rem;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(120deg, #0ea5e9, #8b5cf6);
+      color: #fff;
+      box-shadow: 0 15px 40px rgba(14, 165, 233, 0.35);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .chat-launcher:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 20px 45px rgba(139, 92, 246, 0.35);
+    }
+
+    .chat-panel {
+      width: min(380px, calc(100vw - 2rem));
+      max-height: 70vh;
+      border-radius: 1.5rem;
+      backdrop-filter: blur(20px);
+      background: rgba(15, 23, 42, 0.92);
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      box-shadow: 0 30px 70px rgba(2, 6, 23, 0.6);
+      overflow: hidden;
+    }
+
+    .chat-panel__messages {
+      overflow-y: auto;
+      max-height: 300px;
+      padding-right: 0.5rem;
+    }
+
+    .chat-bubble {
+      border-radius: 1rem;
+      padding: 0.75rem 1rem;
+      font-size: 0.95rem;
+      line-height: 1.45;
+    }
+
+    .chat-bubble--user {
+      background: linear-gradient(135deg, rgba(14, 165, 233, 0.9), rgba(139, 92, 246, 0.9));
+      color: #fff;
+      border-bottom-right-radius: 0.25rem;
+    }
+
+    .chat-bubble--bot {
+      background: rgba(15, 23, 42, 0.75);
+      color: #e2e8f0;
+      border: 1px solid rgba(226, 232, 240, 0.1);
+      border-bottom-left-radius: 0.25rem;
+    }
+
     .animate-fade-in {
       opacity: 0;
       animation: fadeIn 1s ease-in-out forwards;
+    }
+
+    @media (max-width: 640px) {
+      .chat-widget {
+        left: 1rem;
+        right: 1rem;
+        align-items: stretch;
+      }
+
+      .chat-panel {
+        width: 100%;
+        max-height: 65vh;
+      }
+
+      .chat-launcher {
+        width: 3rem;
+        height: 3rem;
+      }
     }
     
     @keyframes fadeIn {
@@ -162,6 +287,52 @@
     
     [x-cloak] { display: none !important; }
   </style>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://laxman-sharma.com.np/#person",
+          "name": "Laxman Sharma",
+          "url": "https://laxman-sharma.com.np/",
+          "image": "https://laxman-sharma.com.np/assets/laxman.jpg",
+          "jobTitle": "Backend Developer",
+          "description": "Backend developer and automation enthusiast specializing in Python, Django, and data engineering projects.",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Kathmandu",
+            "addressCountry": "NP"
+          },
+          "email": "mailto:laxman.sharma1811@gmail.com",
+          "telephone": "+9779848590208",
+          "sameAs": [
+            "https://github.com/laxmansharma1811",
+            "https://www.linkedin.com/in/laxmansharma1/"
+          ],
+          "knowsAbout": [
+            "Python",
+            "Django",
+            "REST APIs",
+            "Automation",
+            "Web Scraping",
+            "Flutter"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://laxman-sharma.com.np/#website",
+          "name": "Laxman Sharma Portfolio",
+          "url": "https://laxman-sharma.com.np/",
+          "author": { "@id": "https://laxman-sharma.com.np/#person" },
+          "description": "Portfolio website showcasing the work and services of backend developer Laxman Sharma.",
+          "publisher": { "@id": "https://laxman-sharma.com.np/#person" },
+          "inLanguage": "en"
+        }
+      ]
+    }
+  </script>
 </head>
 
 <body class="bg-gray-950 text-gray-200 font-sans" x-data="{navOpen: false, activeSection: 'home', skills: [
@@ -220,16 +391,18 @@
   });
 " x-cloak>
 
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
   <div class="starfield" aria-hidden="true">
     <canvas id="starfield"></canvas>
     <div class="starfield__glow"></div>
   </div>
 
-  <div class="page-content relative z-10">
+  <main id="main-content" class="page-content relative z-10" role="main">
 
   <!-- Navigation -->
   <header class="fixed w-full top-0 z-50 bg-gray-950/80 backdrop-blur-md shadow-sm transition-all duration-300">
-    <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+  <nav class="container mx-auto px-4 py-4 flex justify-between items-center" aria-label="Primary">
       <!-- Logo -->
       <div class="flex items-center">
         <span class="text-2xl font-bold text-gradient">LS</span>
@@ -237,7 +410,7 @@
       
       <!-- Desktop Menu -->
       <div class="hidden md:flex space-x-8">
-        <template x-for="(item, index) in ['home', 'about', 'projects', 'skills', 'contact']">
+  <template x-for="(item, index) in ['home', 'about', 'experience', 'projects', 'skills', 'contact']">
           <a 
             :href="`#${item}`" 
             @click.prevent="smoothScroll(`#${item}`); activeSection = item;" 
@@ -251,18 +424,18 @@
       <!-- Dark Mode Toggle & Mobile Menu Button -->
       <div class="flex items-center gap-4">
         <!-- Mobile Menu Button -->
-        <button class="md:hidden w-10 h-10 rounded-full flex items-center justify-center bg-gray-800 hover:bg-gray-700 transition-colors" @click="navOpen = !navOpen">
+        <button class="md:hidden w-10 h-10 rounded-full flex items-center justify-center bg-gray-800 hover:bg-gray-700 transition-colors" @click="navOpen = !navOpen" aria-label="Toggle navigation" :aria-expanded="navOpen" aria-controls="mobile-menu">
           <i class="fa-solid" :class="navOpen ? 'fa-xmark' : 'fa-bars'"></i>
         </button>
       </div>
     </nav>
     
     <!-- Mobile Menu -->
-    <div class="md:hidden absolute w-full bg-gray-900 shadow-md transition-all duration-300 overflow-hidden" 
+    <div id="mobile-menu" class="md:hidden absolute w-full bg-gray-900 shadow-md transition-all duration-300 overflow-hidden" 
      :class="navOpen ? 'max-h-60' : 'max-h-0'" 
      style="top: 100%">
       <div class="container mx-auto px-4 py-2">
-        <template x-for="(item, index) in ['home', 'about', 'projects', 'skills', 'contact']">
+  <template x-for="(item, index) in ['home', 'about', 'experience', 'projects', 'skills', 'contact']">
           <a 
             :href="`#${item}`" 
             @click.prevent="smoothScroll(`#${item}`); activeSection = item; navOpen = false;" 
@@ -311,10 +484,10 @@
             </div>
             
             <div class="pt-6 flex space-x-5 animate-fade-in" style="animation-delay: 1s">
-              <a href="https://github.com/laxmansharma1811" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-primary-100 dark:hover:bg-primary-900/30 hover:text-primary-600 dark:hover:text-primary-400 transition-all">
+              <a href="https://github.com/laxmansharma1811" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full flex items-center justify-center bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-primary-100 dark:hover:bg-primary-900/30 hover:text-primary-600 dark:hover:text-primary-400 transition-all">
                 <i class="fab fa-github"></i>
               </a>
-              <a href="https://www.linkedin.com/in/laxmansharma1/" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-primary-100 dark:hover:bg-primary-900/30 hover:text-primary-600 dark:hover:text-primary-400 transition-all">
+              <a href="https://www.linkedin.com/in/laxmansharma1/" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full flex items-center justify-center bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-primary-100 dark:hover:bg-primary-900/30 hover:text-primary-600 dark:hover:text-primary-400 transition-all">
                 <i class="fab fa-linkedin-in"></i>
               </a>
               <a href="#" class="w-10 h-10 rounded-full flex items-center justify-center bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-primary-100 dark:hover:bg-primary-900/30 hover:text-primary-600 dark:hover:text-primary-400 transition-all">
@@ -445,11 +618,80 @@
           </div>
           
           <div class="mt-8">
-            <a href="#" class="inline-flex items-center px-6 py-3 rounded-full bg-gradient hover:opacity-90 text-white font-medium transition-all shadow-lg shadow-primary-500/20 hover:shadow-primary-500/30 hover:-translate-y-0.5">
-              <i class="fas fa-download mr-2"></i> Download CV
+            <a href="assets/Laxman_Sharma_Resume.pdf" download="Laxman_Sharma_Resume.pdf" class="inline-flex items-center px-6 py-3 rounded-full bg-gradient hover:opacity-90 text-white font-medium transition-all shadow-lg shadow-primary-500/20 hover:shadow-primary-500/30 hover:-translate-y-0.5" aria-label="Download Laxman Sharma resume as PDF">
+              <i class="fas fa-download mr-2"></i> Download Resume
             </a>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience Section -->
+  <section id="experience" class="py-20 section relative overflow-hidden bg-gray-900/20">
+    <!-- Background Elements -->
+    <div class="absolute top-0 left-0 w-full h-20 bg-gradient-to-b from-gray-950 to-transparent pointer-events-none"></div>
+    <div class="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-t from-gray-950 to-transparent pointer-events-none"></div>
+    <div class="absolute -top-32 -left-32 w-72 h-72 bg-primary-400/10 rounded-full blur-3xl"></div>
+    <div class="absolute -bottom-32 -right-32 w-72 h-72 bg-secondary-400/10 rounded-full blur-3xl"></div>
+
+    <div class="container mx-auto px-4 relative z-10">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4 inline-block text-gradient">Experience</h2>
+        <div class="w-16 h-1 bg-gradient mx-auto mb-6"></div>
+        <p class="max-w-3xl mx-auto text-gray-400">
+          Highlights from my recent internships, pulled directly from my resume. Each role pushed me to ship production-ready ML systems and reliable data pipelines for real-world teams.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Experience Card 1 -->
+        <article class="bg-white/5 dark:bg-gray-900/70 border border-white/10 rounded-2xl p-8 shadow-xl backdrop-blur-sm hover:-translate-y-1 transition-all duration-300">
+          <div class="flex flex-wrap items-center justify-between gap-4 mb-4">
+            <div>
+              <p class="text-sm uppercase tracking-wide text-primary-300">AI/ML Engineering Intern</p>
+              <h3 class="text-2xl font-semibold text-white">Esewa Ltd</h3>
+              <p class="text-gray-400 text-sm">Kathmandu, Nepal</p>
+            </div>
+            <span class="px-4 py-2 rounded-full bg-primary-500/20 text-primary-200 text-sm font-medium">Nov 2024 &ndash; Mar 2025</span>
+          </div>
+          <p class="text-gray-300 font-medium mb-4">Built BHASABODH &mdash; a Romanized to Devanagari translation assistant for Nepal's leading digital wallet.</p>
+          <ul class="space-y-3 text-gray-400 list-disc list-inside">
+            <li>Fine-tuned BLOOM/BERT variants and optimized inference with BLEU-based evaluation loops.</li>
+            <li>Authored data cleaning + training pipelines and improved transformer throughput for production.</li>
+            <li>Integrated the chatbot into a FastAPI interface with Tailwind CSS for a polished frontend experience.</li>
+            <li>Worked with R&D to validate translation accuracy and deploy experiments rapidly.</li>
+          </ul>
+          <div class="flex flex-wrap gap-2 mt-6">
+            <span class="px-3 py-1 rounded-full bg-primary-500/15 text-primary-200 text-xs">Transformers</span>
+            <span class="px-3 py-1 rounded-full bg-primary-500/15 text-primary-200 text-xs">FastAPI</span>
+            <span class="px-3 py-1 rounded-full bg-primary-500/15 text-primary-200 text-xs">Tailwind CSS</span>
+          </div>
+        </article>
+
+        <!-- Experience Card 2 -->
+        <article class="bg-white/5 dark:bg-gray-900/70 border border-white/10 rounded-2xl p-8 shadow-xl backdrop-blur-sm hover:-translate-y-1 transition-all duration-300">
+          <div class="flex flex-wrap items-center justify-between gap-4 mb-4">
+            <div>
+              <p class="text-sm uppercase tracking-wide text-secondary-300">Data Engineering Intern</p>
+              <h3 class="text-2xl font-semibold text-white">Dlytica Inc. Pvt. Ltd</h3>
+              <p class="text-gray-400 text-sm">Kathmandu, Nepal</p>
+            </div>
+            <span class="px-4 py-2 rounded-full bg-secondary-500/20 text-secondary-200 text-sm font-medium">Jul 2024 &ndash; Nov 2024</span>
+          </div>
+          <p class="text-gray-300 font-medium mb-4">Shipped data pipelines and ETL automation while completing Dlytica's intensive data engineering program.</p>
+          <ul class="space-y-3 text-gray-400 list-disc list-inside">
+            <li>Hands-on with cloud platforms, database tuning, and streaming data ingestion scenarios.</li>
+            <li>Built Apache Airflow DAGs plus MinIO-backed storage flows for reliable workflow automation.</li>
+            <li>Implemented ETL jobs that cleaned, transformed, and loaded analytics datasets.</li>
+            <li>Documented best practices for team handoff and iterated with mentors on production readiness.</li>
+          </ul>
+          <div class="flex flex-wrap gap-2 mt-6">
+            <span class="px-3 py-1 rounded-full bg-secondary-500/15 text-secondary-200 text-xs">Apache Airflow</span>
+            <span class="px-3 py-1 rounded-full bg-secondary-500/15 text-secondary-200 text-xs">ETL</span>
+            <span class="px-3 py-1 rounded-full bg-secondary-500/15 text-secondary-200 text-xs">MinIO</span>
+          </div>
+        </article>
       </div>
     </div>
   </section>
@@ -529,7 +771,7 @@
                 <span class="px-3 py-1 bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 text-xs rounded-full">Selenium</span>
                 <span class="px-3 py-1 bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 text-xs rounded-full">Tailwind</span>
               </div>
-              <a href="https://github.com/laxmansharma1811/Product_aggregator" target="_blank" class="inline-flex items-center text-primary-600 dark:text-primary-400 font-medium hover:underline mt-auto">
+              <a href="https://github.com/laxmansharma1811/Product_aggregator" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-primary-600 dark:text-primary-400 font-medium hover:underline mt-auto">
                 View Project <i class="fas fa-arrow-right ml-2 text-sm transition-transform group-hover:translate-x-1"></i>
               </a>
             </div>
@@ -565,7 +807,7 @@
                 <span class="px-3 py-1 bg-secondary-100 dark:bg-secondary-900/30 text-secondary-600 dark:text-secondary-400 text-xs rounded-full">Firebase</span>
                 <span class="px-3 py-1 bg-secondary-100 dark:bg-secondary-900/30 text-secondary-600 dark:text-secondary-400 text-xs rounded-full">Firestore</span>
               </div>
-              <a href="https://github.com/laxmansharma1811/Flutter-Firebase" target="_blank" class="inline-flex items-center text-secondary-600 dark:text-secondary-400 font-medium hover:underline mt-auto">
+              <a href="https://github.com/laxmansharma1811/Flutter-Firebase" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-secondary-600 dark:text-secondary-400 font-medium hover:underline mt-auto">
                 View Project <i class="fas fa-arrow-right ml-2 text-sm transition-transform group-hover:translate-x-1"></i>
               </a>
             </div>
@@ -601,7 +843,7 @@
                 <span class="px-3 py-1 bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 text-xs rounded-full">Python</span>
                 <span class="px-3 py-1 bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 text-xs rounded-full">Pandas</span>
               </div>
-              <a href="https://github.com/laxmansharma1811/Daraz-Ecommerce-Scraper" target="_blank" class="inline-flex items-center text-primary-600 dark:text-primary-400 font-medium hover:underline mt-auto">
+              <a href="https://github.com/laxmansharma1811/Daraz-Ecommerce-Scraper" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-primary-600 dark:text-primary-400 font-medium hover:underline mt-auto">
                 View Project <i class="fas fa-arrow-right ml-2 text-sm transition-transform group-hover:translate-x-1"></i>
               </a>
             </div>
@@ -611,7 +853,7 @@
       
       <!-- View All Projects Button -->
       <div class="text-center mt-16">
-        <a href="https://github.com/laxmansharma1811?tab=repositories" target="_blank" class="inline-flex items-center px-8 py-4 rounded-full border-2 border-primary-600 dark:border-primary-400 text-primary-600 dark:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/30 font-medium transition-all hover:-translate-y-0.5">
+  <a href="https://github.com/laxmansharma1811?tab=repositories" target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-8 py-4 rounded-full border-2 border-primary-600 dark:border-primary-400 text-primary-600 dark:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/30 font-medium transition-all hover:-translate-y-0.5">
           View All Projects <i class="fas fa-external-link-alt ml-2"></i>
         </a>
       </div>
@@ -908,10 +1150,10 @@
             <div class="bg-white dark:bg-gray-900/50 p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
               <h4 class="text-lg font-bold mb-4">Follow Me</h4>
               <div class="flex space-x-4">
-                <a href="https://github.com/laxmansharma1811" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-primary-100 dark:hover:bg-primary-900/30 hover:text-primary-600 dark:hover:text-primary-400 transition-all">
+                <a href="https://github.com/laxmansharma1811" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full flex items-center justify-center bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-primary-100 dark:hover:bg-primary-900/30 hover:text-primary-600 dark:hover:text-primary-400 transition-all">
                   <i class="fab fa-github"></i>
                 </a>
-                <a href="https://www.linkedin.com/in/laxmansharma1/" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-primary-100 dark:hover:bg-primary-900/30 hover:text-primary-600 dark:hover:text-primary-400 transition-all">
+                <a href="https://www.linkedin.com/in/laxmansharma1/" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full flex items-center justify-center bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-primary-100 dark:hover:bg-primary-900/30 hover:text-primary-600 dark:hover:text-primary-400 transition-all">
                   <i class="fab fa-linkedin-in"></i>
                 </a>
                 <a href="#" class="w-10 h-10 rounded-full flex items-center justify-center bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-primary-100 dark:hover:bg-primary-900/30 hover:text-primary-600 dark:hover:text-primary-400 transition-all">
@@ -961,6 +1203,13 @@
               </a>
             </li>
             <li>
+              <a href="#experience" 
+                 @click.prevent="smoothScroll('#experience')" 
+                 class="text-gray-600 hover:text-primary-600 dark:text-gray-400 dark:hover:text-primary-400 transition-colors">
+                Experience
+              </a>
+            </li>
+            <li>
               <a href="#projects" 
                  @click.prevent="smoothScroll('#projects')" 
                  class="text-gray-600 hover:text-primary-600 dark:text-gray-400 dark:hover:text-primary-400 transition-colors">
@@ -988,10 +1237,10 @@
         <div class="text-center md:text-right">
           <h3 class="text-xl font-bold text-gradient mb-4">Connect With Me</h3>
           <div class="flex justify-center md:justify-end space-x-4 mb-4">
-            <a href="https://github.com/laxmansharma1811" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-primary-100 dark:hover:bg-primary-900/30 hover:text-primary-600 dark:hover:text-primary-400 transition-all">
+            <a href="https://github.com/laxmansharma1811" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full flex items-center justify-center bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-primary-100 dark:hover:bg-primary-900/30 hover:text-primary-600 dark:hover:text-primary-400 transition-all">
               <i class="fab fa-github"></i>
             </a>
-            <a href="https://www.linkedin.com/in/laxmansharma1/" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-primary-100 dark:hover:bg-primary-900/30 hover:text-primary-600 dark:hover:text-primary-400 transition-all">
+            <a href="https://www.linkedin.com/in/laxmansharma1/" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full flex items-center justify-center bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-primary-100 dark:hover:bg-primary-900/30 hover:text-primary-600 dark:hover:text-primary-400 transition-all">
               <i class="fab fa-linkedin-in"></i>
             </a>
             <a href="#" class="w-10 h-10 rounded-full flex items-center justify-center bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-primary-100 dark:hover:bg-primary-900/30 hover:text-primary-600 dark:hover:text-primary-400 transition-all">
@@ -1041,7 +1290,47 @@
     <i class="fas fa-arrow-up"></i>
   </button>
 
+  <!-- Chatbot Widget -->
+  <div class="chat-widget" aria-live="polite" aria-label="Ask Laxman chatbot">
+    <div id="chatPanel" class="chat-panel hidden" role="dialog" aria-modal="false" aria-labelledby="chatbotTitle">
+      <div class="px-6 pt-6 pb-4 border-b border-white/10 flex items-start justify-between gap-4">
+        <div>
+          <p id="chatbotTitle" class="text-white text-lg font-semibold">Ask Laxman AI</p>
+          <p class="text-sm text-gray-400">Instant answers about Laxman&rsquo;s skills, projects, and availability.</p>
+        </div>
+        <button id="chatClose" class="text-gray-400 hover:text-white" aria-label="Close chatbot">
+          <i class="fa-solid fa-xmark text-xl"></i>
+        </button>
+      </div>
+
+      <div class="px-6 py-4 space-y-4 text-sm text-gray-300">
+        <div class="chat-panel__messages space-y-3 pr-1" id="chatMessages" aria-live="polite">
+          <div class="chat-bubble chat-bubble--bot">
+            Hi! I'm Laxman's AI copilot. Ask me about his projects, experience, or how to get in touch.
+          </div>
+        </div>
+
+        <div class="space-y-2">
+          <form id="chatForm" class="flex items-center gap-2">
+            <textarea id="chatInput" rows="2" placeholder="Type your question..." class="flex-1 bg-gray-900/60 border border-white/10 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-primary-500 resize-none" aria-label="Chat message" required></textarea>
+            <button type="submit" class="px-4 py-3 rounded-xl bg-gradient text-white font-semibold shadow-lg hover:opacity-90 transition" aria-label="Send message">
+              <i class="fa-solid fa-paper-plane"></i>
+            </button>
+          </form>
+          <div class="flex items-center justify-between text-xs text-gray-400">
+            <button id="chatReset" type="button" class="text-primary-300 hover:text-primary-100 font-medium">Reset conversation</button>
+            <span id="chatStatus">Ready.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button id="chatToggle" class="chat-launcher" aria-label="Open Ask Laxman chatbot" aria-expanded="false" aria-controls="chatPanel">
+      <i class="fa-solid fa-comments"></i>
+    </button>
   </div>
+
+  </main>
 
   <!-- Custom JavaScript for animations -->
   <script>
@@ -1063,14 +1352,15 @@
         ctx.setTransform(1, 0, 0, 1, 0, 0);
         ctx.scale(dpr, dpr);
 
-        const density = Math.floor((width * height) / 10000);
-        const starCount = Math.min(220, Math.max(140, density));
+        const density = Math.floor((width * height) / 9500);
+        const starCount = Math.min(260, Math.max(150, density));
         stars = Array.from({ length: starCount }, () => ({
           x: Math.random() * width,
           y: Math.random() * height,
-          radius: Math.random() * 0.45 + 0.1,
-          twinkleSpeed: Math.random() * 0.01 + 0.002,
-          twinkleAmplitude: Math.random() * 0.25 + 0.2,
+          radius: Math.random() * 0.22 + 0.08,
+          twinkleSpeed: Math.random() * 0.0035 + 0.0015,
+          brightness: Math.random() * 0.55 + 0.25,
+          twinkleDirection: Math.random() > 0.5 ? 1 : -1,
           offset: Math.random() * Math.PI * 2,
           driftX: (Math.random() - 0.5) * 0.02,
           driftY: (Math.random() - 0.5) * 0.02,
@@ -1081,7 +1371,16 @@
       const draw = () => {
         ctx.clearRect(0, 0, width, height);
         stars.forEach(star => {
-          star.offset += star.twinkleSpeed;
+          star.offset += star.twinkleSpeed * 2;
+          star.brightness += star.twinkleSpeed * 0.5 * star.twinkleDirection;
+          if (star.brightness >= 1.05) {
+            star.brightness = 1.05;
+            star.twinkleDirection = -1;
+          }
+          if (star.brightness <= 0.15) {
+            star.brightness = 0.15;
+            star.twinkleDirection = 1;
+          }
           star.x += star.driftX;
           star.y += star.driftY;
 
@@ -1090,12 +1389,13 @@
           if (star.y < -5) star.y = height + 5;
           if (star.y > height + 5) star.y = -5;
 
-          const twinkle = 0.25 + star.twinkleAmplitude * (0.5 + 0.5 * Math.sin(star.offset));
-          const haloRadius = star.radius * 12;
+          const pulse = 0.08 * Math.sin(star.offset * 1.5);
+          const twinkle = Math.min(1, Math.max(0.15, star.brightness + pulse));
+          const haloRadius = star.radius * 10;
 
           const gradient = ctx.createRadialGradient(star.x, star.y, 0, star.x, star.y, haloRadius);
-          gradient.addColorStop(0, `rgba(255, 255, 255, ${twinkle})`);
-          gradient.addColorStop(0.45, `rgba(255, 255, 255, ${twinkle * 0.35})`);
+          gradient.addColorStop(0, `rgba(255, 255, 255, ${Math.min(1, twinkle + 0.2)})`);
+          gradient.addColorStop(0.25, `rgba(255, 255, 255, ${twinkle * 0.7})`);
           gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
 
           ctx.save();
@@ -1106,13 +1406,25 @@
           ctx.restore();
 
           ctx.save();
-          const tint = `hsla(${star.hue}, 90%, 75%, ${twinkle})`;
+          const tint = `hsla(${star.hue}, 95%, 80%, ${Math.min(1, twinkle + 0.1)})`;
           ctx.fillStyle = tint;
-          ctx.shadowColor = `hsla(${star.hue}, 90%, 65%, ${twinkle * 0.6})`;
-          ctx.shadowBlur = star.radius * 18;
+          ctx.shadowColor = `hsla(${star.hue}, 95%, 70%, ${twinkle * 0.8})`;
+          ctx.shadowBlur = star.radius * 30;
           ctx.beginPath();
-          ctx.arc(star.x, star.y, star.radius * 1.4, 0, Math.PI * 2);
+          ctx.arc(star.x, star.y, star.radius * 1.1, 0, Math.PI * 2);
           ctx.fill();
+          ctx.restore();
+
+          ctx.save();
+          ctx.strokeStyle = `rgba(255, 255, 255, ${twinkle * 0.55})`;
+          ctx.lineWidth = star.radius * 0.4;
+          const flare = star.radius * 3.8;
+          ctx.beginPath();
+          ctx.moveTo(star.x - flare, star.y);
+          ctx.lineTo(star.x + flare, star.y);
+          ctx.moveTo(star.x, star.y - flare);
+          ctx.lineTo(star.x, star.y + flare);
+          ctx.stroke();
           ctx.restore();
         });
 
@@ -1140,6 +1452,7 @@
 
     document.addEventListener('DOMContentLoaded', () => {
       initStarfield();
+      initPortfolioChat();
     });
 
     // Smooth scroll function
@@ -1151,6 +1464,222 @@
           behavior: 'smooth'
         });
       }
+    }
+
+    function initPortfolioChat() {
+      const toggleBtn = document.getElementById('chatToggle');
+      const panel = document.getElementById('chatPanel');
+      if (!toggleBtn || !panel) return;
+
+      const closeBtn = document.getElementById('chatClose');
+      const resetBtn = document.getElementById('chatReset');
+      const form = document.getElementById('chatForm');
+      const input = document.getElementById('chatInput');
+      const messagesEl = document.getElementById('chatMessages');
+      const statusEl = document.getElementById('chatStatus');
+      if (!form || !input || !messagesEl || !statusEl) {
+        console.warn('Chat widget markup incomplete; skipping chatbot wiring.');
+        return;
+      }
+
+      const knowledgeBase = [
+        {
+          topic: 'summary',
+          keywords: ['who', 'about', 'yourself', 'laxman', 'introduce', 'bio', 'background', 'portfolio'],
+          answer: 'Laxman Sharma is a backend-focused developer from Kathmandu, Nepal who loves turning data and automation ideas into reliable products using Python, Django, FastAPI, Airflow, and modern tooling.'
+        },
+        {
+          topic: 'skills',
+          keywords: ['skill', 'skills', 'stack', 'tech', 'technology', 'language', 'framework', 'python', 'django', 'fastapi', 'automation', 'api', 'data', 'engineering', 'etl'],
+          answer: 'Core toolkit: Python, Django, FastAPI, REST and GraphQL APIs, Celery, PostgreSQL, Redis, Airflow/Prefect-style orchestration, Docker, and modern scraping/automation stacks. He also prototypes with Flutter and Firebase when a mobile touchpoint is needed.'
+        },
+        {
+          topic: 'experience',
+          keywords: ['experience', 'work', 'role', 'intern', 'job', 'esewa', 'dlytica', 'career'],
+          answer: 'Recent journey: AI/ML Engineering Intern at eSewa (Nov 2024 – Mar 2025) building transformer-based Nepali↔English translation with FastAPI endpoints, and Data Engineering Intern at Dlytica (Jul – Nov 2024) delivering Airflow + MinIO ETL pipelines and analytics automation.'
+        },
+        {
+          topic: 'projects',
+          keywords: ['project', 'build', 'built', 'eduhub', 'bhasabodh', 'translator', 'scraper', 'automation', 'portfolio', 'app', 'product'],
+          answer: 'Flagship builds: EDUHUB Global Education Portal (full Django SaaS hosted on Nest Nepal), BHASABODH AI translator (FastAPI + BLOOM/BERT stack), e-commerce price intelligence aggregator, Daraz data scraper, and multiple automation utilities for founders.'
+        },
+        {
+          topic: 'contact',
+          keywords: ['contact', 'email', 'phone', 'reach', 'connect', 'linkedin', 'github', 'schedule'],
+          answer: 'Reach Laxman at laxman.sharma1811@gmail.com or +977-9848590208. Connect on LinkedIn (linkedin.com/in/laxmansharma1) or explore more at github.com/laxmansharma1811.'
+        },
+        {
+          topic: 'availability',
+          keywords: ['availability', 'available', 'freelance', 'hire', 'collaborate', 'open to work', 'engagement', 'project'],
+          answer: 'He is actively available for remote-friendly freelance and contract work, especially backend/API automation, data engineering, and AI integration gigs. Share your timeline and he will adapt quickly.'
+        },
+        {
+          topic: 'location',
+          keywords: ['location', 'based', 'where', 'city', 'country', 'timezone', 'remote'],
+          answer: 'Home base is Kathmandu, Nepal (GMT+5:45). He collaborates asynchronously with global teams and adjusts overlap hours when needed.'
+        },
+        {
+          topic: 'services',
+          keywords: ['offer', 'service', 'help', 'capability', 'consulting', 'what can you do', 'deliverable'],
+          answer: 'He helps founders and teams with backend architecture, API design, automation/scraping pipelines, ML-powered features, dashboard-ready datasets, and DevOps handoff for smooth deployment.'
+        },
+        {
+          topic: 'resume',
+          keywords: ['resume', 'cv', 'pdf', 'download', 'profile'],
+          answer: 'Grab the latest resume at /assets/Laxman_Sharma_CV.pdf or request a tailored version via email.'
+        }
+      ];
+
+      const topicFollowUps = {
+        summary: 'He balances deep backend craftsmanship with design empathy, so demos feel polished even while the infrastructure scales.',
+        experience: 'Those internships included collaborating with product, data, and infra teams, so he is comfortable owning features end-to-end—from experiment notebooks to production APIs.',
+        projects: 'He continuously dogfoods AI copilots: the Ask Laxman widget you are using was also designed end-to-end by him.',
+        skills: 'Need something outside Python? He quickly prototypes with JavaScript/TypeScript, Flutter, and cloud functions when projects demand it.',
+        availability: 'He can start within 1-2 weeks for new work and is happy to sign NDAs for sensitive data early on.',
+        services: 'Common engagements include “build my MVP backend”, “clean and sync data from multiple sources”, and “connect my product to an AI model”, typically in 2-6 week sprints.'
+      };
+
+      const quickReplies = [
+        {
+          test: (text) => /\b(hi|hello|hey|namaste|yo)\b/.test(text),
+          response: 'Hi there! Ask anything about Laxman’s skills, projects, experience, or how he can help you.',
+          topic: 'summary'
+        },
+        {
+          test: (text) => /thank/.test(text),
+          response: 'You’re welcome! Curious about a project, timeline, or availability next?',
+          topic: null
+        },
+        {
+          test: (text) => /(who are you|who is laxman|tell me about laxman|about you)/.test(text),
+          response: 'Laxman is a backend developer from Kathmandu focused on Python, automation, and AI-enabled APIs for fast-growing teams.',
+          topic: 'summary'
+        }
+      ];
+
+      let conversation = [];
+      let lastTopic = null;
+
+      const setStatus = (text, isError = false) => {
+        if (!statusEl) return;
+        statusEl.textContent = text;
+        statusEl.classList.toggle('text-red-300', isError);
+      };
+
+      const scrollMessages = () => {
+        requestAnimationFrame(() => {
+          messagesEl.scrollTop = messagesEl.scrollHeight;
+        });
+      };
+
+      const appendMessage = (role, content) => {
+        const bubble = document.createElement('div');
+        bubble.classList.add('chat-bubble', role === 'user' ? 'chat-bubble--user' : 'chat-bubble--bot');
+        bubble.textContent = content;
+        messagesEl.appendChild(bubble);
+        scrollMessages();
+        return bubble;
+      };
+
+      const resetConversation = () => {
+        conversation = [];
+        lastTopic = null;
+        messagesEl.innerHTML = '';
+        appendMessage('assistant', "Hi! I'm Laxman's AI copilot. Ask me anything about his skills, projects, or availability.");
+        setStatus('Ready.');
+      };
+
+      const matchKnowledge = (text) => {
+        let best = null;
+        knowledgeBase.forEach(entry => {
+          const score = entry.keywords.reduce((sum, keyword) => sum + (text.includes(keyword) ? 1 : 0), 0);
+          if (score > 0) {
+            const candidateScore = score + (entry.boost || 0);
+            if (!best || candidateScore > best.score) {
+              best = { ...entry, score: candidateScore };
+            }
+          }
+        });
+        return best;
+      };
+
+      const buildAnswer = (message) => {
+        const normalized = message.toLowerCase();
+
+        const quickHit = quickReplies.find(rule => rule.test(normalized));
+        if (quickHit) {
+          lastTopic = quickHit.topic;
+          return quickHit.response;
+        }
+
+        if (lastTopic && /(tell me more|more detail|what else|anything else|expand|another detail)/.test(normalized)) {
+          const follow = topicFollowUps[lastTopic];
+          if (follow) {
+            return follow;
+          }
+        }
+
+        if (/resume|cv/.test(normalized)) {
+          lastTopic = 'resume';
+          return 'You can download the resume anytime at /assets/Laxman_Sharma_CV.pdf or ask via email for a tailored version.';
+        }
+
+        if (/timeline|deliver|how long|timeline|estimate/.test(normalized)) {
+          lastTopic = 'availability';
+          return 'For most backend or automation engagements, Laxman ships an MVP in 2-3 weeks and iterates quickly with async updates.';
+        }
+
+        const knowledgeHit = matchKnowledge(normalized);
+        if (knowledgeHit) {
+          lastTopic = knowledgeHit.topic;
+          return knowledgeHit.answer;
+        }
+
+        lastTopic = null;
+        return "I'm tuned for Laxman's background, skills, and collaboration details. Try asking about his projects, experience, or how to work with him.";
+      };
+
+      const togglePanel = (forceOpen) => {
+        const isHidden = panel.classList.contains('hidden');
+        const shouldOpen = typeof forceOpen === 'boolean' ? forceOpen : isHidden;
+        panel.classList.toggle('hidden', !shouldOpen);
+        toggleBtn.setAttribute('aria-expanded', shouldOpen ? 'true' : 'false');
+        if (shouldOpen) {
+          input?.focus();
+        }
+      };
+
+      toggleBtn.addEventListener('click', () => togglePanel());
+      closeBtn?.addEventListener('click', () => togglePanel(false));
+      resetBtn?.addEventListener('click', resetConversation);
+
+      form?.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const message = input.value.trim();
+        if (!message) return;
+
+        appendMessage('user', message);
+        conversation.push({ role: 'user', content: message });
+        input.value = '';
+        input.style.height = 'auto';
+
+        const placeholder = appendMessage('assistant', 'Typing...');
+        setStatus('Crafting a response...');
+
+        setTimeout(() => {
+          const reply = buildAnswer(message);
+          placeholder.textContent = reply;
+          conversation.push({ role: 'assistant', content: reply, topic: lastTopic });
+          setStatus('Ready.');
+        }, 350 + Math.random() * 250);
+      });
+
+      input?.addEventListener('input', () => {
+        input.style.height = 'auto';
+        input.style.height = `${Math.min(input.scrollHeight, 140)}px`;
+      });
+
+      resetConversation();
     }
   </script>
 </body>

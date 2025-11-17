@@ -1,0 +1,84 @@
+Laxman Sharma
+♂¶ap-¶arker-altKathmandu-26 Samakhusi, Nepal /envel⌢pelaxman.sharma1811@gmail.com ♂phone-alt+977-9848590208
+ὑ7laxman-sharma.com.np /linkedin-inlaxmansharma1 /githublaxmansharma1811
+Professional Summary
+Built and deployed EDUHUB Global Education Portal, a live Django platform helping students find universities
+and scholarships with a responsive, user-friendly design. Created BHASABODH, an AI chatbot for Romanized-
+to-Devanagari translation using fine-tuned BLOOM/BERT models and FastAPI. Passionate about using software
+engineering and AI/ML to build real-world, user-focused applications.
+Education
+Sunway College Kathmandu
+Bachelor of Computer Science (Honours)
+Graduated March 2025
+Work Experience
+AI/ML Engineering Intern
+Esewa Ltd - Nepal’s Leading Digital Wallet Platform
+Kathmandu, Nepal
+Nov 2024 - Mar 2025
+◦ Worked on BHASABODH, a translation model and chatbot project aimed at translating Romanized Nepali
+to Devanagari Nepali using custom fine-tuned language models
+◦ Contributed to training, fine-tuning, and evaluating transformer-based NLP models (e.g., BLOOM, BERT
+variants)
+◦ Implemented BLEU score evaluation, data cleaning pipelines, and model optimization techniques for infer-
+ence efficiency
+◦ Integrated the chatbot into a FastAPI web interface for interactive translation with frontend using Tailwind
+CSS
+◦ Collaborated with the R&D team to test model performance and improve real-time translation accuracy
+Data Engineering Intern
+Dlytica Inc. Pvt. Ltd
+Kathmandu, Nepal
+Jul 2024 - Nov 2024
+◦ Completed a comprehensive data engineering course covering data pipelines, ETL processes, data warehous-
+ing, and big data technologies
+◦ Gained hands-on experience with cloud platforms, database management, and real-time data processing
+◦ Worked with Apache Airflow for workflow automation and MinIO for object storage
+◦ Developed and implemented DAGs for workflow automation and executed ETL pipelines for data processing
+Projects
+EDUHUB Global Education Portal [LIVE] Live: eduhubuniversalser-
+vices.com /external-link-alt
+◦ Designed, developed, and deployed a fully functional Django-based education portal from scratch
+◦ Configured and hosted the project on Nest Nepal VPS using cPanel, ensuring secure and reliable uptime
+◦ Set up PostgreSQL database and production server with Nginx and Uvicorn for smooth performance
+◦ Built responsive, mobile-first UI and optimized page speed for better user experience
+◦ Performed SEO optimization and metadata tuning to improve search engine visibility and ranking
+◦ Technologies: Python, Django 4.2, PostgreSQL, HTML/CSS, VPS (Nest Nepal), Nginx, Uvicorn, SEO
+Laxman Sharma - Page 1 of 2
+BHASABODH - AI Translation System & QA Chatbot github.com/laxmansharma1811
+/external-link-alt
+◦ Developed a bidirectional translation model for Devanagari to Romanized Nepali and vice versa using
+transformer-based architecture
+◦ Built an intelligent QA chatbot with natural language understanding capabilities
+◦ Implemented custom fine-tuned language models (BLOOM, BERT variants) for improved translation accu-
+racy
+◦ Created FastAPI web interface with Tailwind CSS for interactive user experience
+◦ Integrated BLEU score evaluation metrics and data cleaning pipelines for model performance optimization
+Ecommerce Product Aggregator GitHub Repository/external-link-alt
+◦ Built a comprehensive e-commerce platform with product listing, user management, and analytics
+◦ Implemented features including product search, detailed product pages, historical price trends, and user
+registration/authentication
+◦ Technologies: Django, Tailwind CSS, PostgreSQL
+Social Media Platform - Full-Stack Application GitHub Repository/external-link-alt
+◦ Developed a full-featured social media platform with user authentication, post creation, and social interac-
+tions
+◦ Implemented features including user registration, login/logout, image or status posting, comments, likes/unlikes,
+and follow/unfollow functionality
+◦ Technologies: Django, Tailwind CSS, SQLite
+Web Scraping Tools GitHub Repository/external-link-alt
+◦ Map Scraper: Automated search and navigation with data extraction, scrolling, and pagination handling
+◦ Amazon Scraper: Automated product searching and detail extraction from Amazon search results
+◦ Technologies: Python, Selenium, Requests
+Data Engineering Pipeline GitHub Repository/external-link-alt
+◦ Developed and executed ETL pipelines with Apache Airflow, integrating MinIO for storage and workflow
+automation
+◦ Technologies: Apache Airflow, MinIO, Python, Docker
+Flutter-Firebase Blog Application GitHub Repository/external-link-alt
+◦ Built a Flutter blog app with Firebase Authentication and Firestore for real-time post management
+◦ Technologies: Flutter, Firebase Authentication, Firestore
+Technical Skills
+Languages: Python (Advanced), Java, JavaScript, TypeScript, SQL, HTML5, CSS3
+AI/ML & Data:PyTorch, TensorFlow, Transformers, BERT/BLOOM, scikit-learn, pandas, NumPy, Apache
+Airflow, Spark
+Web Development:Django, FastAPI, Flask, React, Node.js, REST APIs, GraphQL, WebSockets
+Databases & Cloud:PostgreSQL, MySQL, MongoDB, Redis, Firebase, AWS (EC2, S3), Docker, Kubernetes
+Tools & DevOps:Git, CI/CD, Linux, Nginx, Selenium, Postman, JIRA, Agile/Scrum
+Laxman Sharma - Page 2 of 2
