@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="scroll-smooth dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -96,63 +96,50 @@
     }
     
     .nav-link.active {
-      @apply text-primary-600 dark:text-primary-400 font-medium;
+      @apply text-primary-400 font-medium;
     }
     
     .nav-link.active::after {
       content: '';
-      @apply block w-full h-0.5 mt-0.5 bg-primary-600 dark:bg-primary-400 rounded-full;
+      @apply block w-full h-0.5 mt-0.5 bg-primary-400 rounded-full;
     }
     
     .skill-progress {
       @apply h-2 bg-primary-600 rounded-full;
     }
-    
-    .animated-bg {
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .shape {
-      position: absolute;
-      border-radius: 50%;
-      background: linear-gradient(45deg, rgba(59, 130, 246, 0.1), rgba(147, 51, 234, 0.1));
-      animation: float 15s infinite;
+
+    .starfield {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
       z-index: 0;
+      background: radial-gradient(circle at 25% 20%, rgba(15, 23, 42, 0.85), rgba(2, 6, 23, 0.98) 65%);
+      background-color: #010314;
+      transition: opacity 0.3s ease;
     }
-    
-    .shape-1 {
-      width: 500px;
-      height: 500px;
-      top: -250px;
-      left: -250px;
-      animation-delay: 0s;
+
+    .starfield canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
     }
-    
-    .shape-2 {
-      width: 400px;
-      height: 400px;
-      bottom: -200px;
-      right: -200px;
-      animation-delay: 2s;
+
+    .starfield__glow {
+      position: absolute;
+      inset: -10%;
+      background:
+        radial-gradient(circle at 20% 25%, rgba(59, 130, 246, 0.35), transparent 55%),
+        radial-gradient(circle at 80% 10%, rgba(236, 72, 153, 0.2), transparent 45%),
+        radial-gradient(circle at 65% 70%, rgba(14, 165, 233, 0.2), transparent 60%);
+      filter: blur(70px);
+      opacity: 0.55;
     }
-    
-    .shape-3 {
-      width: 300px;
-      height: 300px;
-      bottom: 50%;
-      left: 50%;
-      animation-delay: 4s;
+
+    .page-content {
+      position: relative;
+      z-index: 1;
     }
-    
-    .shape-4 {
-      width: 200px;
-      height: 200px;
-      top: 10%;
-      right: 10%;
-      animation-delay: 6s;
-    }
-    
+
     .animate-fade-in {
       opacity: 0;
       animation: fadeIn 1s ease-in-out forwards;
@@ -177,19 +164,13 @@
   </style>
 </head>
 
-<body class="bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 font-sans" x-data="{darkMode: false, navOpen: false, activeSection: 'home', skills: [
+<body class="bg-gray-950 text-gray-200 font-sans" x-data="{navOpen: false, activeSection: 'home', skills: [
   {name: 'HTML & CSS', percent: 95},
   {name: 'JavaScript', percent: 90},
   {name: 'React', percent: 85},
   {name: 'Node.js', percent: 80},
   {name: 'UI/UX Design', percent: 75}
 ]}" x-init="
-  // Check user preference
-  if (localStorage.getItem('darkMode') === 'true' || 
-      (!localStorage.getItem('darkMode') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-    darkMode = true;
-  }
-  
   // Initialize GSAP animations
   $nextTick(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -222,17 +203,6 @@
     });
   });
   
-  // Smooth scroll function
-  function smoothScroll(target) {
-    const element = document.querySelector(target);
-    if (element) {
-      window.scrollTo({
-        top: element.offsetTop - 80,
-        behavior: 'smooth'
-      });
-    }
-  }
-  
   // Update active section on scroll
   window.addEventListener('scroll', () => {
     const sections = document.querySelectorAll('section[id]');
@@ -250,19 +220,15 @@
   });
 " x-cloak>
 
-  <!-- Dark mode toggle handler -->
-  <div x-effect="
-    if (darkMode) {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('darkMode', 'true');
-    } else {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('darkMode', 'false');
-    }
-  "></div>
+  <div class="starfield" aria-hidden="true">
+    <canvas id="starfield"></canvas>
+    <div class="starfield__glow"></div>
+  </div>
+
+  <div class="page-content relative z-10">
 
   <!-- Navigation -->
-  <header class="fixed w-full top-0 z-50 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-sm transition-all duration-300">
+  <header class="fixed w-full top-0 z-50 bg-gray-950/80 backdrop-blur-md shadow-sm transition-all duration-300">
     <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
       <!-- Logo -->
       <div class="flex items-center">
@@ -275,7 +241,7 @@
           <a 
             :href="`#${item}`" 
             @click.prevent="smoothScroll(`#${item}`); activeSection = item;" 
-            class="nav-link capitalize py-2 hover:text-primary-600 dark:hover:text-primary-400 transition-colors relative"
+            class="nav-link capitalize py-2 text-gray-300 hover:text-primary-400 transition-colors relative"
             :class="activeSection === item ? 'active' : ''"
             x-text="item"
           ></a>
@@ -284,19 +250,15 @@
       
       <!-- Dark Mode Toggle & Mobile Menu Button -->
       <div class="flex items-center gap-4">
-        <button @click="darkMode = !darkMode" class="w-10 h-10 rounded-full flex items-center justify-center bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
-          <i class="fas" :class="darkMode ? 'fa-sun text-amber-400' : 'fa-moon text-gray-700'"></i>
-        </button>
-        
         <!-- Mobile Menu Button -->
-        <button class="md:hidden w-10 h-10 rounded-full flex items-center justify-center bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors" @click="navOpen = !navOpen">
+        <button class="md:hidden w-10 h-10 rounded-full flex items-center justify-center bg-gray-800 hover:bg-gray-700 transition-colors" @click="navOpen = !navOpen">
           <i class="fa-solid" :class="navOpen ? 'fa-xmark' : 'fa-bars'"></i>
         </button>
       </div>
     </nav>
     
     <!-- Mobile Menu -->
-    <div class="md:hidden absolute w-full bg-white dark:bg-gray-900 shadow-md transition-all duration-300 overflow-hidden" 
+    <div class="md:hidden absolute w-full bg-gray-900 shadow-md transition-all duration-300 overflow-hidden" 
      :class="navOpen ? 'max-h-60' : 'max-h-0'" 
      style="top: 100%">
       <div class="container mx-auto px-4 py-2">
@@ -304,8 +266,8 @@
           <a 
             :href="`#${item}`" 
             @click.prevent="smoothScroll(`#${item}`); activeSection = item; navOpen = false;" 
-            class="block py-3 border-b border-gray-100 dark:border-gray-800 capitalize hover:text-primary-600 dark:hover:text-primary-400"
-            :class="activeSection === item ? 'text-primary-600 dark:text-primary-400' : ''"
+            class="block py-3 border-b border-gray-800 capitalize text-gray-300 hover:text-primary-400"
+            :class="activeSection === item ? 'text-primary-400' : ''"
             x-text="item"
           ></a>
         </template>
@@ -314,12 +276,7 @@
   </header>
 
   <!-- Hero Section -->
-  <section id="home" class="min-h-screen flex items-center pt-20 relative bg-hero-pattern dark:bg-none section">
-    <!-- Background Elements -->
-    <div class="absolute inset-0 bg-gradient-to-b from-primary-50/30 to-white/0 dark:from-primary-950/30 dark:to-gray-900/0 pointer-events-none"></div>
-    <div class="absolute top-1/4 right-1/4 w-64 h-64 bg-primary-400/10 dark:bg-primary-400/5 rounded-full filter blur-3xl animate-pulse-slow"></div>
-    <div class="absolute bottom-1/4 left-1/4 w-64 h-64 bg-secondary-400/10 dark:bg-secondary-400/5 rounded-full filter blur-3xl animate-pulse-slow" style="animation-delay: 2s;"></div>
-    
+  <section id="home" class="min-h-screen flex items-center pt-20 relative overflow-hidden section">
     <div class="container mx-auto px-4 py-16 md:py-32 relative z-10">
       <div class="flex flex-col md:flex-row items-center">
         <div class="md:w-1/2 mb-10 md:mb-0">
@@ -1084,14 +1041,107 @@
     <i class="fas fa-arrow-up"></i>
   </button>
 
+  </div>
+
   <!-- Custom JavaScript for animations -->
   <script>
-    // Function to initialize background animations
-    function initBackgroundAnimations() {
-      // This function would contain any additional animation logic
-      console.log('Background animations initialized');
+    function initStarfield() {
+      const canvas = document.getElementById('starfield');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let stars = [];
+      let width = 0;
+      let height = 0;
+      let animationFrame;
+
+      const createStars = () => {
+        width = canvas.clientWidth;
+        height = canvas.clientHeight;
+        const dpr = window.devicePixelRatio || 1;
+        canvas.width = Math.round(width * dpr);
+        canvas.height = Math.round(height * dpr);
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        ctx.scale(dpr, dpr);
+
+        const density = Math.floor((width * height) / 10000);
+        const starCount = Math.min(220, Math.max(140, density));
+        stars = Array.from({ length: starCount }, () => ({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          radius: Math.random() * 0.45 + 0.1,
+          twinkleSpeed: Math.random() * 0.01 + 0.002,
+          twinkleAmplitude: Math.random() * 0.25 + 0.2,
+          offset: Math.random() * Math.PI * 2,
+          driftX: (Math.random() - 0.5) * 0.02,
+          driftY: (Math.random() - 0.5) * 0.02,
+          hue: Math.random() > 0.6 ? 295 : 210
+        }));
+      };
+
+      const draw = () => {
+        ctx.clearRect(0, 0, width, height);
+        stars.forEach(star => {
+          star.offset += star.twinkleSpeed;
+          star.x += star.driftX;
+          star.y += star.driftY;
+
+          if (star.x < -5) star.x = width + 5;
+          if (star.x > width + 5) star.x = -5;
+          if (star.y < -5) star.y = height + 5;
+          if (star.y > height + 5) star.y = -5;
+
+          const twinkle = 0.25 + star.twinkleAmplitude * (0.5 + 0.5 * Math.sin(star.offset));
+          const haloRadius = star.radius * 12;
+
+          const gradient = ctx.createRadialGradient(star.x, star.y, 0, star.x, star.y, haloRadius);
+          gradient.addColorStop(0, `rgba(255, 255, 255, ${twinkle})`);
+          gradient.addColorStop(0.45, `rgba(255, 255, 255, ${twinkle * 0.35})`);
+          gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+
+          ctx.save();
+          ctx.fillStyle = gradient;
+          ctx.beginPath();
+          ctx.arc(star.x, star.y, haloRadius, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.restore();
+
+          ctx.save();
+          const tint = `hsla(${star.hue}, 90%, 75%, ${twinkle})`;
+          ctx.fillStyle = tint;
+          ctx.shadowColor = `hsla(${star.hue}, 90%, 65%, ${twinkle * 0.6})`;
+          ctx.shadowBlur = star.radius * 18;
+          ctx.beginPath();
+          ctx.arc(star.x, star.y, star.radius * 1.4, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.restore();
+        });
+
+        animationFrame = requestAnimationFrame(draw);
+      };
+
+      const handleResize = () => {
+        cancelAnimationFrame(animationFrame);
+        createStars();
+        draw();
+      };
+
+      window.addEventListener('resize', debounce(handleResize, 150));
+      createStars();
+      draw();
     }
-    
+
+    function debounce(fn, wait) {
+      let timeout;
+      return (...args) => {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => fn(...args), wait);
+      };
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initStarfield();
+    });
+
     // Smooth scroll function
     function smoothScroll(target) {
       const element = document.querySelector(target);
