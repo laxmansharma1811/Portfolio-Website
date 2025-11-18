@@ -439,63 +439,212 @@ img {
   }
 }
 
-/* Pulsing Glow Effect for Tech Badges */
-@keyframes pulse-glow {
-  0%, 100% {
+/* Modern Floating Animation with 3D Effect */
+@keyframes floatModern {
+  0% {
+    transform: translateY(0) translateX(0) rotate(0deg) scale(1);
     box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3);
   }
+  25% {
+    transform: translateY(-10px) translateX(5px) rotate(2deg) scale(1.05);
+    box-shadow: 0 8px 25px rgba(236, 72, 153, 0.4);
+  }
   50% {
-    box-shadow: 0 4px 25px rgba(236, 72, 153, 0.5);
+    transform: translateY(-20px) translateX(0) rotate(5deg) scale(1.08);
+    box-shadow: 0 12px 35px rgba(79, 70, 229, 0.5);
+  }
+  75% {
+    transform: translateY(-10px) translateX(-5px) rotate(2deg) scale(1.05);
+    box-shadow: 0 8px 25px rgba(236, 72, 153, 0.4);
+  }
+  100% {
+    transform: translateY(0) translateX(0) rotate(0deg) scale(1);
+    box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3);
   }
 }
 
-/* Enhanced Float Animation with Multiple Effects */
-.animate-float {
-  animation: float 6s ease-in-out infinite, pulse-glow 3s ease-in-out infinite;
+/* Smooth Pulsing Glow Effect */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3),
+                0 0 20px rgba(79, 70, 229, 0.1);
+  }
+  50% {
+    box-shadow: 0 4px 25px rgba(236, 72, 153, 0.5),
+                0 0 40px rgba(236, 72, 153, 0.2);
+  }
+}
+
+/* Icon Spin and Glow */
+@keyframes iconGlow {
+  0%, 100% {
+    filter: drop-shadow(0 0 5px rgba(79, 70, 229, 0.3));
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    filter: drop-shadow(0 0 15px rgba(236, 72, 153, 0.6));
+    transform: scale(1.1) rotate(5deg);
+  }
+}
+
+/* Floating Badge Style */
+.floating-badge {
+  position: absolute;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: floatModern 6s ease-in-out infinite;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  z-index: 10;
+}
+
+.floating-badge i,
+.floating-badge svg {
   transition: all 0.3s ease;
+  animation: iconGlow 3s ease-in-out infinite;
+}
+
+.floating-badge:hover {
+  animation-play-state: paused;
+  transform: scale(1.25) rotate(10deg) translateY(-5px) !important;
+  box-shadow: 0 15px 45px rgba(79, 70, 229, 0.6),
+              0 0 60px rgba(236, 72, 153, 0.4) !important;
+  border-color: rgba(79, 70, 229, 0.5);
+  z-index: 20;
+}
+
+.floating-badge:hover i,
+.floating-badge:hover svg {
+  animation-play-state: paused;
+  transform: scale(1.2) rotate(-10deg);
+  filter: drop-shadow(0 0 20px rgba(236, 72, 153, 0.8));
+}
+
+/* Staggered Animation Delays */
+.floating-badge:nth-child(1) {
+  animation-duration: 5s;
+}
+
+.floating-badge:nth-child(2) {
+  animation-duration: 6s;
+}
+
+.floating-badge:nth-child(3) {
+  animation-duration: 5.5s;
+}
+
+.floating-badge:nth-child(4) {
+  animation-duration: 6.5s;
+}
+
+.floating-badge:nth-child(5) {
+  animation-duration: 5.8s;
+}
+
+/* Profile Image Container Enhancement */
+.animate-float {
+  animation: floatModern 8s ease-in-out infinite;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .animate-float:hover {
   animation-play-state: paused;
-  transform: scale(1.15) rotate(8deg) !important;
-  box-shadow: 0 8px 30px rgba(79, 70, 229, 0.6) !important;
+  transform: scale(1.08) rotate(3deg) !important;
 }
 
-/* Badge Specific Staggered Animations */
-.animate-float[style*="animation-delay: 1s"] {
-  animation: float 5s ease-in-out infinite, pulse-glow 2.5s ease-in-out infinite;
+/* Dark Mode Enhancements */
+.dark .floating-badge {
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(51, 65, 85, 0.95));
+  border-color: rgba(148, 163, 184, 0.3);
 }
 
-.animate-float[style*="animation-delay: 1.5s"] {
-  animation: float 6s ease-in-out infinite, pulse-glow 3s ease-in-out infinite 0.5s;
+.dark .floating-badge:hover {
+  background: linear-gradient(135deg, rgba(79, 70, 229, 0.3), rgba(236, 72, 153, 0.3));
+  border-color: rgba(79, 70, 229, 0.6);
 }
 
-.animate-float[style*="animation-delay: 2s"] {
-  animation: float 7s ease-in-out infinite, pulse-glow 3.5s ease-in-out infinite 1s;
+/* Glass Morphism Effect for Badges */
+.floating-badge::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
-.animate-float[style*="animation-delay: 2.5s"] {
-  animation: float 5.5s ease-in-out infinite, pulse-glow 2.75s ease-in-out infinite 1.25s;
+.floating-badge:hover::before {
+  opacity: 1;
 }
 
-/* Smooth Icon Color Transitions */
-.animate-float i, .animate-float svg {
-  transition: all 0.3s ease;
+/* Smooth Gradient Animation on Profile Image Border */
+@keyframes borderGlow {
+  0%, 100% {
+    border-color: rgba(79, 70, 229, 0.5);
+    box-shadow: 0 0 20px rgba(79, 70, 229, 0.3);
+  }
+  50% {
+    border-color: rgba(236, 72, 153, 0.5);
+    box-shadow: 0 0 30px rgba(236, 72, 153, 0.4);
+  }
 }
 
-.animate-float:hover i,
-.animate-float:hover svg {
-  transform: scale(1.1);
-  filter: brightness(1.2);
+.animate-float .absolute.inset-0.rounded-full {
+  animation: borderGlow 4s ease-in-out infinite;
 }
 
-/* Dark Mode Badge Enhancements */
-.dark .animate-float {
-  background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(51, 65, 85, 0.9));
-  border: 1px solid rgba(148, 163, 184, 0.2);
+/* Hero Section Text Animations */
+.hero-section h1,
+.hero-section h2,
+.hero-section p {
+  opacity: 0;
+  transform: translateY(30px);
 }
 
-.dark .animate-float:hover {
-  background: linear-gradient(135deg, rgba(79, 70, 229, 0.2), rgba(236, 72, 153, 0.2));
-  border-color: rgba(79, 70, 229, 0.5);
+/* Smooth Button Hover Effects */
+.hero-section a {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hero-section a:hover {
+  transform: translateY(-3px) scale(1.02);
+}
+
+/* Badge Tooltip Enhancement */
+.floating-badge::after {
+  content: attr(title);
+  position: absolute;
+  bottom: -35px;
+  left: 50%;
+  transform: translateX(-50%) scale(0);
+  padding: 6px 12px;
+  background: rgba(15, 23, 42, 0.95);
+  color: white;
+  border-radius: 8px;
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+  z-index: 100;
+}
+
+.floating-badge:hover::after {
+  transform: translateX(-50%) scale(1);
+  opacity: 1;
+}
+
+/* Responsive Badge Sizes */
+@media (max-width: 768px) {
+  .floating-badge {
+    padding: 8px;
+  }
+  
+  .floating-badge i,
+  .floating-badge svg {
+    font-size: 1.25rem;
+    width: 1.25rem;
+    height: 1.25rem;
+  }
 }

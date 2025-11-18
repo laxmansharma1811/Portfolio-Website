@@ -97,6 +97,112 @@
   // Make smoothScroll globally accessible
   window.smoothScroll = smoothScroll;
   
+  // Enhanced Profile Section Animations
+  const initProfileAnimations = () => {
+    // Animate profile image with smooth entrance
+    gsap.from('.animate-float', {
+      duration: 1.5,
+      scale: 0.8,
+      opacity: 0,
+      rotation: -10,
+      ease: 'elastic.out(1, 0.5)',
+      delay: 0.3
+    });
+
+    // Animate floating badges with staggered entrance
+    gsap.from('.floating-badge', {
+      duration: 1.2,
+      scale: 0,
+      opacity: 0,
+      rotation: 180,
+      ease: 'back.out(1.7)',
+      stagger: {
+        amount: 0.8,
+        from: 'random'
+      },
+      delay: 0.8
+    });
+
+    // Add continuous subtle movement to badges
+    document.querySelectorAll('.floating-badge').forEach((badge, index) => {
+      gsap.to(badge, {
+        y: '+=15',
+        duration: 2 + (index * 0.3),
+        ease: 'sine.inOut',
+        repeat: -1,
+        yoyo: true,
+        delay: index * 0.2
+      });
+    });
+
+    // Enhance text animations with smoother effects
+    gsap.from('.hero-section h1', {
+      duration: 1,
+      y: 50,
+      opacity: 0,
+      ease: 'power3.out',
+      delay: 0.2
+    });
+
+    gsap.from('.hero-section h2', {
+      duration: 1,
+      y: 30,
+      opacity: 0,
+      ease: 'power3.out',
+      delay: 0.4
+    });
+
+    gsap.from('.hero-section p', {
+      duration: 1,
+      y: 20,
+      opacity: 0,
+      ease: 'power3.out',
+      delay: 0.6
+    });
+
+    // Animate CTA buttons
+    gsap.from('.hero-section .flex.flex-wrap.gap-4 a', {
+      duration: 0.8,
+      scale: 0.8,
+      opacity: 0,
+      ease: 'back.out(1.7)',
+      stagger: 0.15,
+      delay: 0.8
+    });
+
+    // Animate social icons
+    gsap.from('.hero-section .flex.space-x-5 a', {
+      duration: 0.6,
+      scale: 0,
+      opacity: 0,
+      rotation: 360,
+      ease: 'back.out(2)',
+      stagger: 0.1,
+      delay: 1
+    });
+
+    // Add hover animation enhancements
+    document.querySelectorAll('.floating-badge').forEach(badge => {
+      badge.addEventListener('mouseenter', () => {
+        gsap.to(badge, {
+          scale: 1.3,
+          rotation: 15,
+          duration: 0.3,
+          ease: 'power2.out'
+        });
+      });
+
+      badge.addEventListener('mouseleave', () => {
+        gsap.to(badge, {
+          scale: 1,
+          rotation: 0,
+          duration: 0.3,
+          ease: 'power2.out'
+        });
+      });
+    });
+  };
+  
   // Add responsive handling for mobile devices
   const checkMobile = () => {
     return window.innerWidth < 768;
@@ -106,6 +212,9 @@
   document.addEventListener('DOMContentLoaded', () => {
     // Initialize background animations
     initBackgroundAnimations();
+    
+    // Initialize profile animations
+    initProfileAnimations();
     
     // Adjust animations for mobile if needed
     if (checkMobile()) {

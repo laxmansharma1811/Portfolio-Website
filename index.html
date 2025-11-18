@@ -10,23 +10,25 @@
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://laxman-sharma.com.np/">
   <meta name="theme-color" content="#020617">
+  <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="en_US">
   <meta property="og:site_name" content="Laxman Sharma Portfolio">
   <meta property="og:title" content="Laxman Sharma | Backend Developer Portfolio">
   <meta property="og:description" content="Backend developer and automation enthusiast showcasing Python, Django, and full-stack projects. Available for freelance and remote work.">
   <meta property="og:url" content="https://laxman-sharma.com.np/">
-  <meta property="og:image" content="https://laxman-sharma.com.np/assets/laxman.png">
+  <meta property="og:image" content="https://laxman-sharma.com.np/assets/images/laxman.png">
   <meta property="og:image:alt" content="Portrait of backend developer Laxman Sharma">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Laxman Sharma | Backend Developer Portfolio">
   <meta name="twitter:description" content="Discover backend projects, automation tools, and full-stack experiments by Laxman Sharma from Kathmandu, Nepal.">
-  <meta name="twitter:image" content="https://laxman-sharma.com.np/assets/laxman.png">
+  <meta name="twitter:image" content="https://laxman-sharma.com.np/assets/images/laxman.png">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.10.5/cdn.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollToPlugin.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="css/styles.css">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     // Configure Tailwind for dark mode
@@ -297,7 +299,7 @@
           "@id": "https://laxman-sharma.com.np/#person",
           "name": "Laxman Sharma",
           "url": "https://laxman-sharma.com.np/",
-          "image": "https://laxman-sharma.com.np/assets/laxman.png",
+          "image": "https://laxman-sharma.com.np/assets/images/laxman.png",
           "jobTitle": "Backend Developer",
           "description": "Backend developer and automation enthusiast specializing in Python, Django, and data engineering projects.",
           "address": {
@@ -449,7 +451,7 @@
   </header>
 
   <!-- Hero Section -->
-  <section id="home" class="min-h-screen flex items-center pt-20 relative overflow-hidden section">
+  <section id="home" class="hero-section min-h-screen flex items-center pt-20 relative overflow-hidden section">
     <div class="container mx-auto px-4 py-16 md:py-32 relative z-10">
       <div class="flex flex-col md:flex-row items-center">
         <div class="md:w-1/2 mb-10 md:mb-0">
@@ -504,23 +506,26 @@
           <div class="relative w-64 h-64 md:w-80 md:h-80 animate-float">
             <div class="absolute inset-0 rounded-full bg-gradient-to-br from-primary-400 to-secondary-400 opacity-20 blur-xl animate-pulse-slow"></div>
             <div class="absolute inset-0 rounded-full overflow-hidden border-4 border-white dark:border-gray-800 shadow-2xl">
-              <img src="assets/laxman.png" alt="Laxman Sharma" class="w-full h-full object-cover" />
+              <img src="assets/images/laxman.png" alt="Laxman Sharma" class="w-full h-full object-cover" />
             </div>
             
             <!-- Floating badges - AI/ML & FastAPI Focus -->
-            <div class="absolute -top-4 -right-4 bg-white dark:bg-gray-800 rounded-full p-3 shadow-lg animate-float hover:scale-110 transition-transform" style="animation-delay: 1s;" title="Python">
+            <div class="floating-badge absolute -top-4 -right-4 bg-white dark:bg-gray-800 rounded-full p-3 shadow-lg" style="animation-delay: 0s;" title="Python">
               <i class="fab fa-python text-2xl text-blue-500"></i>
             </div>
-            <div class="absolute -bottom-4 -left-4 bg-white dark:bg-gray-800 rounded-full p-3 shadow-lg animate-float hover:scale-110 transition-transform" style="animation-delay: 2s;" title="FastAPI">
+            <div class="floating-badge absolute -bottom-4 -left-4 bg-white dark:bg-gray-800 rounded-full p-3 shadow-lg" style="animation-delay: 0.8s;" title="FastAPI">
               <svg class="w-6 h-6" viewBox="0 0 24 24" fill="#009688">
                 <path d="M12 0C5.375 0 0 5.375 0 12c0 6.627 5.375 12 12 12 6.626 0 12-5.373 12-12 0-6.625-5.373-12-12-12zm-.624 21.62v-7.528H7.19L13.203 2.38v7.528h4.029L11.376 21.62z"/>
               </svg>
             </div>
-            <div class="absolute top-1/2 -right-8 bg-white dark:bg-gray-800 rounded-full p-3 shadow-lg animate-float hover:scale-110 transition-transform" style="animation-delay: 1.5s;" title="AI/ML">
+            <div class="floating-badge absolute top-1/2 -right-8 bg-white dark:bg-gray-800 rounded-full p-3 shadow-lg" style="animation-delay: 0.4s;" title="AI/ML">
               <i class="fas fa-brain text-2xl text-purple-500"></i>
             </div>
-            <div class="absolute top-1/4 -left-8 bg-white dark:bg-gray-800 rounded-full p-3 shadow-lg animate-float hover:scale-110 transition-transform" style="animation-delay: 2.5s;" title="Database">
+            <div class="floating-badge absolute top-1/4 -left-8 bg-white dark:bg-gray-800 rounded-full p-3 shadow-lg" style="animation-delay: 1.2s;" title="Database">
               <i class="fas fa-database text-2xl text-green-500"></i>
+            </div>
+            <div class="floating-badge absolute bottom-1/3 -left-12 bg-white dark:bg-gray-800 rounded-full p-3 shadow-lg" style="animation-delay: 0.6s;" title="Selenium">
+              <i class="fas fa-robot text-2xl text-orange-500"></i>
             </div>
           </div>
         </div>
@@ -623,7 +628,7 @@
           </div>
           
           <div class="mt-8">
-            <a href="assets/Laxman_Sharma_Resume.pdf" download="Laxman_Sharma_Resume.pdf" class="inline-flex items-center px-6 py-3 rounded-full bg-gradient hover:opacity-90 text-white font-medium transition-all shadow-lg shadow-primary-500/20 hover:shadow-primary-500/30 hover:-translate-y-0.5" aria-label="Download Laxman Sharma resume as PDF">
+            <a href="assets/documents/Laxman_Sharma_Resume.pdf" download="Laxman_Sharma_Resume.pdf" class="inline-flex items-center px-6 py-3 rounded-full bg-gradient hover:opacity-90 text-white font-medium transition-all shadow-lg shadow-primary-500/20 hover:shadow-primary-500/30 hover:-translate-y-0.5" aria-label="Download Laxman Sharma resume as PDF">
               <i class="fas fa-download mr-2"></i> Download Resume
             </a>
           </div>
@@ -759,7 +764,7 @@
           x-transition:leave-end="opacity-0 transform scale-95">
           <div class="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 h-full flex flex-col transform group-hover:-translate-y-2">
             <div class="relative overflow-hidden">
-              <img src="assets/analysis.png" alt="Project 1" class="w-full h-64 object-cover object-center transition-transform duration-500 group-hover:scale-110" />
+              <img src="assets/images/analysis.png" alt="Project 1" class="w-full h-64 object-cover object-center transition-transform duration-500 group-hover:scale-110" />
               <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
                 <div class="w-full">
                   <span class="px-3 py-1 rounded-full bg-primary-600/70 text-white text-sm font-medium">Web Design</span>
@@ -795,7 +800,7 @@
           x-transition:leave-end="opacity-0 transform scale-95">
           <div class="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 h-full flex flex-col transform group-hover:-translate-y-2">
             <div class="relative overflow-hidden">
-              <img src="assets/project3.png" alt="Project 2" class="w-full h-64 object-cover object-center transition-transform duration-500 group-hover:scale-110" />
+              <img src="assets/images/project3.png" alt="Project 2" class="w-full h-64 object-cover object-center transition-transform duration-500 group-hover:scale-110" />
               <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
                 <div class="w-full">
                   <span class="px-3 py-1 rounded-full bg-secondary-600/70 text-white text-sm font-medium">Mobile App</span>
@@ -831,7 +836,7 @@
           x-transition:leave-end="opacity-0 transform scale-95">
           <div class="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 h-full flex flex-col transform group-hover:-translate-y-2">
             <div class="relative overflow-hidden">
-              <img src="assets/R.png" alt="Project 3" class="w-full h-64 object-cover object-center transition-transform duration-500 group-hover:scale-110" />
+              <img src="assets/images/R.png" alt="Project 3" class="w-full h-64 object-cover object-center transition-transform duration-500 group-hover:scale-110" />
               <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
                 <div class="w-full">
                   <span class="px-3 py-1 rounded-full bg-primary-600/70 text-white text-sm font-medium">Web Scraping</span>
@@ -1531,7 +1536,7 @@
         {
           topic: 'resume',
           keywords: ['resume', 'cv', 'pdf', 'download', 'profile'],
-          answer: 'Grab the latest resume at /assets/Laxman_Sharma_CV.pdf or request a tailored version via email.'
+          answer: 'Grab the latest resume at /assets/documents/Laxman_Sharma_Resume.pdf or request a tailored version via email.'
         }
       ];
 
@@ -1626,7 +1631,7 @@
 
         if (/resume|cv/.test(normalized)) {
           lastTopic = 'resume';
-          return 'You can download the resume anytime at /assets/Laxman_Sharma_CV.pdf or ask via email for a tailored version.';
+          return 'You can download the resume anytime at /assets/documents/Laxman_Sharma_Resume.pdf or ask via email for a tailored version.';
         }
 
         if (/timeline|deliver|how long|timeline|estimate/.test(normalized)) {
@@ -1687,5 +1692,6 @@
       resetConversation();
     }
   </script>
+  <script src="js/script.js"></script>
 </body>
 </html>
