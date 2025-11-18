@@ -428,3 +428,74 @@ img {
     width: 50px;
   }
 }
+
+/* Enhanced Badge Animations for AI/ML Focus */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(5deg);
+  }
+}
+
+/* Pulsing Glow Effect for Tech Badges */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3);
+  }
+  50% {
+    box-shadow: 0 4px 25px rgba(236, 72, 153, 0.5);
+  }
+}
+
+/* Enhanced Float Animation with Multiple Effects */
+.animate-float {
+  animation: float 6s ease-in-out infinite, pulse-glow 3s ease-in-out infinite;
+  transition: all 0.3s ease;
+}
+
+.animate-float:hover {
+  animation-play-state: paused;
+  transform: scale(1.15) rotate(8deg) !important;
+  box-shadow: 0 8px 30px rgba(79, 70, 229, 0.6) !important;
+}
+
+/* Badge Specific Staggered Animations */
+.animate-float[style*="animation-delay: 1s"] {
+  animation: float 5s ease-in-out infinite, pulse-glow 2.5s ease-in-out infinite;
+}
+
+.animate-float[style*="animation-delay: 1.5s"] {
+  animation: float 6s ease-in-out infinite, pulse-glow 3s ease-in-out infinite 0.5s;
+}
+
+.animate-float[style*="animation-delay: 2s"] {
+  animation: float 7s ease-in-out infinite, pulse-glow 3.5s ease-in-out infinite 1s;
+}
+
+.animate-float[style*="animation-delay: 2.5s"] {
+  animation: float 5.5s ease-in-out infinite, pulse-glow 2.75s ease-in-out infinite 1.25s;
+}
+
+/* Smooth Icon Color Transitions */
+.animate-float i, .animate-float svg {
+  transition: all 0.3s ease;
+}
+
+.animate-float:hover i,
+.animate-float:hover svg {
+  transform: scale(1.1);
+  filter: brightness(1.2);
+}
+
+/* Dark Mode Badge Enhancements */
+.dark .animate-float {
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(51, 65, 85, 0.9));
+  border: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.dark .animate-float:hover {
+  background: linear-gradient(135deg, rgba(79, 70, 229, 0.2), rgba(236, 72, 153, 0.2));
+  border-color: rgba(79, 70, 229, 0.5);
+}
