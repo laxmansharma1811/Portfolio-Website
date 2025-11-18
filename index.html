@@ -655,51 +655,135 @@
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <!-- Experience Card 1 -->
-        <article class="bg-white/5 dark:bg-gray-900/70 border border-white/10 rounded-2xl p-8 shadow-xl backdrop-blur-sm hover:-translate-y-1 transition-all duration-300">
-          <div class="flex flex-wrap items-center justify-between gap-4 mb-4">
-            <div>
-              <p class="text-sm uppercase tracking-wide text-primary-300">AI/ML Engineering Intern</p>
-              <h3 class="text-2xl font-semibold text-white">Esewa Ltd</h3>
-              <p class="text-gray-400 text-sm">Kathmandu, Nepal</p>
+        <!-- Experience Card 1 - eSewa -->
+        <article class="experience-card group bg-white/5 dark:bg-gray-900/70 border border-white/10 rounded-2xl overflow-hidden shadow-xl backdrop-blur-sm hover:-translate-y-2 hover:shadow-2xl hover:border-primary-500/30 transition-all duration-500">
+          <!-- Company Logo Header -->
+          <div class="relative bg-gradient-to-br from-primary-600/10 to-primary-800/10 p-6 border-b border-white/10">
+            <div class="flex items-center gap-6">
+              <!-- Logo -->
+              <div class="company-logo w-20 h-20 rounded-2xl bg-white dark:bg-gray-800 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                <div class="text-4xl font-bold bg-gradient-to-br from-green-500 to-green-700 bg-clip-text text-transparent">
+                  E
+                </div>
+              </div>
+              <!-- Company Info -->
+              <div class="flex-1">
+                <h3 class="text-2xl font-bold text-white mb-1 group-hover:text-primary-300 transition-colors">eSewa Ltd</h3>
+                <p class="text-primary-300 font-medium text-sm uppercase tracking-wide">AI/ML Engineering Intern</p>
+                <p class="text-gray-400 text-sm mt-1 flex items-center gap-1">
+                  <i class="fas fa-map-marker-alt"></i>
+                  Lalitpur, Nepal
+                </p>
+              </div>
+              <!-- Duration Badge -->
+              <div class="hidden md:block">
+                <span class="px-4 py-2 rounded-xl bg-primary-500/20 text-primary-200 text-sm font-medium border border-primary-500/30 whitespace-nowrap">
+                  Nov 2024 – Mar 2025
+                </span>
+              </div>
             </div>
-            <span class="px-4 py-2 rounded-full bg-primary-500/20 text-primary-200 text-sm font-medium">Nov 2024 &ndash; Mar 2025</span>
+            <!-- Mobile Duration -->
+            <div class="md:hidden mt-4">
+              <span class="inline-block px-4 py-2 rounded-xl bg-primary-500/20 text-primary-200 text-sm font-medium border border-primary-500/30">
+                Nov 2024 – Mar 2025
+              </span>
+            </div>
           </div>
-          <p class="text-gray-300 font-medium mb-4">Built BHASABODH &mdash; a Romanized to Devanagari translation assistant for Nepal's leading digital wallet.</p>
-          <ul class="space-y-3 text-gray-400 list-disc list-inside">
-            <li>Fine-tuned BLOOM/BERT variants and optimized inference with BLEU-based evaluation loops.</li>
-            <li>Authored data cleaning + training pipelines and improved transformer throughput for production.</li>
-            <li>Integrated the chatbot into a FastAPI interface with Tailwind CSS for a polished frontend experience.</li>
-            <li>Worked with R&D to validate translation accuracy and deploy experiments rapidly.</li>
-          </ul>
-          <div class="flex flex-wrap gap-2 mt-6">
-            <span class="px-3 py-1 rounded-full bg-primary-500/15 text-primary-200 text-xs">Transformers</span>
-            <span class="px-3 py-1 rounded-full bg-primary-500/15 text-primary-200 text-xs">FastAPI</span>
-            <span class="px-3 py-1 rounded-full bg-primary-500/15 text-primary-200 text-xs">Tailwind CSS</span>
+
+          <!-- Content -->
+          <div class="p-8">
+            <p class="text-gray-300 font-medium mb-4 text-lg leading-relaxed">
+              Built <span class="text-primary-300 font-semibold">BHASABODH</span> — a Romanized to Devanagari translation assistant for Nepal's leading digital wallet.
+            </p>
+            <ul class="space-y-3 text-gray-400">
+              <li class="flex gap-3 items-start">
+                <i class="fas fa-check-circle text-primary-400 mt-1 flex-shrink-0"></i>
+                <span>Fine-tuned BLOOM/BERT variants and optimized inference with BLEU-based evaluation loops.</span>
+              </li>
+              <li class="flex gap-3 items-start">
+                <i class="fas fa-check-circle text-primary-400 mt-1 flex-shrink-0"></i>
+                <span>Authored data cleaning + training pipelines and improved transformer throughput for production.</span>
+              </li>
+              <li class="flex gap-3 items-start">
+                <i class="fas fa-check-circle text-primary-400 mt-1 flex-shrink-0"></i>
+                <span>Integrated the chatbot into a FastAPI interface with Tailwind CSS for a polished frontend experience.</span>
+              </li>
+              <li class="flex gap-3 items-start">
+                <i class="fas fa-check-circle text-primary-400 mt-1 flex-shrink-0"></i>
+                <span>Worked with R&D to validate translation accuracy and deploy experiments rapidly.</span>
+              </li>
+            </ul>
+            <div class="flex flex-wrap gap-2 mt-6">
+              <span class="px-3 py-1.5 rounded-lg bg-primary-500/15 text-primary-200 text-xs font-medium border border-primary-500/20 hover:bg-primary-500/25 transition-colors">Transformers</span>
+              <span class="px-3 py-1.5 rounded-lg bg-primary-500/15 text-primary-200 text-xs font-medium border border-primary-500/20 hover:bg-primary-500/25 transition-colors">FastAPI</span>
+              <span class="px-3 py-1.5 rounded-lg bg-primary-500/15 text-primary-200 text-xs font-medium border border-primary-500/20 hover:bg-primary-500/25 transition-colors">Tailwind CSS</span>
+            </div>
           </div>
         </article>
 
-        <!-- Experience Card 2 -->
-        <article class="bg-white/5 dark:bg-gray-900/70 border border-white/10 rounded-2xl p-8 shadow-xl backdrop-blur-sm hover:-translate-y-1 transition-all duration-300">
-          <div class="flex flex-wrap items-center justify-between gap-4 mb-4">
-            <div>
-              <p class="text-sm uppercase tracking-wide text-secondary-300">Data Engineering Intern</p>
-              <h3 class="text-2xl font-semibold text-white">Dlytica Inc. Pvt. Ltd</h3>
-              <p class="text-gray-400 text-sm">Kathmandu, Nepal</p>
+        <!-- Experience Card 2 - Dlytica -->
+        <article class="experience-card group bg-white/5 dark:bg-gray-900/70 border border-white/10 rounded-2xl overflow-hidden shadow-xl backdrop-blur-sm hover:-translate-y-2 hover:shadow-2xl hover:border-secondary-500/30 transition-all duration-500">
+          <!-- Company Logo Header -->
+          <div class="relative bg-gradient-to-br from-secondary-600/10 to-secondary-800/10 p-6 border-b border-white/10">
+            <div class="flex items-center gap-6">
+              <!-- Logo -->
+              <div class="company-logo w-20 h-20 rounded-2xl bg-white dark:bg-gray-800 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                <div class="text-4xl font-bold bg-gradient-to-br from-purple-500 to-pink-700 bg-clip-text text-transparent">
+                  D
+                </div>
+              </div>
+              <!-- Company Info -->
+              <div class="flex-1">
+                <h3 class="text-2xl font-bold text-white mb-1 group-hover:text-secondary-300 transition-colors">Dlytica Inc. Pvt. Ltd</h3>
+                <p class="text-secondary-300 font-medium text-sm uppercase tracking-wide">Data Engineering Intern</p>
+                <p class="text-gray-400 text-sm mt-1 flex items-center gap-1">
+                  <i class="fas fa-map-marker-alt"></i>
+                  Lalitpur, Nepal
+                </p>
+              </div>
+              <!-- Duration Badge -->
+              <div class="hidden md:block">
+                <span class="px-4 py-2 rounded-xl bg-secondary-500/20 text-secondary-200 text-sm font-medium border border-secondary-500/30 whitespace-nowrap">
+                  Jul 2024 – Nov 2024
+                </span>
+              </div>
             </div>
-            <span class="px-4 py-2 rounded-full bg-secondary-500/20 text-secondary-200 text-sm font-medium">Jul 2024 &ndash; Nov 2024</span>
+            <!-- Mobile Duration -->
+            <div class="md:hidden mt-4">
+              <span class="inline-block px-4 py-2 rounded-xl bg-secondary-500/20 text-secondary-200 text-sm font-medium border border-secondary-500/30">
+                Jul 2024 – Nov 2024
+              </span>
+            </div>
           </div>
-          <p class="text-gray-300 font-medium mb-4">Shipped data pipelines and ETL automation while completing Dlytica's intensive data engineering program.</p>
-          <ul class="space-y-3 text-gray-400 list-disc list-inside">
-            <li>Hands-on with cloud platforms, database tuning, and streaming data ingestion scenarios.</li>
-            <li>Built Apache Airflow DAGs plus MinIO-backed storage flows for reliable workflow automation.</li>
-            <li>Implemented ETL jobs that cleaned, transformed, and loaded analytics datasets.</li>
-            <li>Documented best practices for team handoff and iterated with mentors on production readiness.</li>
-          </ul>
-          <div class="flex flex-wrap gap-2 mt-6">
-            <span class="px-3 py-1 rounded-full bg-secondary-500/15 text-secondary-200 text-xs">Apache Airflow</span>
-            <span class="px-3 py-1 rounded-full bg-secondary-500/15 text-secondary-200 text-xs">ETL</span>
-            <span class="px-3 py-1 rounded-full bg-secondary-500/15 text-secondary-200 text-xs">MinIO</span>
+
+          <!-- Content -->
+          <div class="p-8">
+            <p class="text-gray-300 font-medium mb-4 text-lg leading-relaxed">
+              Shipped data pipelines and ETL automation while completing Dlytica's intensive data engineering program.
+            </p>
+            <ul class="space-y-3 text-gray-400">
+              <li class="flex gap-3 items-start">
+                <i class="fas fa-check-circle text-secondary-400 mt-1 flex-shrink-0"></i>
+                <span>Hands-on with cloud platforms, database tuning, and streaming data ingestion scenarios.</span>
+              </li>
+              <li class="flex gap-3 items-start">
+                <i class="fas fa-check-circle text-secondary-400 mt-1 flex-shrink-0"></i>
+                <span>Built Apache Airflow DAGs plus MinIO-backed storage flows for reliable workflow automation.</span>
+              </li>
+              <li class="flex gap-3 items-start">
+                <i class="fas fa-check-circle text-secondary-400 mt-1 flex-shrink-0"></i>
+                <span>Implemented ETL jobs that cleaned, transformed, and loaded analytics datasets.</span>
+              </li>
+              <li class="flex gap-3 items-start">
+                <i class="fas fa-check-circle text-secondary-400 mt-1 flex-shrink-0"></i>
+                <span>Documented best practices for team handoff and iterated with mentors on production readiness.</span>
+              </li>
+            </ul>
+            <div class="flex flex-wrap gap-2 mt-6">
+              <span class="px-3 py-1.5 rounded-lg bg-secondary-500/15 text-secondary-200 text-xs font-medium border border-secondary-500/20 hover:bg-secondary-500/25 transition-colors">Apache Airflow</span>
+              <span class="px-3 py-1.5 rounded-lg bg-secondary-500/15 text-secondary-200 text-xs font-medium border border-secondary-500/20 hover:bg-secondary-500/25 transition-colors">ETL</span>
+              <span class="px-3 py-1.5 rounded-lg bg-secondary-500/15 text-secondary-200 text-xs font-medium border border-secondary-500/20 hover:bg-secondary-500/25 transition-colors">MinIO</span>
+            </div>
           </div>
         </article>
       </div>

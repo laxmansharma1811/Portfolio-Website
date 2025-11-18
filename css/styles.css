@@ -648,3 +648,167 @@ img {
     height: 1.25rem;
   }
 }
+
+/* ===== Experience Section Enhancements ===== */
+
+/* Experience Card Animations */
+@keyframes cardSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes logoFloat {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-5px) rotate(2deg);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+/* Experience Card Styling */
+.experience-card {
+  position: relative;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.experience-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 1rem;
+  padding: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(79, 70, 229, 0.3),
+    transparent
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.experience-card:hover::before {
+  opacity: 1;
+  animation: shimmer 3s infinite;
+}
+
+/* Company Logo Styling */
+.company-logo {
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.company-logo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.experience-card:hover .company-logo {
+  box-shadow: 0 10px 40px rgba(79, 70, 229, 0.3);
+  animation: logoFloat 2s ease-in-out infinite;
+}
+
+.experience-card:hover .company-logo::after {
+  opacity: 1;
+}
+
+/* Check Icon Pulse on Hover */
+.experience-card li i {
+  transition: all 0.3s ease;
+}
+
+.experience-card:hover li i {
+  transform: scale(1.2);
+  filter: drop-shadow(0 0 5px currentColor);
+}
+
+/* Tech Tag Hover Effects */
+.experience-card span[class*="rounded-lg"] {
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.experience-card span[class*="rounded-lg"]::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  transform: translate(-50%, -50%);
+  transition: width 0.3s ease, height 0.3s ease;
+}
+
+.experience-card span[class*="rounded-lg"]:hover::before {
+  width: 100%;
+  height: 100%;
+  border-radius: 0.5rem;
+}
+
+/* Staggered Animation for Cards */
+.experience-card:nth-child(1) {
+  animation: cardSlideIn 0.6s ease-out 0.1s backwards;
+}
+
+.experience-card:nth-child(2) {
+  animation: cardSlideIn 0.6s ease-out 0.3s backwards;
+}
+
+/* Header Gradient Background Animation */
+.experience-card > div:first-child {
+  position: relative;
+  transition: all 0.4s ease;
+}
+
+.experience-card:hover > div:first-child {
+  background: linear-gradient(
+    to bottom right,
+    rgba(79, 70, 229, 0.2),
+    rgba(236, 72, 153, 0.2)
+  );
+}
+
+/* Responsive Adjustments for Experience Section */
+@media (max-width: 768px) {
+  .company-logo {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .experience-card h3 {
+    font-size: 1.5rem;
+  }
+}

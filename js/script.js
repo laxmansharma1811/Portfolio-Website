@@ -203,6 +203,88 @@
     });
   };
   
+  // Enhanced Experience Section Animations
+  const initExperienceAnimations = () => {
+    // Animate experience cards on scroll
+    gsap.utils.toArray('.experience-card').forEach((card, index) => {
+      gsap.from(card, {
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 85%',
+          end: 'top 30%',
+          toggleActions: 'play none none reverse',
+        },
+        y: 60,
+        opacity: 0,
+        scale: 0.95,
+        duration: 0.8,
+        delay: index * 0.2,
+        ease: 'power3.out'
+      });
+
+      // Animate company logo separately
+      const logo = card.querySelector('.company-logo');
+      if (logo) {
+        gsap.from(logo, {
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 85%',
+          },
+          scale: 0,
+          rotation: -180,
+          duration: 0.8,
+          delay: index * 0.2 + 0.3,
+          ease: 'back.out(1.7)'
+        });
+      }
+
+      // Animate bullet points
+      const listItems = card.querySelectorAll('li');
+      gsap.from(listItems, {
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 75%',
+        },
+        x: -20,
+        opacity: 0,
+        duration: 0.5,
+        stagger: 0.1,
+        delay: index * 0.2 + 0.5,
+        ease: 'power2.out'
+      });
+
+      // Animate tech tags
+      const tags = card.querySelectorAll('.flex.flex-wrap.gap-2 span');
+      gsap.from(tags, {
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 70%',
+        },
+        scale: 0,
+        opacity: 0,
+        duration: 0.4,
+        stagger: 0.08,
+        delay: index * 0.2 + 0.8,
+        ease: 'back.out(2)'
+      });
+    });
+
+    // Add parallax effect to experience section background elements
+    gsap.utils.toArray('#experience .absolute.rounded-full').forEach((element, index) => {
+      gsap.to(element, {
+        scrollTrigger: {
+          trigger: '#experience',
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 1,
+        },
+        y: index % 2 === 0 ? -100 : 100,
+        rotation: index % 2 === 0 ? 45 : -45,
+        ease: 'none'
+      });
+    });
+  };
+  
   // Add responsive handling for mobile devices
   const checkMobile = () => {
     return window.innerWidth < 768;
@@ -215,6 +297,9 @@
     
     // Initialize profile animations
     initProfileAnimations();
+    
+    // Initialize experience animations
+    initExperienceAnimations();
     
     // Adjust animations for mobile if needed
     if (checkMobile()) {
