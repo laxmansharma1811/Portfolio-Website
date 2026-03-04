@@ -289,6 +289,93 @@
     
     [x-cloak] { display: none !important; }
 
+    /* ===== Scroll Progress Bar ===== */
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: linear-gradient(90deg, #0ea5e9, #8b5cf6, #ec4899);
+      z-index: 9999;
+      transition: width 0.1s linear;
+      box-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
+    }
+
+    /* ===== Header Enhancements ===== */
+    .header-glass {
+      border-bottom: 1px solid rgba(148, 163, 184, 0.08);
+    }
+    .header-glass.scrolled {
+      background: rgba(2, 6, 23, 0.92);
+      backdrop-filter: blur(20px) saturate(1.3);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    }
+    .header-glass.scrolled nav {
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+    }
+    .header-gradient-border {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(14, 165, 233, 0.4), rgba(139, 92, 246, 0.4), transparent);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    .header-glass.scrolled .header-gradient-border {
+      opacity: 1;
+    }
+
+    /* ===== Wave Dividers ===== */
+    .wave-divider {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      line-height: 0;
+      margin-top: -1px;
+    }
+    .wave-divider svg {
+      display: block;
+      width: 100%;
+      height: 60px;
+    }
+    .wave-flip {
+      transform: scaleX(-1);
+    }
+    @media (min-width: 768px) {
+      .wave-divider svg { height: 80px; }
+    }
+
+    /* ===== Reveal Animation ===== */
+    .reveal-card {
+      opacity: 0;
+      transform: translateY(40px) scale(0.97);
+      transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1), transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .reveal-card.revealed {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+    .reveal-card:nth-child(2) { transition-delay: 0.12s; }
+    .reveal-card:nth-child(3) { transition-delay: 0.24s; }
+
+    /* ===== Counter Animation ===== */
+    .counter {
+      display: inline-block;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* ===== Back-to-top Enhancements ===== */
+    .back-to-top-btn {
+      box-shadow: 0 4px 20px rgba(14, 165, 233, 0.3);
+    }
+    .back-to-top-btn:hover {
+      box-shadow: 0 6px 25px rgba(139, 92, 246, 0.4);
+    }
+
     /* Typing Cursor Animation */
     .typed-cursor {
       animation: blink 0.8s step-end infinite;
@@ -342,6 +429,45 @@
     @keyframes liveGlow {
       0%, 100% { box-shadow: 0 0 8px rgba(34, 197, 94, 0.4); }
       50% { box-shadow: 0 0 18px rgba(34, 197, 94, 0.7); }
+    }
+
+    /* ===== Smooth Tilt on Project Cards ===== */
+    .group > div.bg-white,
+    .group > div.project-card-enhanced {
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s ease;
+    }
+
+    /* ===== Mobile Responsive Fixes ===== */
+    @media (max-width: 480px) {
+      .floating-badge:nth-child(4),
+      .floating-badge:nth-child(5) {
+        display: none;
+      }
+      .hero-section h1 {
+        font-size: 2rem !important;
+      }
+      .hero-section h2 {
+        font-size: 1.25rem !important;
+      }
+      .chat-panel__messages {
+        max-height: 200px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .back-to-top-btn {
+        width: 2.5rem;
+        height: 2.5rem;
+        bottom: 1rem;
+        left: 1rem;
+      }
+    }
+
+    /* ===== Tablet Grid Fix ===== */
+    @media (min-width: 640px) and (max-width: 1023px) {
+      .grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-3 {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
   </style>
 
@@ -399,54 +525,43 @@
   {name: 'Node.js', percent: 80},
   {name: 'UI/UX Design', percent: 75}
 ]}" x-init="
-  // Initialize GSAP animations
   $nextTick(() => {
     gsap.registerPlugin(ScrollTrigger);
-    
-    // Animate skill bars
+
     gsap.utils.toArray('.skill-progress').forEach(bar => {
       const percent = bar.getAttribute('data-percent');
       gsap.to(bar, {
         width: `${percent}%`,
         duration: 1.5,
         ease: 'power2.out',
-        scrollTrigger: {
-          trigger: bar,
-          start: 'top 80%',
-        }
+        scrollTrigger: { trigger: bar, start: 'top 80%' }
       });
     });
-    
-    // Fade in animations for sections
+
     gsap.utils.toArray('.section').forEach(section => {
       gsap.from(section, {
-        y: 30,
-        opacity: 0,
-        duration: 0.8,
-        scrollTrigger: {
-          trigger: section,
-          start: 'top 80%',
-        }
+        y: 30, opacity: 0, duration: 0.8,
+        scrollTrigger: { trigger: section, start: 'top 80%' }
       });
     });
   });
-  
-  // Update active section on scroll
+
   window.addEventListener('scroll', () => {
     const sections = document.querySelectorAll('section[id]');
     const scrollPosition = window.scrollY + 300;
-    
     sections.forEach(section => {
       const top = section.offsetTop;
       const height = section.offsetHeight;
       const id = section.getAttribute('id');
-      
       if (scrollPosition >= top && scrollPosition < top + height) {
         activeSection = id;
       }
     });
   });
 " x-cloak>
+
+  <!-- Scroll Progress Bar -->
+  <div id="scrollProgress" class="scroll-progress" aria-hidden="true"></div>
 
   <a href="#main-content" class="skip-link">Skip to main content</a>
 
@@ -458,8 +573,9 @@
   <main id="main-content" class="page-content relative z-10" role="main">
 
   <!-- Navigation -->
-  <header class="fixed w-full top-0 z-50 bg-gray-950/80 backdrop-blur-md shadow-sm transition-all duration-300">
-  <nav class="container mx-auto px-4 py-4 flex justify-between items-center" aria-label="Primary">
+  <header id="siteHeader" class="fixed w-full top-0 z-50 bg-gray-950/80 backdrop-blur-md transition-all duration-500 header-glass">
+    <div class="header-gradient-border"></div>
+  <nav class="container mx-auto px-4 py-4 flex justify-between items-center transition-all duration-300" id="mainNav" aria-label="Primary">
       <!-- Logo -->
       <div class="flex items-center">
         <span class="text-2xl font-bold text-gradient">LS</span>
@@ -488,8 +604,8 @@
     </nav>
     
     <!-- Mobile Menu -->
-    <div id="mobile-menu" class="md:hidden absolute w-full bg-gray-900 shadow-md transition-all duration-300 overflow-hidden" 
-     :class="navOpen ? 'max-h-60' : 'max-h-0'" 
+    <div id="mobile-menu" class="md:hidden absolute w-full bg-gray-900/95 backdrop-blur-xl shadow-2xl transition-all duration-400 overflow-hidden border-t border-white/5"
+     :class="navOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'"
      style="top: 100%">
       <div class="container mx-auto px-4 py-2">
   <template x-for="(item, index) in ['home', 'about', 'experience', 'projects', 'skills', 'contact']">
@@ -561,7 +677,7 @@
           <div class="relative w-64 h-64 md:w-80 md:h-80 animate-float">
             <div class="absolute inset-0 rounded-full bg-gradient-to-br from-primary-400 to-secondary-400 opacity-20 blur-xl animate-pulse-slow"></div>
             <div class="absolute inset-0 rounded-full overflow-hidden border-4 border-white dark:border-gray-800 shadow-2xl">
-              <img src="assets/images/laxman.png" alt="Laxman Sharma" class="w-full h-full object-cover" />
+            <img src="assets/images/laxman.png" alt="Laxman Sharma" class="w-full h-full object-cover" loading="eager" />
             </div>
             
             <!-- Floating badges - AI/ML & FastAPI Focus -->
@@ -588,6 +704,13 @@
     </div>
   </section>
 
+  <!-- Wave divider -->
+  <div class="wave-divider" aria-hidden="true">
+    <svg viewBox="0 0 1440 100" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,40 C360,100 720,0 1080,60 C1260,80 1380,40 1440,40 L1440,100 L0,100 Z" fill="currentColor" class="text-gray-50 dark:text-gray-800/50"/>
+    </svg>
+  </div>
+
   <!-- About Section -->
   <section id="about" class="py-20 bg-gray-50 dark:bg-gray-800/50 section relative overflow-hidden">
     <!-- Background Elements -->
@@ -606,7 +729,7 @@
         <div class="md:w-1/2 mb-10 md:mb-0">
           <div class="relative">
             <div class="absolute inset-0 translate-x-5 translate-y-5 rounded-2xl bg-primary-200 dark:bg-primary-900/30"></div>
-            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2072&q=80" alt="About me" class="relative z-10 rounded-2xl shadow-lg w-full h-auto object-cover" />
+            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2072&q=80" alt="About me" class="relative z-10 rounded-2xl shadow-lg w-full h-auto object-cover" loading="lazy" />
             
             <!-- Experience badge -->
             <div class="absolute -bottom-6 -right-6 bg-white dark:bg-gray-800 rounded-xl p-4 shadow-xl z-20">
@@ -691,6 +814,13 @@
       </div>
     </div>
   </section>
+
+  <!-- Wave divider -->
+  <div class="wave-divider wave-flip" aria-hidden="true">
+    <svg viewBox="0 0 1440 100" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,60 C240,10 480,90 720,40 C960,-10 1200,80 1440,50 L1440,100 L0,100 Z" fill="currentColor" class="text-gray-900/20"/>
+    </svg>
+  </div>
 
   <!-- Experience Section -->
   <section id="experience" class="py-20 section relative overflow-hidden bg-gray-900/20">
@@ -909,7 +1039,7 @@
           x-transition:leave-end="opacity-0 transform scale-95">
           <div class="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 h-full flex flex-col transform group-hover:-translate-y-2">
             <div class="relative overflow-hidden">
-              <img src="assets/images/analysis.png" alt="Project 1" class="w-full h-64 object-cover object-center transition-transform duration-500 group-hover:scale-110" />
+              <img src="assets/images/analysis.png" alt="Project 1" class="w-full h-64 object-cover object-center transition-transform duration-500 group-hover:scale-110" loading="lazy" />
               <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
                 <div class="w-full">
                   <span class="px-3 py-1 rounded-full bg-primary-600/70 text-white text-sm font-medium">Web Design</span>
@@ -945,7 +1075,7 @@
           x-transition:leave-end="opacity-0 transform scale-95">
           <div class="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 h-full flex flex-col transform group-hover:-translate-y-2">
             <div class="relative overflow-hidden">
-              <img src="assets/images/project3.png" alt="Project 2" class="w-full h-64 object-cover object-center transition-transform duration-500 group-hover:scale-110" />
+              <img src="assets/images/project3.png" alt="Project 2" class="w-full h-64 object-cover object-center transition-transform duration-500 group-hover:scale-110" loading="lazy" />
               <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
                 <div class="w-full">
                   <span class="px-3 py-1 rounded-full bg-secondary-600/70 text-white text-sm font-medium">Mobile App</span>
@@ -981,7 +1111,7 @@
           x-transition:leave-end="opacity-0 transform scale-95">
           <div class="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 h-full flex flex-col transform group-hover:-translate-y-2">
             <div class="relative overflow-hidden">
-              <img src="assets/images/R.png" alt="Project 3" class="w-full h-64 object-cover object-center transition-transform duration-500 group-hover:scale-110" />
+              <img src="assets/images/R.png" alt="Project 3" class="w-full h-64 object-cover object-center transition-transform duration-500 group-hover:scale-110" loading="lazy" />
               <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
                 <div class="w-full">
                   <span class="px-3 py-1 rounded-full bg-primary-600/70 text-white text-sm font-medium">Web Scraping</span>
@@ -1259,7 +1389,7 @@
       
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <!-- Achievement 1 -->
-        <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 text-center group">
+        <div class="reveal-card bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 text-center group">
           <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 text-4xl mb-6 group-hover:scale-110 transition-transform">
             <i class="fas fa-graduation-cap"></i>
           </div>
@@ -1268,9 +1398,9 @@
             Successfully completed my degree with a focus on programming and software development fundamentals.
           </p>
         </div>
-        
+
         <!-- Achievement 2 -->
-        <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 text-center group">
+        <div class="reveal-card bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 text-center group">
           <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-secondary-100 dark:bg-secondary-900/30 text-secondary-600 dark:text-secondary-400 text-4xl mb-6 group-hover:scale-110 transition-transform">
             <i class="fas fa-certificate"></i>
           </div>
@@ -1279,13 +1409,13 @@
             Earned a certification in Python Programming from Sunway College, demonstrating expertise in Python and its applications.
           </p>
         </div>
-        
+
         <!-- Achievement 3 -->
-        <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 text-center group">
+        <div class="reveal-card bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 text-center group">
           <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 text-4xl mb-6 group-hover:scale-110 transition-transform">
             <i class="fas fa-project-diagram"></i>
           </div>
-          <h3 class="text-xl font-bold mb-4">10+ Projects Completed</h3>
+          <h3 class="text-xl font-bold mb-4"><span class="counter" data-target="10">0</span>+ Projects Completed</h3>
           <p class="text-gray-600 dark:text-gray-400">
             Built and deployed 10+ projects, including web apps, mobile apps, and automation tools, to enhance my technical skills.
           </p>
@@ -1500,22 +1630,22 @@
   </footer>
 
   <!-- Back to top button -->
-  <button 
+  <button
     @click="smoothScroll('#home')"
-    class="fixed bottom-6 right-6 w-12 h-12 rounded-full bg-gradient text-white shadow-lg flex items-center justify-center opacity-0 transition-all duration-300 hover:-translate-y-1"
-    :class="{'opacity-100': window.scrollY > 500, 'opacity-0': window.scrollY <= 500}"
+    class="fixed bottom-6 left-6 w-12 h-12 rounded-full bg-gradient text-white shadow-lg flex items-center justify-center opacity-0 transition-all duration-300 hover:-translate-y-1 z-40 back-to-top-btn"
     x-data
     x-init="
       window.addEventListener('scroll', () => {
         if (window.scrollY > 500) {
           $el.classList.add('opacity-100');
-          $el.classList.remove('opacity-0');
+          $el.classList.remove('opacity-0', 'pointer-events-none');
         } else {
-          $el.classList.add('opacity-0');
+          $el.classList.add('opacity-0', 'pointer-events-none');
           $el.classList.remove('opacity-100');
         }
       })
     "
+    aria-label="Back to top"
   >
     <i class="fas fa-arrow-up"></i>
   </button>
@@ -1583,7 +1713,8 @@
         ctx.scale(dpr, dpr);
 
         const density = Math.floor((width * height) / 9500);
-        const starCount = Math.min(260, Math.max(150, density));
+        const isMobile = width < 768;
+        const starCount = isMobile ? Math.min(100, Math.max(60, density)) : Math.min(260, Math.max(150, density));
         stars = Array.from({ length: starCount }, () => ({
           x: Math.random() * width,
           y: Math.random() * height,
@@ -1684,7 +1815,73 @@
       initStarfield();
       initPortfolioChat();
       initTypingAnimation();
+      initScrollProgress();
+      initHeaderShrink();
+      initRevealAnimations();
+      initCounterAnimations();
     });
+
+    // Scroll Progress Bar
+    function initScrollProgress() {
+      const bar = document.getElementById('scrollProgress');
+      if (!bar) return;
+      window.addEventListener('scroll', () => {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        bar.style.width = docHeight > 0 ? (scrollTop / docHeight * 100) + '%' : '0%';
+      }, { passive: true });
+    }
+
+    // Header shrink on scroll
+    function initHeaderShrink() {
+      const header = document.getElementById('siteHeader');
+      if (!header) return;
+      window.addEventListener('scroll', () => {
+        header.classList.toggle('scrolled', window.scrollY > 50);
+      }, { passive: true });
+    }
+
+    // Reveal animations using IntersectionObserver
+    function initRevealAnimations() {
+      const cards = document.querySelectorAll('.reveal-card');
+      if (!cards.length) return;
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+      cards.forEach(card => observer.observe(card));
+    }
+
+    // Counter animation
+    function initCounterAnimations() {
+      const counters = document.querySelectorAll('.counter');
+      if (!counters.length) return;
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const el = entry.target;
+            const target = parseInt(el.getAttribute('data-target'), 10);
+            let current = 0;
+            const step = Math.max(1, Math.floor(target / 30));
+            const interval = setInterval(() => {
+              current += step;
+              if (current >= target) {
+                el.textContent = target;
+                clearInterval(interval);
+              } else {
+                el.textContent = current;
+              }
+            }, 40);
+            observer.unobserve(el);
+          }
+        });
+      }, { threshold: 0.5 });
+      counters.forEach(c => observer.observe(c));
+    }
 
     // Typing Animation
     function initTypingAnimation() {
