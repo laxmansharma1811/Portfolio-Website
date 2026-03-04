@@ -74,13 +74,14 @@ body {
 
 /* ===== Background Animations ===== */
 
-/* Floating Bubbles */
+/* Floating Bubbles (section-level decorations) */
 .bubble {
   position: absolute;
   border-radius: 50%;
-  background: rgba(79, 70, 229, 0.1);
+  background: rgba(79, 70, 229, 0.08);
   animation: float-bubble var(--duration) ease-in-out infinite;
   z-index: -1;
+  will-change: transform;
 }
 
 @keyframes float-bubble {
@@ -88,80 +89,56 @@ body {
   50% { transform: translateY(var(--distance)) translateX(var(--distance-x)); }
 }
 
-/* Animated Shapes */
-.shape {
-  position: absolute;
-  filter: blur(30px);
-  z-index: -1;
-  opacity: 0.2;
-  animation: shape-float 20s ease-in-out infinite;
-}
-
-@keyframes shape-float {
-  0% { transform: translate(0, 0) rotate(0deg); }
-  33% { transform: translate(2%, 2%) rotate(5deg); }
-  66% { transform: translate(-2%, -1%) rotate(-5deg); }
-  100% { transform: translate(0, 0) rotate(0deg); }
-}
-
-/* Shooting Stars */
-.shooting-star {
-  position: absolute;
-  width: 100px;
-  height: 1px;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0.8), transparent);
-  animation: shooting 5s linear infinite;
-  opacity: 0;
-}
-
-@keyframes shooting {
-  0% { transform: translateX(0) translateY(0) rotate(45deg); opacity: 0; }
-  10% { opacity: 1; }
-  20% { transform: translateX(calc(100vw / 5)) translateY(calc(100vh / 5)) rotate(45deg); opacity: 0; }
-  100% { opacity: 0; }
-}
-
 /* Glowing Dots */
 .glowing-dot {
   position: absolute;
-  width: 4px;
-  height: 4px;
+  width: 3px;
+  height: 3px;
   border-radius: 50%;
-  background-color: rgba(79, 70, 229, 0.7);
-  box-shadow: 0 0 10px 2px rgba(79, 70, 229, 0.3);
+  background-color: rgba(99, 102, 241, 0.6);
+  box-shadow: 0 0 8px 2px rgba(99, 102, 241, 0.25);
   animation: glow 4s ease-in-out infinite;
 }
 
 @keyframes glow {
-  0%, 100% { opacity: 0.3; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.5); }
+  0%, 100% { opacity: 0.25; transform: scale(1); }
+  50% { opacity: 0.85; transform: scale(1.3); }
 }
 
 /* Dark mode animation adjustments */
-.dark .bubble { background: rgba(79, 70, 229, 0.15); }
-.dark .shape { opacity: 0.25; }
+.dark .bubble { background: rgba(79, 70, 229, 0.12); }
 .dark .glowing-dot {
-  background-color: rgba(236, 72, 153, 0.7);
-  box-shadow: 0 0 10px 2px rgba(236, 72, 153, 0.3);
+  background-color: rgba(236, 72, 153, 0.6);
+  box-shadow: 0 0 8px 2px rgba(236, 72, 153, 0.25);
 }
 
 /* ===== Responsive ===== */
 @media (max-width: 640px) {
   .project-card { margin-bottom: 1.5rem; }
   .skill-item { margin-bottom: 1rem; }
-  .hero-section h1 { font-size: 2.5rem; }
-  .hero-section h2 { font-size: 1.5rem; }
+  .hero-section h1 { font-size: 2rem; }
+  .hero-section h2 { font-size: 1.25rem; }
+  .floating-badge {
+    padding: 6px !important;
+  }
+  .floating-badge i, .floating-badge svg {
+    font-size: 1.15rem;
+    width: 1.15rem;
+    height: 1.15rem;
+  }
 }
 
 @media (max-width: 480px) {
   input, textarea, button { width: 100%; }
   .contact-info { text-align: center; }
+  .floating-badge {
+    padding: 5px !important;
+  }
 }
 
 @media (max-width: 768px) {
   section { padding-top: 3rem; padding-bottom: 3rem; }
   .section-title { margin-bottom: 2rem; }
-  .shooting-star { width: 50px; }
   .floating-badge { padding: 8px; }
   .floating-badge i, .floating-badge svg {
     font-size: 1.25rem;
@@ -170,6 +147,9 @@ body {
   }
   .company-logo { width: 60px; height: 60px; }
   .experience-card h3 { font-size: 1.5rem; }
+  .animate-float {
+    animation-duration: 10s;
+  }
 }
 
 img {
@@ -187,45 +167,41 @@ img {
 /* ===== Badge Animations ===== */
 
 @keyframes floatModern {
-  0% { transform: translateY(0) translateX(0) rotate(0deg) scale(1); box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3); }
-  25% { transform: translateY(-10px) translateX(5px) rotate(2deg) scale(1.05); box-shadow: 0 8px 25px rgba(236, 72, 153, 0.4); }
-  50% { transform: translateY(-20px) translateX(0) rotate(5deg) scale(1.08); box-shadow: 0 12px 35px rgba(79, 70, 229, 0.5); }
-  75% { transform: translateY(-10px) translateX(-5px) rotate(2deg) scale(1.05); box-shadow: 0 8px 25px rgba(236, 72, 153, 0.4); }
-  100% { transform: translateY(0) translateX(0) rotate(0deg) scale(1); box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3); }
+  0%, 100% { transform: translateY(0); box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3); }
+  50% { transform: translateY(-12px); box-shadow: 0 10px 30px rgba(79, 70, 229, 0.4); }
 }
 
 @keyframes iconGlow {
-  0%, 100% { filter: drop-shadow(0 0 5px rgba(79, 70, 229, 0.3)); transform: scale(1) rotate(0deg); }
-  50% { filter: drop-shadow(0 0 15px rgba(236, 72, 153, 0.6)); transform: scale(1.1) rotate(5deg); }
+  0%, 100% { filter: drop-shadow(0 0 5px rgba(79, 70, 229, 0.3)); }
+  50% { filter: drop-shadow(0 0 12px rgba(236, 72, 153, 0.5)); }
 }
 
 .floating-badge {
   position: absolute;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.5s ease, border-color 0.3s ease;
   animation: floatModern 6s ease-in-out infinite;
   backdrop-filter: blur(10px);
   border: 2px solid rgba(255, 255, 255, 0.1);
   cursor: pointer;
   z-index: 10;
+  will-change: transform;
 }
 
 .floating-badge i, .floating-badge svg {
-  transition: all 0.3s ease;
+  transition: transform 0.4s ease, filter 0.4s ease;
   animation: iconGlow 3s ease-in-out infinite;
 }
 
 .floating-badge:hover {
-  animation-play-state: paused;
-  transform: scale(1.25) rotate(10deg) translateY(-5px) !important;
-  box-shadow: 0 15px 45px rgba(79, 70, 229, 0.6), 0 0 60px rgba(236, 72, 153, 0.4) !important;
+  transform: scale(1.15) translateY(-6px);
+  box-shadow: 0 12px 35px rgba(79, 70, 229, 0.5), 0 0 40px rgba(236, 72, 153, 0.3);
   border-color: rgba(79, 70, 229, 0.5);
   z-index: 20;
 }
 
 .floating-badge:hover i, .floating-badge:hover svg {
-  animation-play-state: paused;
-  transform: scale(1.2) rotate(-10deg);
-  filter: drop-shadow(0 0 20px rgba(236, 72, 153, 0.8));
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 15px rgba(236, 72, 153, 0.6));
 }
 
 .floating-badge:nth-child(1) { animation-duration: 5s; }
@@ -236,12 +212,12 @@ img {
 
 .animate-float {
   animation: floatModern 8s ease-in-out infinite;
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.6s ease;
+  will-change: transform;
 }
 
 .animate-float:hover {
-  animation-play-state: paused;
-  transform: scale(1.08) rotate(3deg) !important;
+  transform: scale(1.05);
 }
 
 /* Dark mode badge enhancements */
@@ -278,8 +254,8 @@ img {
   animation: borderGlow 4s ease-in-out infinite;
 }
 
-/* Hero text initial state */
-.hero-section h1, .hero-section h2, .hero-section p {
+/* Hero text & buttons initial state — GSAP animates these in */
+.hero-section .space-y-6 > * {
   opacity: 0;
   transform: translateY(30px);
 }

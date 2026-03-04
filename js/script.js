@@ -8,9 +8,6 @@
     // Create glowing dots
     createGlowingDots('glowing-dots-container', 30);
     createGlowingDots('glowing-dots-container-skills', 20);
-    
-    // Create shooting stars
-    createShootingStars('shooting-stars-container', 5);
   }
   
   // Create floating bubbles
@@ -61,24 +58,6 @@
     }
   }
   
-  // Create shooting stars
-  function createShootingStars(containerId, count) {
-    const container = document.getElementById(containerId);
-    if (!container) return;
-    
-    for (let i = 0; i < count; i++) {
-      const star = document.createElement('div');
-      star.className = 'shooting-star';
-      star.style.top = `${Math.random() * 70}%`;
-      star.style.left = `${Math.random() * 30}%`;
-      
-      // Randomize animation delay
-      star.style.animationDelay = `${Math.random() * 15}s`;
-      
-      container.appendChild(star);
-    }
-  }
-  
   // Register ScrollToPlugin
   gsap.registerPlugin(ScrollToPlugin);
 
@@ -101,44 +80,39 @@
   const initProfileAnimations = () => {
     // Animate profile image with smooth entrance
     gsap.from('.animate-float', {
-      duration: 1.5,
-      scale: 0.8,
+      duration: 1.2,
+      scale: 0.9,
       opacity: 0,
-      rotation: -10,
-      ease: 'elastic.out(1, 0.5)',
+      ease: 'power3.out',
       delay: 0.3
     });
 
     // Animate floating badges with staggered entrance
     gsap.from('.floating-badge', {
-      duration: 1.2,
+      duration: 1,
       scale: 0,
       opacity: 0,
-      rotation: 180,
-      ease: 'back.out(1.7)',
+      ease: 'back.out(1.4)',
       stagger: {
-        amount: 0.8,
+        amount: 0.6,
         from: 'random'
       },
       delay: 0.8
     });
 
-    // Add continuous subtle movement to badges
-    document.querySelectorAll('.floating-badge').forEach((badge, index) => {
-      gsap.to(badge, {
-        y: '+=15',
-        duration: 2 + (index * 0.3),
-        ease: 'sine.inOut',
-        repeat: -1,
-        yoyo: true,
-        delay: index * 0.2
-      });
+    // Animate "Available for freelance" badge
+    gsap.from('.hero-section .inline-flex', {
+      duration: 0.8,
+      y: 20,
+      opacity: 0,
+      ease: 'power3.out',
+      delay: 0.1
     });
 
     // Enhance text animations with smoother effects
     gsap.from('.hero-section h1', {
       duration: 1,
-      y: 50,
+      y: 30,
       opacity: 0,
       ease: 'power3.out',
       delay: 0.2
@@ -154,52 +128,37 @@
 
     gsap.from('.hero-section p', {
       duration: 1,
-      y: 20,
+      y: 30,
       opacity: 0,
       ease: 'power3.out',
       delay: 0.6
     });
 
-    // Animate CTA buttons
-    gsap.from('.hero-section .flex.flex-wrap.gap-4 a', {
+    // Animate CTA buttons wrapper and buttons
+    gsap.from('.hero-section .flex.flex-wrap.gap-4', {
       duration: 0.8,
-      scale: 0.8,
+      y: 30,
       opacity: 0,
-      ease: 'back.out(1.7)',
-      stagger: 0.15,
+      ease: 'power3.out',
       delay: 0.8
     });
 
-    // Animate social icons
+    // Animate social icons wrapper and icons
+    gsap.from('.hero-section .pt-6.flex', {
+      duration: 0.8,
+      y: 30,
+      opacity: 0,
+      ease: 'power3.out',
+      delay: 1
+    });
+
     gsap.from('.hero-section .flex.space-x-5 a', {
       duration: 0.6,
       scale: 0,
       opacity: 0,
-      rotation: 360,
       ease: 'back.out(2)',
       stagger: 0.1,
-      delay: 1
-    });
-
-    // Add hover animation enhancements
-    document.querySelectorAll('.floating-badge').forEach(badge => {
-      badge.addEventListener('mouseenter', () => {
-        gsap.to(badge, {
-          scale: 1.3,
-          rotation: 15,
-          duration: 0.3,
-          ease: 'power2.out'
-        });
-      });
-
-      badge.addEventListener('mouseleave', () => {
-        gsap.to(badge, {
-          scale: 1,
-          rotation: 0,
-          duration: 0.3,
-          ease: 'power2.out'
-        });
-      });
+      delay: 1.1
     });
   };
   
