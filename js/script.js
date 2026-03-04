@@ -289,28 +289,36 @@
   const checkMobile = () => {
     return window.innerWidth < 768;
   };
-  
+
+  // Animate project cards on scroll
+  const initProjectAnimations = () => {
+    gsap.utils.toArray('.project-card-enhanced, .group > div.bg-white').forEach((card, index) => {
+      gsap.from(card, {
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 88%',
+          toggleActions: 'play none none none',
+        },
+        y: 40,
+        opacity: 0,
+        scale: 0.96,
+        duration: 0.7,
+        delay: index * 0.12,
+        ease: 'power3.out'
+      });
+    });
+  };
+
   // Initialize animations based on device
   document.addEventListener('DOMContentLoaded', () => {
-    // Initialize background animations
     initBackgroundAnimations();
-    
-    // Initialize profile animations
     initProfileAnimations();
-    
-    // Initialize experience animations
     initExperienceAnimations();
-    
-    // Adjust animations for mobile if needed
+    initProjectAnimations();
+
     if (checkMobile()) {
-      // Mobile-specific adjustments
       document.querySelectorAll('.animate-fade-in').forEach(el => {
         el.style.animationDuration = '0.5s';
       });
     }
-  });
-  
-  // Handle window resize events
-  window.addEventListener('resize', () => {
-    // Any responsive adjustments needed on resize
   });
