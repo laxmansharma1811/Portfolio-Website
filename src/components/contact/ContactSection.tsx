@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { PERSONAL_INFO } from '@/data/portfolioData';
-import { Mail, Phone, MapPin, Send, Github, Linkedin, CheckCircle2, Globe } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Github, Linkedin, Globe, CheckCircle2 } from 'lucide-react';
 
 export const ContactSection: React.FC = () => {
   const [formSubmitted, setFormSubmitted] = useState(false);
@@ -20,21 +20,20 @@ export const ContactSection: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="py-24 bg-dark-950 relative overflow-hidden">
-      {/* Background Radial Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[750px] h-[450px] bg-cyan-500/5 rounded-full blur-[160px] pointer-events-none"></div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <section id="contact" className="py-24 bg-obsidian-950">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-mono uppercase tracking-wider">
-            <Mail className="w-3.5 h-3.5" />
-            Direct Communication Terminal
+        <div className="max-w-3xl mb-16 space-y-3">
+          <div className="flex items-center gap-3">
+            <span className="font-mono text-xs text-rust-500 font-bold uppercase tracking-widest">
+              INDEX // 06 — CONTACT TERMINAL
+            </span>
+            <span className="h-px w-12 bg-rust-500/40"></span>
           </div>
-          <h2 className="font-display font-extrabold text-3xl sm:text-4xl text-white tracking-tight">
-            Let's Build Something <span className="text-gradient-cyan">Intelligent Together</span>
+          <h2 className="font-display font-extrabold text-3xl sm:text-4xl text-white tracking-tight uppercase">
+            Start a <span className="text-rust-500">Conversation</span>
           </h2>
-          <p className="text-slate-400 text-base sm:text-lg font-normal">
+          <p className="text-slate-400 text-base font-normal">
             Open for remote backend engineering roles, AI model fine-tuning contracts, and automated data pipeline projects.
           </p>
         </div>
@@ -42,31 +41,31 @@ export const ContactSection: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           {/* Form Column */}
           <div className="lg:col-span-7">
-            <div className="glass-card rounded-2xl p-6 sm:p-8 border border-white/10">
+            <div className="editorial-card rounded-xl p-6 sm:p-8 border border-obsidian-800">
               {formSubmitted ? (
-                <div className="text-center py-12 space-y-4">
-                  <div className="w-16 h-16 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 flex items-center justify-center mx-auto">
-                    <CheckCircle2 className="w-8 h-8" />
+                <div className="text-center py-12 space-y-4 font-mono">
+                  <div className="w-12 h-12 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 flex items-center justify-center mx-auto">
+                    <CheckCircle2 className="w-6 h-6" />
                   </div>
-                  <h3 className="font-display font-bold text-2xl text-white">Message Received</h3>
-                  <p className="text-slate-400 text-sm max-w-md mx-auto font-mono">
-                    Thank you, {formData.name}. Your inquiry has been logged. Laxman will reply directly to <span className="text-cyan-300">{formData.email}</span>.
+                  <h3 className="font-display font-bold text-xl text-white uppercase">Inquiry Logged</h3>
+                  <p className="text-slate-400 text-xs max-w-md mx-auto">
+                    Thank you, {formData.name}. Your message has been received. Laxman will respond directly to <span className="text-rust-500">{formData.email}</span>.
                   </p>
                   <button
                     onClick={() => {
                       setFormSubmitted(false);
                       setFormData({ name: '', email: '', organization: '', message: '' });
                     }}
-                    className="mt-4 px-6 py-2.5 rounded-full bg-white/5 hover:bg-white/10 text-xs font-mono text-slate-300 border border-white/10"
+                    className="mt-4 px-5 py-2 rounded bg-obsidian-900 border border-obsidian-800 text-xs text-slate-300 hover:text-white"
                   >
                     Send Another Message
                   </button>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-5">
+                <form onSubmit={handleSubmit} className="space-y-5 font-mono text-xs">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div>
-                      <label htmlFor="name" className="block text-xs font-mono text-slate-300 mb-2 uppercase tracking-wider">
+                      <label htmlFor="name" className="block text-slate-300 mb-2 uppercase font-bold">
                         Your Name *
                       </label>
                       <input
@@ -76,12 +75,12 @@ export const ContactSection: React.FC = () => {
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         placeholder="John Doe"
-                        className="w-full px-4 py-3 rounded-xl bg-dark-950/80 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-cyan-500 transition-colors"
+                        className="w-full px-4 py-3 rounded bg-obsidian-950 border border-obsidian-800 text-white placeholder-slate-600 focus:outline-none focus:border-rust-500 transition-colors"
                       />
                     </div>
 
                     <div>
-                      <label htmlFor="email" className="block text-xs font-mono text-slate-300 mb-2 uppercase tracking-wider">
+                      <label htmlFor="email" className="block text-slate-300 mb-2 uppercase font-bold">
                         Your Email *
                       </label>
                       <input
@@ -90,14 +89,14 @@ export const ContactSection: React.FC = () => {
                         required
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        placeholder="john@organization.com"
-                        className="w-full px-4 py-3 rounded-xl bg-dark-950/80 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-cyan-500 transition-colors"
+                        placeholder="john@company.com"
+                        className="w-full px-4 py-3 rounded bg-obsidian-950 border border-obsidian-800 text-white placeholder-slate-600 focus:outline-none focus:border-rust-500 transition-colors"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label htmlFor="organization" className="block text-xs font-mono text-slate-300 mb-2 uppercase tracking-wider">
+                    <label htmlFor="organization" className="block text-slate-300 mb-2 uppercase font-bold">
                       Company / Organization
                     </label>
                     <input
@@ -105,13 +104,13 @@ export const ContactSection: React.FC = () => {
                       id="organization"
                       value={formData.organization}
                       onChange={(e) => setFormData({ ...formData, organization: e.target.value })}
-                      placeholder="e.g. Fintech Startup / Studio"
-                      className="w-full px-4 py-3 rounded-xl bg-dark-950/80 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-cyan-500 transition-colors"
+                      placeholder="e.g. Fintech Startup / Engineering Studio"
+                      className="w-full px-4 py-3 rounded bg-obsidian-950 border border-obsidian-800 text-white placeholder-slate-600 focus:outline-none focus:border-rust-500 transition-colors"
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="message" className="block text-xs font-mono text-slate-300 mb-2 uppercase tracking-wider">
+                    <label htmlFor="message" className="block text-slate-300 mb-2 uppercase font-bold">
                       What would you like to build or discuss? *
                     </label>
                     <textarea
@@ -120,100 +119,89 @@ export const ContactSection: React.FC = () => {
                       rows={5}
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      placeholder="Hello Laxman, I would like to discuss a project regarding..."
-                      className="w-full px-4 py-3 rounded-xl bg-dark-950/80 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-cyan-500 transition-colors"
+                      placeholder="Hello Laxman, I would like to discuss a backend or ML project..."
+                      className="w-full px-4 py-3 rounded bg-obsidian-950 border border-obsidian-800 text-white placeholder-slate-600 focus:outline-none focus:border-rust-500 transition-colors"
                     />
                   </div>
 
                   <button
                     type="submit"
-                    className="w-full py-4 rounded-xl bg-gradient-to-r from-cyan-500 to-indigo-600 hover:from-cyan-400 hover:to-indigo-500 text-dark-950 font-bold text-sm transition-all shadow-xl shadow-cyan-500/25 flex items-center justify-center gap-2"
+                    className="w-full py-3.5 rounded bg-rust-500 hover:bg-rust-600 text-white font-bold text-xs uppercase tracking-wider transition-colors flex items-center justify-center gap-2"
                   >
                     <Send className="w-4 h-4" />
-                    Let's Build Something
+                    Start a Conversation
                   </button>
                 </form>
               )}
             </div>
           </div>
 
-          {/* Details & Social Terminal Column */}
-          <div className="lg:col-span-5 space-y-6">
-            {/* Email Card */}
-            <div className="glass-card rounded-2xl p-6 border border-white/10 flex items-center gap-4 group">
-              <div className="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 group-hover:scale-110 transition-transform">
+          {/* Direct Details Column */}
+          <div className="lg:col-span-5 space-y-5 font-mono text-xs">
+            {/* Email */}
+            <div className="editorial-card rounded-xl p-5 border border-obsidian-800 flex items-center gap-4">
+              <div className="p-3 rounded bg-obsidian-950 border border-obsidian-800 text-rust-500">
                 <Mail className="w-5 h-5" />
               </div>
               <div>
-                <div className="font-mono text-xs text-slate-400 uppercase">Direct Email</div>
+                <div className="text-slate-400 text-[10px] uppercase">DIRECT EMAIL</div>
                 <a
                   href={`mailto:${PERSONAL_INFO.email}`}
-                  className="font-display font-semibold text-white hover:text-cyan-300 transition-colors text-base"
+                  className="font-bold text-white hover:text-rust-500 transition-colors text-sm"
                 >
                   {PERSONAL_INFO.email}
                 </a>
               </div>
             </div>
 
-            {/* Phone Card */}
-            <div className="glass-card rounded-2xl p-6 border border-white/10 flex items-center gap-4 group">
-              <div className="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-indigo-400 group-hover:scale-110 transition-transform">
+            {/* Phone */}
+            <div className="editorial-card rounded-xl p-5 border border-obsidian-800 flex items-center gap-4">
+              <div className="p-3 rounded bg-obsidian-950 border border-obsidian-800 text-rust-500">
                 <Phone className="w-5 h-5" />
               </div>
               <div>
-                <div className="font-mono text-xs text-slate-400 uppercase">Phone & WhatsApp</div>
+                <div className="text-slate-400 text-[10px] uppercase">PHONE & WHATSAPP</div>
                 <a
                   href={`tel:${PERSONAL_INFO.phone}`}
-                  className="font-display font-semibold text-white hover:text-indigo-300 transition-colors text-base font-mono"
+                  className="font-bold text-white hover:text-rust-500 transition-colors text-sm"
                 >
                   {PERSONAL_INFO.phone}
                 </a>
               </div>
             </div>
 
-            {/* Location Card */}
-            <div className="glass-card rounded-2xl p-6 border border-white/10 flex items-center gap-4 group">
-              <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 group-hover:scale-110 transition-transform">
+            {/* Location */}
+            <div className="editorial-card rounded-xl p-5 border border-obsidian-800 flex items-center gap-4">
+              <div className="p-3 rounded bg-obsidian-950 border border-obsidian-800 text-rust-500">
                 <MapPin className="w-5 h-5" />
               </div>
               <div>
-                <div className="font-mono text-xs text-slate-400 uppercase">Location</div>
-                <div className="font-display font-semibold text-white text-base">
+                <div className="text-slate-400 text-[10px] uppercase">LOCATION</div>
+                <div className="font-bold text-white text-sm">
                   {PERSONAL_INFO.location}
                 </div>
               </div>
             </div>
 
-            {/* Social Links Terminal */}
-            <div className="glass-card rounded-2xl p-6 border border-white/10 space-y-4">
-              <div className="font-mono text-xs text-slate-400 uppercase">Professional Network</div>
-              <div className="flex flex-wrap gap-3 font-mono text-xs">
+            {/* Social Links */}
+            <div className="editorial-card rounded-xl p-5 border border-obsidian-800 space-y-3">
+              <div className="text-slate-400 text-[10px] uppercase">PROFESSIONAL PROFILES</div>
+              <div className="grid grid-cols-2 gap-3">
                 <a
                   href={PERSONAL_INFO.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 px-4 py-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-white flex items-center justify-center gap-2 transition-colors"
+                  className="p-3 rounded bg-obsidian-950 border border-obsidian-800 text-slate-300 hover:text-white flex items-center justify-center gap-2 transition-colors"
                 >
-                  <Github className="w-4 h-4 text-cyan-400" />
-                  GitHub
+                  <Github className="w-4 h-4 text-rust-500" /> GitHub
                 </a>
                 <a
                   href={PERSONAL_INFO.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 px-4 py-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-white flex items-center justify-center gap-2 transition-colors"
+                  className="p-3 rounded bg-obsidian-950 border border-obsidian-800 text-slate-300 hover:text-white flex items-center justify-center gap-2 transition-colors"
                 >
-                  <Linkedin className="w-4 h-4 text-indigo-400" />
-                  LinkedIn
-                </a>
-                <a
-                  href={PERSONAL_INFO.website}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full px-4 py-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 hover:text-white flex items-center justify-center gap-2 transition-colors"
-                >
-                  <Globe className="w-4 h-4 text-emerald-400" />
-                  laxman-sharma.com.np
+                  <Linkedin className="w-4 h-4 text-rust-500" /> LinkedIn
                 </a>
               </div>
             </div>

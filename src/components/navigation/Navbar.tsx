@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Menu, X, ArrowUpRight, Terminal, FileText, Github, Linkedin, Mail } from 'lucide-react';
+import { Menu, X, FileText, Github, Linkedin, ArrowUpRight } from 'lucide-react';
 import { PERSONAL_INFO } from '@/data/portfolioData';
 
 export const Navbar: React.FC = () => {
@@ -18,59 +18,59 @@ export const Navbar: React.FC = () => {
   }, []);
 
   const navLinks = [
-    { name: 'Projects', href: '/#projects' },
-    { name: 'Experience', href: '/#experience' },
-    { name: 'Capabilities', href: '/#capabilities' },
-    { name: 'About', href: '/#about' },
-    { name: 'Contact', href: '/#contact' },
+    { name: 'Selected Work', href: '/#projects', num: '01' },
+    { name: 'Experience', href: '/#experience', num: '02' },
+    { name: 'Capabilities', href: '/#capabilities', num: '03' },
+    { name: 'About', href: '/#about', num: '04' },
+    { name: 'Contact', href: '/#contact', num: '05' },
   ];
 
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-dark-950/85 backdrop-blur-md border-b border-white/10 py-3 shadow-2xl'
-          : 'bg-transparent py-5'
+          ? 'bg-obsidian-950/90 backdrop-blur-md border-b border-obsidian-800 py-3 shadow-xl'
+          : 'bg-obsidian-950/60 backdrop-blur-sm border-b border-obsidian-800/60 py-4'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          {/* Brand Logo */}
+          {/* Brand & Index */}
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-cyan-500 to-indigo-600 flex items-center justify-center text-white font-mono font-bold text-lg shadow-lg shadow-cyan-500/20 group-hover:scale-105 transition-transform">
+            <div className="px-2.5 py-1 rounded bg-rust-500/10 border border-rust-500/30 text-rust-500 font-mono font-bold text-xs">
               LS
             </div>
             <div className="flex flex-col">
-              <span className="font-display font-bold text-white text-base tracking-tight group-hover:text-cyan-400 transition-colors">
-                Laxman Sharma
+              <span className="font-display font-bold text-white text-sm tracking-tight group-hover:text-rust-500 transition-colors uppercase">
+                {PERSONAL_INFO.name}
               </span>
-              <span className="font-mono text-[10px] text-cyan-400/80 tracking-wider uppercase flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                AI & Systems
+              <span className="font-mono text-[10px] text-obsidian-500 tracking-wider uppercase">
+                AI & Systems Engineer
               </span>
             </div>
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-1 bg-dark-900/80 border border-white/10 rounded-full px-4 py-1.5 backdrop-blur-md">
+          {/* Desktop Links */}
+          <nav className="hidden md:flex items-center gap-6 font-mono text-xs">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
-                className="px-4 py-1.5 text-sm font-medium text-slate-300 hover:text-white hover:bg-white/5 rounded-full transition-colors"
+                className="text-slate-300 hover:text-rust-500 transition-colors flex items-center gap-1.5"
               >
+                <span className="text-rust-500/70 text-[10px]">[{link.num}]</span>
                 {link.name}
               </Link>
             ))}
           </nav>
 
-          {/* CTA & Resume Button */}
-          <div className="hidden md:flex items-center gap-3">
+          {/* Right Action Terminal */}
+          <div className="hidden md:flex items-center gap-3 font-mono text-xs">
             <a
               href={PERSONAL_INFO.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-slate-300 hover:text-white hover:bg-white/10 transition-colors"
+              className="p-2 rounded bg-obsidian-900 border border-obsidian-800 text-slate-300 hover:text-white hover:border-rust-500/50 transition-colors"
               title="GitHub Profile"
             >
               <Github className="w-4 h-4" />
@@ -79,7 +79,7 @@ export const Navbar: React.FC = () => {
               href={PERSONAL_INFO.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-slate-300 hover:text-white hover:bg-white/10 transition-colors"
+              className="p-2 rounded bg-obsidian-900 border border-obsidian-800 text-slate-300 hover:text-white hover:border-rust-500/50 transition-colors"
               title="LinkedIn Profile"
             >
               <Linkedin className="w-4 h-4" />
@@ -88,7 +88,7 @@ export const Navbar: React.FC = () => {
               href={PERSONAL_INFO.resumePdf}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 transition-all shadow-sm"
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded bg-rust-500 text-white font-bold hover:bg-rust-600 transition-colors"
             >
               <FileText className="w-3.5 h-3.5" />
               Resume PDF
@@ -98,44 +98,44 @@ export const Navbar: React.FC = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 rounded-lg bg-white/5 border border-white/10 text-slate-300 hover:text-white"
+            className="md:hidden p-2 rounded bg-obsidian-900 border border-obsidian-800 text-slate-300"
             aria-label="Toggle menu"
           >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu Drawer */}
+      {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-dark-950/95 border-b border-white/10 backdrop-blur-xl px-4 pt-4 pb-6 mt-3 space-y-3">
+        <div className="md:hidden bg-obsidian-950 border-b border-obsidian-800 px-4 py-4 space-y-3 font-mono text-xs">
           {navLinks.map((link) => (
             <Link
               key={link.name}
               href={link.href}
               onClick={() => setMobileMenuOpen(false)}
-              className="block px-4 py-2.5 text-base font-medium text-slate-200 hover:text-cyan-400 hover:bg-white/5 rounded-lg"
+              className="block py-2 text-slate-300 hover:text-rust-500 flex items-center gap-2"
             >
+              <span className="text-rust-500">[{link.num}]</span>
               {link.name}
             </Link>
           ))}
-          <div className="pt-4 border-t border-white/10 flex items-center justify-between gap-3">
+          <div className="pt-3 border-t border-obsidian-800 flex items-center justify-between">
             <a
               href={PERSONAL_INFO.resumePdf}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold bg-cyan-500 text-dark-950 hover:bg-cyan-400 transition-colors"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded bg-rust-500 text-white font-bold"
             >
-              <FileText className="w-4 h-4" />
-              Download Resume
+              <FileText className="w-4 h-4" /> Resume PDF
             </a>
             <a
               href={PERSONAL_INFO.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2.5 rounded-lg bg-white/5 border border-white/10 text-slate-300"
+              className="p-2 rounded bg-obsidian-900 border border-obsidian-800 text-slate-300"
             >
-              <Github className="w-5 h-5" />
+              <Github className="w-4 h-4" />
             </a>
           </div>
         </div>
