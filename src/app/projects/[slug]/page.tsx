@@ -10,6 +10,12 @@ interface Props {
   };
 }
 
+export async function generateStaticParams() {
+  return Object.keys(CASE_STUDIES).map((slug) => ({
+    slug,
+  }));
+}
+
 export async function generateMetadata({ params }: Props) {
   const caseStudy = CASE_STUDIES[params.slug];
   if (!caseStudy) return { title: 'Case Study Not Found' };
